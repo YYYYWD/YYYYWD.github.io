@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Leetcode 22 Generate Parentheses(  √ Accepted  √ 8/8 cases passed (0 ms)  √ Your runtime beats 31.94 % of cpp submissions ) 1234567891011121314151617181920212223242526272829303132333435363738394041424">
+<meta name="description" content="Leetcode 22 Generate Parentheses(  √ Accepted √ 8/8 cases passed (0 ms) √ Your runtime beats 31.94 % of cpp submissions )">
 <meta name="keywords" content="回溯,递归">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode 22 Generate Parentheses">
 <meta property="og:url" content="http://yyyywd.cn/2018/11/08/Leetcode22/index.html">
 <meta property="og:site_name" content="YYYYWD">
-<meta property="og:description" content="Leetcode 22 Generate Parentheses(  √ Accepted  √ 8/8 cases passed (0 ms)  √ Your runtime beats 31.94 % of cpp submissions ) 1234567891011121314151617181920212223242526272829303132333435363738394041424">
+<meta property="og:description" content="Leetcode 22 Generate Parentheses(  √ Accepted √ 8/8 cases passed (0 ms) √ Your runtime beats 31.94 % of cpp submissions )">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-08T07:42:29.876Z">
+<meta property="og:updated_time" content="2018-11-08T09:24:46.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode 22 Generate Parentheses">
-<meta name="twitter:description" content="Leetcode 22 Generate Parentheses(  √ Accepted  √ 8/8 cases passed (0 ms)  √ Your runtime beats 31.94 % of cpp submissions ) 1234567891011121314151617181920212223242526272829303132333435363738394041424">
+<meta name="twitter:description" content="Leetcode 22 Generate Parentheses(  √ Accepted √ 8/8 cases passed (0 ms) √ Your runtime beats 31.94 % of cpp submissions )">
 
 
 
@@ -294,7 +294,7 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2018-11-08T15:42:29+08:00" content="2018-11-08">
+              <time itemprop="dateUpdated" datetime="2018-11-08T17:24:46+08:00" content="2018-11-08">
                 2018-11-08
               </time>
             </span>
@@ -350,7 +350,10 @@
       
 
       
-        <h1 id="Leetcode-22-Generate-Parentheses"><a href="#Leetcode-22-Generate-Parentheses" class="headerlink" title="Leetcode 22 Generate Parentheses"></a>Leetcode 22 Generate Parentheses</h1><p>(  √ Accepted<br>  √ 8/8 cases passed (0 ms)<br>  √ Your runtime beats 31.94 % of cpp submissions )</p>
+        <h1 id="Leetcode-22-Generate-Parentheses"><a href="#Leetcode-22-Generate-Parentheses" class="headerlink" title="Leetcode 22 Generate Parentheses"></a>Leetcode 22 Generate Parentheses</h1><p>(  √ Accepted</p>
+<p>√ 8/8 cases passed (0 ms)</p>
+<p>√ Your runtime beats 31.94 % of cpp submissions )</p>
+<a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [22] Generate Parentheses</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/generate-parentheses/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Medium (50.99%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    261.9K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 513.5K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '3'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Given n pairs of parentheses, write a function to generate all combinations</span></span><br><span class="line"><span class="comment"> * of well-formed parentheses.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * For example, given n = 3, a solution set is:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * [</span></span><br><span class="line"><span class="comment"> * ⁠ "((()))",</span></span><br><span class="line"><span class="comment"> * ⁠ "(()())",</span></span><br><span class="line"><span class="comment"> * ⁠ "(())()",</span></span><br><span class="line"><span class="comment"> * ⁠ "()(())",</span></span><br><span class="line"><span class="comment"> * ⁠ "()()()"</span></span><br><span class="line"><span class="comment"> * ]</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrade</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp;ans,<span class="built_in">string</span> ans1,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="number">0</span>&amp;&amp;right==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans.push_back(ans1);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&gt;<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            backtrade(ans,ans1+<span class="string">"("</span>,left<span class="number">-1</span>,right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(right&gt;left)</span><br><span class="line">        &#123;</span><br><span class="line">            backtrade(ans,ans1+<span class="string">")"</span>,left,right<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; generateParenthesis(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        backtrade(res,<span class="string">""</span>,n,n);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -379,6 +382,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/09/Leetcode10/" rel="prev" title="Leetcode 10 Generate Parentheses">
+                Leetcode 10 Generate Parentheses <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -452,7 +471,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
