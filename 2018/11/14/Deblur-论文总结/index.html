@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="分治,链表," />
+  <meta name="keywords" content="误差建模," />
 
 
 
@@ -79,18 +79,26 @@
 
 
 
-<meta name="description" content="Leetcode 23 Merge k Sorted Lists  √ Accepted  √ 131/131 cases passed (20 ms)  √ Your runtime beats 55.85 % of cpp submissions">
-<meta name="keywords" content="分治,链表">
+<meta name="description" content="论文总结基础知识图像模糊一般被看作清晰图像卷积模糊核得到模糊图像的过程，其退化模型如下式所示：  其中，B为模糊图像( blurry image )，I为待估计的清晰图像( latent image )，K为模糊核( blur kernel )，N为附加的噪声，ⓧ为卷积操作。 图像卷积基本概念线性滤波　　线性滤波是图像处理的基本方法。假设我们有图像矩阵A和滤波器矩阵（卷积核）B，如下图所示：">
+<meta name="keywords" content="误差建模">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode23">
-<meta property="og:url" content="http://yyyywd.cn/2018/11/12/Leetcode23/index.html">
+<meta property="og:title" content="Deblur 论文总结">
+<meta property="og:url" content="http://yyyywd.cn/2018/11/14/Deblur-论文总结/index.html">
 <meta property="og:site_name" content="YYYYWD">
-<meta property="og:description" content="Leetcode 23 Merge k Sorted Lists  √ Accepted  √ 131/131 cases passed (20 ms)  √ Your runtime beats 55.85 % of cpp submissions">
+<meta property="og:description" content="论文总结基础知识图像模糊一般被看作清晰图像卷积模糊核得到模糊图像的过程，其退化模型如下式所示：  其中，B为模糊图像( blurry image )，I为待估计的清晰图像( latent image )，K为模糊核( blur kernel )，N为附加的噪声，ⓧ为卷积操作。 图像卷积基本概念线性滤波　　线性滤波是图像处理的基本方法。假设我们有图像矩阵A和滤波器矩阵（卷积核）B，如下图所示：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-12T02:10:55.987Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20161010131848914">
+<meta property="og:image" content="https://img-blog.csdn.net/20161010152740621">
+<meta property="og:image" content="https://img-blog.csdn.net/20161010152826162">
+<meta property="og:image" content="https://img-blog.csdn.net/20161010153027585">
+<meta property="og:image" content="https://www.jqr.com/editor/185/306/1853063938-5bd919dce91d4">
+<meta property="og:image" content="http://static.tongtianta.site/paper_image/2520f142-6ae1-11e8-8a08-6045cb803e2f/image_1_0_0.jpg">
+<meta property="og:image" content="https://img-blog.csdn.net/2018062313015729?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI4NjM1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-11-14T07:05:22.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode23">
-<meta name="twitter:description" content="Leetcode 23 Merge k Sorted Lists  √ Accepted  √ 131/131 cases passed (20 ms)  √ Your runtime beats 55.85 % of cpp submissions">
+<meta name="twitter:title" content="Deblur 论文总结">
+<meta name="twitter:description" content="论文总结基础知识图像模糊一般被看作清晰图像卷积模糊核得到模糊图像的过程，其退化模型如下式所示：  其中，B为模糊图像( blurry image )，I为待估计的清晰图像( latent image )，K为模糊核( blur kernel )，N为附加的噪声，ⓧ为卷积操作。 图像卷积基本概念线性滤波　　线性滤波是图像处理的基本方法。假设我们有图像矩阵A和滤波器矩阵（卷积核）B，如下图所示：">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161010131848914">
 
 
 
@@ -120,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yyyywd.cn/2018/11/12/Leetcode23/"/>
+  <link rel="canonical" href="http://yyyywd.cn/2018/11/14/Deblur-论文总结/"/>
 
 
 
 
 
-  <title>Leetcode23 | YYYYWD</title>
+  <title>Deblur 论文总结 | YYYYWD</title>
   
 
 
@@ -253,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2018/11/12/Leetcode23/">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2018/11/14/Deblur-论文总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yyyywd">
@@ -270,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode23</h1>
+          <h1 class="post-title" itemprop="name headline">Deblur 论文总结</h1>
         
 
         <div class="post-meta">
@@ -282,8 +290,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-12T10:07:31+08:00">
-                2018-11-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-14T10:58:03+08:00">
+                2018-11-14
               </time>
             
 
@@ -294,8 +302,8 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2018-11-12T10:10:55+08:00" content="2018-11-12">
-                2018-11-12
+              <time itemprop="dateUpdated" datetime="2018-11-14T15:05:22+08:00" content="2018-11-14">
+                2018-11-14
               </time>
             </span>
           
@@ -313,8 +321,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Leetcode</span>
+                  <a href="/categories/CV论文/" itemprop="url" rel="index">
+                    <span itemprop="name">CV论文</span>
                   </a>
                 </span>
 
@@ -350,9 +358,37 @@
       
 
       
-        <h1 id="Leetcode-23-Merge-k-Sorted-Lists"><a href="#Leetcode-23-Merge-k-Sorted-Lists" class="headerlink" title="Leetcode 23 Merge k Sorted Lists"></a>Leetcode 23 Merge k Sorted Lists</h1><p>  √ Accepted<br>  √ 131/131 cases passed (20 ms)<br>  √ Your runtime beats 55.85 % of cpp submissions</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [23] Merge k Sorted Lists</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/merge-k-sorted-lists/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Hard (30.96%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    291.4K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 938.7K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '[[1,4,5],[1,3,4],[2,6]]'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Merge k sorted linked lists and return it as one sorted list. Analyze and</span></span><br><span class="line"><span class="comment"> * describe its complexity.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input:</span></span><br><span class="line"><span class="comment"> * [</span></span><br><span class="line"><span class="comment"> * 1-&gt;4-&gt;5,</span></span><br><span class="line"><span class="comment"> * 1-&gt;3-&gt;4,</span></span><br><span class="line"><span class="comment"> * 2-&gt;6</span></span><br><span class="line"><span class="comment"> * ]</span></span><br><span class="line"><span class="comment"> * Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(lists.size()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">int</span> k=lists.size();</span><br><span class="line">        <span class="keyword">while</span>(k&gt;<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> n=(k+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k/<span class="number">2</span>;i++)</span><br><span class="line">                lists[i]=merge2List2(lists[i],lists[i+n]);</span><br><span class="line">            k=n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lists[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode*<span class="title">merge2List2</span><span class="params">(ListNode*l1,ListNode*l2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l1==<span class="literal">NULL</span>)<span class="keyword">return</span> l2;</span><br><span class="line">        <span class="keyword">if</span>(l2==<span class="literal">NULL</span>)<span class="keyword">return</span> l1;</span><br><span class="line">        ListNode *ans1=<span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">        ListNode *ans = ans1;  </span><br><span class="line">        <span class="keyword">while</span>(l1!=<span class="literal">NULL</span>&amp;&amp;l2!=<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(l1-&gt;val&lt;l2-&gt;val)</span><br><span class="line">            &#123;</span><br><span class="line">                ans-&gt;next=l1;</span><br><span class="line">                l1=l1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                ans-&gt;next=l2;</span><br><span class="line">                l2=l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            ans=ans-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l1==<span class="literal">NULL</span>)ans-&gt;next=l2;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(l2==<span class="literal">NULL</span>)</span><br><span class="line">            ans-&gt;next=l1;</span><br><span class="line">        <span class="keyword">return</span> ans1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <h1 id="论文总结"><a href="#论文总结" class="headerlink" title="论文总结"></a>论文总结</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>图像模糊一般被看作清晰图像卷积模糊核得到模糊图像的过程，其退化模型如下式所示：</p>
+<p><img src="https://img-blog.csdn.net/20161010131848914" alt="img"></p>
+<p>其中，B为模糊图像( blurry image )，I为待估计的清晰图像( latent image )，K为模糊核( blur kernel )，N为附加的噪声，ⓧ为卷积操作。</p>
+<h3 id="图像卷积基本概念"><a href="#图像卷积基本概念" class="headerlink" title="图像卷积基本概念"></a>图像卷积基本概念</h3><h4 id="线性滤波"><a href="#线性滤波" class="headerlink" title="线性滤波"></a>线性滤波</h4><p>　　线性滤波是图像处理的基本方法。假设我们有图像矩阵A和滤波器矩阵（卷积核）B，如下图所示： </p>
+<p><img src="https://img-blog.csdn.net/20161010152740621" alt="å¾åç©éµA"><img src="https://img-blog.csdn.net/20161010152826162" alt="             å·ç§¯æ ¸B">   </p>
+<p>​    对于图像的每一个像素点，计算它的邻域像素和滤波器矩阵的对应元素的乘积，然后加起来，作为该像素位置的值。这样就完成了滤波过程。 </p>
+<p><img src="https://img-blog.csdn.net/20161010153027585" alt="æ&quot;¤æ³¢è¿ç¨"></p>
+<p><strong>卷积与相关</strong><br>　　对图像和滤波矩阵进行逐个元素相乘再求和的操作就相当于将一个二维的函数移动到另一个二维函数的所有位置，这个操作就叫卷积或者相关。卷积和相关的差别是，卷积需要先对滤波矩阵进行180的翻转，但如果矩阵是对称的，那么两者就没有什么差别了。</p>
+<p><strong>模糊核（卷积核）</strong><br>　　模糊核实际上就是一个矩阵，清晰图像与模糊核卷积后导致图像变得模糊，因此叫模糊核。模糊核是卷积核的一种。图像卷积操作的本质是矩阵卷积。某些特殊的卷积核会使图像产生特殊的效果。</p>
+<h2 id="编码器-解码器网络"><a href="#编码器-解码器网络" class="headerlink" title="编码器-解码器网络"></a>编码器-解码器网络</h2><ul>
+<li><a href="https://cloud.tencent.com/developer/article/1038361" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1038361</a></li>
+<li><a href="https://blog.csdn.net/panglinzhuo/article/details/75207855" target="_blank" rel="noopener">https://blog.csdn.net/panglinzhuo/article/details/75207855</a></li>
+</ul>
+<p><img src="https://www.jqr.com/editor/185/306/1853063938-5bd919dce91d4" alt="ç¼ç å¨-è§£ç å¨æ¶æ"></p>
+<p>编码器-解码器网络是一个很成功的翻译模型。这个模型接受一个序列作为输入，并将序列中的信息编码为中间表示。然后解码器解码中间表示为目标语言。</p>
+<h2 id="Scale-recurrent-Network-for-Deep-Image-Deblurring"><a href="#Scale-recurrent-Network-for-Deep-Image-Deblurring" class="headerlink" title="Scale-recurrent Network for Deep Image Deblurring"></a>Scale-recurrent Network for Deep Image Deblurring</h2><h2 id="尺度循环网络（SRN）"><a href="#尺度循环网络（SRN）" class="headerlink" title="尺度循环网络（SRN）"></a>尺度循环网络（SRN）</h2><h3 id="创新点："><a href="#创新点：" class="headerlink" title="创新点："></a>创新点：</h3><p><img src="http://static.tongtianta.site/paper_image/2520f142-6ae1-11e8-8a08-6045cb803e2f/image_1_0_0.jpg" alt="img"></p>
+<p>用于图像处理的不同CNN。（a）U-Net [27]或编码器 - 解码器网络[24]。 （b）多尺度[25]或级联改良网络[4]。（c）扩张卷积网络[5]。（d）我们提出的规模经常性网络（SRN）。</p>
+<ul>
+<li><p><strong>网络结构上</strong>：在多尺度模型里，每一尺度的网络结构和任务都相似，但是各尺度的参数仍然是相互独立的。本文提出的在不同尺度之间共享网络权重可以减少网络参数、使模型的学习能力更加稳固。</p>
+</li>
+<li><p><strong>编解码残差网络结构：</strong>编解码器的结构在CV任务中非常有用，与残差网络相结合可以结合两者优势，还能扩大感受野，对于捕捉运动模糊很重要。本文设计的网络训练收敛快、参数少、去模糊效果好，超过了当前的最好水平。</p>
+</li>
+</ul>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作:"></a>相关工作:</h3><ul>
+<li>利用图像的各种先验知识</li>
+<li>带跳跃连接的自编码器</li>
+<li>U-net(编解码器网络)</li>
+<li>多尺度网络。</li>
+</ul>
+<h3 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a>网络结构：</h3><p><img src="https://img-blog.csdn.net/2018062313015729?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI4NjM1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>在每一个尺度上，以两张图像作为输入，一张模糊图像，一张上采样后的去模糊图像。同时还在中间输入了隐藏状态的特征。循环网络用ConvLSTM.它能在利用时间相关性的同时利用空间相关性。不同尺度之间对图像和feature的上采样都使用双线性插值（bilinear interpolation），因为简单有效。</p>
 
       
     </div>
@@ -370,9 +406,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/分治/" rel="tag"># 分治</a>
-          
-            <a href="/tags/链表/" rel="tag"># 链表</a>
+            <a href="/tags/误差建模/" rel="tag"># 误差建模</a>
           
         </div>
       
@@ -385,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/09/Leetcode10/" rel="next" title="Leetcode 10 Generate Parentheses">
-                <i class="fa fa-chevron-left"></i> Leetcode 10 Generate Parentheses
+              <a href="/2018/11/12/Leetcode23/" rel="next" title="Leetcode23">
+                <i class="fa fa-chevron-left"></i> Leetcode23
               </a>
             
           </div>
@@ -394,10 +428,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/14/Deblur-论文总结/" rel="prev" title="Deblur 论文总结">
-                Deblur 论文总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -529,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Leetcode-23-Merge-k-Sorted-Lists"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 23 Merge k Sorted Lists</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#论文总结"><span class="nav-number">1.</span> <span class="nav-text">论文总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图像卷积基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">图像卷积基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线性滤波"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">线性滤波</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码器-解码器网络"><span class="nav-number">1.2.</span> <span class="nav-text">编码器-解码器网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scale-recurrent-Network-for-Deep-Image-Deblurring"><span class="nav-number">1.3.</span> <span class="nav-text">Scale-recurrent Network for Deep Image Deblurring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尺度循环网络（SRN）"><span class="nav-number">1.4.</span> <span class="nav-text">尺度循环网络（SRN）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创新点："><span class="nav-number">1.4.1.</span> <span class="nav-text">创新点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关工作"><span class="nav-number">1.4.2.</span> <span class="nav-text">相关工作:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构："><span class="nav-number">1.4.3.</span> <span class="nav-text">网络结构：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
