@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络通信," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="IO模型同步、异步与阻塞、非阻塞的区别同步和异步关注的是消息通信机制。 同步就是发出一个调用之后，在没有得到结果之前，这个调用就不返回。调用返回就得到了结果。调用者主动等待得到这个结果。 异步就是发出一个调用之后，就直接返回了，没有返回结果。有结果之后被调用者通过其他方式通知调用者消息。 阻塞和非阻塞关注的是程序等待调用结果（消息，返回值）时的状态 阻塞调用是指调用结果返回之前，当前线程被挂起来。">
+<meta name="keywords" content="网络通信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO模型">
+<meta property="og:url" content="http://yyyywd.cn/2018/11/22/IO模型/index.html">
+<meta property="og:site_name" content="YYYYWD">
+<meta property="og:description" content="IO模型同步、异步与阻塞、非阻塞的区别同步和异步关注的是消息通信机制。 同步就是发出一个调用之后，在没有得到结果之前，这个调用就不返回。调用返回就得到了结果。调用者主动等待得到这个结果。 异步就是发出一个调用之后，就直接返回了，没有返回结果。有结果之后被调用者通过其他方式通知调用者消息。 阻塞和非阻塞关注的是程序等待调用结果（消息，返回值）时的状态 阻塞调用是指调用结果返回之前，当前线程被挂起来。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-22T11:15:17.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IO模型">
+<meta name="twitter:description" content="IO模型同步、异步与阻塞、非阻塞的区别同步和异步关注的是消息通信机制。 同步就是发出一个调用之后，在没有得到结果之前，这个调用就不返回。调用返回就得到了结果。调用者主动等待得到这个结果。 异步就是发出一个调用之后，就直接返回了，没有返回结果。有结果之后被调用者通过其他方式通知调用者消息。 阻塞和非阻塞关注的是程序等待调用结果（消息，返回值）时的状态 阻塞调用是指调用结果返回之前，当前线程被挂起来。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yyyywd.cn/2018/11/22/IO模型/"/>
+
+
+
+
+
+  <title>IO模型 | YYYYWD</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YYYYWD</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            Commonweal 404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2018/11/22/IO模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yyyywd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YYYYWD">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IO模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-22T08:26:46+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; post.updated
+              <time itemprop="dateUpdated" datetime="2018-11-22T19:15:17+08:00" content="2018-11-22">
+                2018-11-22
+              </time>
+            </span>
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h1><h2 id="同步、异步与阻塞、非阻塞的区别"><a href="#同步、异步与阻塞、非阻塞的区别" class="headerlink" title="同步、异步与阻塞、非阻塞的区别"></a>同步、异步与阻塞、非阻塞的区别</h2><p><strong>同步和异步关注的是消息通信机制。</strong></p>
+<p>同步就是发出一个调用之后，在没有得到结果之前，这个调用就不返回。调用返回就得到了结果。调用者主动等待得到这个结果。</p>
+<p>异步就是发出一个调用之后，就直接返回了，没有返回结果。有结果之后被调用者通过其他方式通知调用者消息。</p>
+<p><strong>阻塞和非阻塞关注的是程序等待调用结果（消息，返回值）时的状态</strong></p>
+<p>阻塞调用是指调用结果返回之前，当前线程被挂起来。调用线程只有在得到结果之后才会返回。</p>
+<p>非阻塞调用是指不能立即得到结果之前，这个调用不会阻塞当前线程。</p>
+<h2 id="IO模型可以分为"><a href="#IO模型可以分为" class="headerlink" title="IO模型可以分为"></a>IO模型可以分为</h2><h2 id="阻塞IO"><a href="#阻塞IO" class="headerlink" title="阻塞IO"></a>阻塞IO</h2><p>同步阻塞迭代模型是最简单的一种IO模型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bind(srvfd);</span><br><span class="line">listen(srvfd);</span><br><span class="line"><span class="keyword">for</span>(;;)</span><br><span class="line">&#123;</span><br><span class="line">    clifd = accept(srvfd,...); <span class="comment">//开始接受客户端来的连接</span></span><br><span class="line">    read(clifd,buf,...); <span class="comment">//从客户端读取数据</span></span><br><span class="line">    dosomthingonbuf(buf);</span><br><span class="line">    write(clifd,buf)<span class="comment">//发送数据到客户端</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的程序存在如下一些弊端：</p>
+<p>1）如果没有客户端的连接请求，进程会阻塞在accept系统调用处，程序不能执行其他任何操作。(系统调用使得程序从用户态陷入内核态，具体请参考：程序员的自我修养<br>2）在与客户端建立好一条链路后，通过read系统调用从客户端接受数据，而客户端合适发送数据过来是不可控的。如果客户端迟迟不发生数据过来，则程序同样会阻塞在read调用，此时，如果另外的客户端来尝试连接时，都会失败。 </p>
+<p>3）同样的道理，<strong>write系统</strong>调用也会使得程序出现阻塞(例如：客户端接受数据异常缓慢，导致写缓冲区满，数据迟迟发送不出)。</p>
+<p><strong>2.多进程并发模型</strong><br>同步阻塞迭代模型有诸多缺点。多进程并发模型在同步阻塞迭代模型的基础上进行了一些改进，以避免是程序阻塞在read系统调用上。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">bind(srvfd);</span><br><span class="line">listen(srvfd);</span><br><span class="line"><span class="keyword">for</span>(;;)&#123;</span><br><span class="line">clifd = accept(srvfd,...); <span class="comment">//开始接受客户端来的连接</span></span><br><span class="line">ret = fork();</span><br><span class="line"><span class="keyword">switch</span>( ret )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">-1</span> :</span><br><span class="line">        do_err_handler();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>: <span class="comment">// 子进程</span></span><br><span class="line">        client_handler(clifd);</span><br><span class="line">        <span class="keyword">break</span> ;</span><br><span class="line">    <span class="keyword">default</span> : <span class="comment">// 父进程</span></span><br><span class="line">        close(clifd);</span><br><span class="line">        <span class="keyword">continue</span> ;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">client_handler</span><span class="params">(clifd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(clifd,buf,...); <span class="comment">//从客户端读取数据</span></span><br><span class="line">    dosomthingonbuf(buf);</span><br><span class="line">    write(clifd,buf)<span class="comment">//发送数据到客户端</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述程序在accept系统调用时，如果没有客户端来建立连接，择<strong>会阻塞在accept处</strong>。一旦某个客户端连接建立起来，则立即开启一个新的进程来处理与这个客户的数据交互。避免程序阻塞在read调用，而影响其他客户端的连接。 </p>
+<p><strong>多线程并发模型</strong><br>在多进程并发模型中，每一个客户端连接开启fork一个进程，虽然linux中引入了写实拷贝机制，大大降低了fork一个子进程的消耗，但若客户端连接较大，则系统依然将不堪负重。<strong>通过多线程(或线程池)并发模型，可以在一定程度上改善这一问题。</strong></p>
+<p>在服务端的线程模型实现方式一般有三种：<br>（1）按需生成(来一个连接生成一个线程)<br>（2）线程池(预先生成很多线程)**<br>（3）Leader follower（LF）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">thread_callback</span><span class="params">( <span class="keyword">void</span> *args )</span> <span class="comment">//线程回调函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> clifd = *(<span class="keyword">int</span> *)args ;</span><br><span class="line">    client_handler(clifd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">client_handler</span><span class="params">(clifd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(clifd,buf,...); <span class="comment">//从客户端读取数据</span></span><br><span class="line">    dosomthingonbuf(buf);</span><br><span class="line">    write(clifd,buf)<span class="comment">//发送数据到客户端</span></span><br><span class="line">&#125;</span><br><span class="line">bind(srvfd);</span><br><span class="line">listen(srvfd);</span><br><span class="line"><span class="keyword">for</span>(;;)</span><br><span class="line">&#123;</span><br><span class="line">    clifd = accept();</span><br><span class="line">    pthread_create(...,thread_callback,&amp;clifd);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>服务端分为主线程和工作线程，主线程负责accept()连接，而工作线程负责处理业务逻辑和流的读取等。<br>因此，即使在工作线程阻塞的情况下，也只是阻塞在线程范围内，对继续接受新的客户端连接不会有影响。<br>第二种实现方式，通过线程池的引入可以避免频繁的创建、销毁线程，能在很大程序上提升性能。<br>但不管如何实现，<strong>多线程模型先天具有如下缺点：</strong><br><strong>1）稳定性相对较差。一个线程的崩溃会导致整个程序崩溃。</strong> </p>
+<p><strong>2）临界资源的访问控制，在加大程序复杂性的同时，锁机制的引入会是严重降低程序的性能。性能上可能会出现“辛辛苦苦好几年，一夜回到解放前”的情况。</strong></p>
+<h2 id="非阻塞IO"><a href="#非阻塞IO" class="headerlink" title="非阻塞IO"></a>非阻塞IO</h2><p>采用轮询的方式 （大量浪费CPU的资源）</p>
+<h2 id="信号驱动IO"><a href="#信号驱动IO" class="headerlink" title="信号驱动IO"></a>信号驱动IO</h2><p>发送一个SIGIO信号通知，一般只适用与单线程。</p>
+<h2 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h2><p>IO多路复用模型之select/poll<br>多进程模型和多线程(线程池)模型每个进程/线程只能处理一路IO，在服务器并发数较高的情况下，过多的进程/线程会使得服务器性能下降。而通过多路IO复用，能使得一个进程同时处理多路IO，提升服务器吞吐量。 </p>
+<h2 id="在Linux支持epoll模型之前，都使用select-poll模型来实现IO多路复用。"><a href="#在Linux支持epoll模型之前，都使用select-poll模型来实现IO多路复用。" class="headerlink" title="在Linux支持epoll模型之前，都使用select/poll模型来实现IO多路复用。 "></a>在Linux支持epoll模型之前，都使用select/poll模型来实现IO多路复用。 </h2><p>核心代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">bind(listenfd);</span><br><span class="line">listen(listenfd);</span><br><span class="line">FD_ZERO(&amp;allset);</span><br><span class="line">FD_SET(listenfd, &amp;allset);</span><br><span class="line"><span class="keyword">for</span>(;;)</span><br><span class="line">&#123;</span><br><span class="line">    select(...);</span><br><span class="line">    <span class="keyword">if</span> (FD_ISSET(listenfd, &amp;rset)) </span><br><span class="line">    &#123;<span class="comment">/*有新的客户端连接到来*/</span></span><br><span class="line">        clifd = accept();</span><br><span class="line">        cliarray[] = clifd; <span class="comment">/*保存新的连接套接字*/</span></span><br><span class="line">        FD_SET(clifd, &amp;allset);<span class="comment">/*将新的描述符加入监听数组中*/</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(;;)</span><br><span class="line">    &#123;<span class="comment">/*这个for循环用来检查所有已经连接的客户端是否有数据可读写*/</span></span><br><span class="line"></span><br><span class="line">        fd = cliarray[i];</span><br><span class="line">        <span class="keyword">if</span> (FD_ISSET(fd , &amp;rset))</span><br><span class="line">            dosomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>select IO多路复用同样存在一些缺点，罗列如下：</p>
+<p>1、单个进程能够监视的文件描述符的数量存在最大限制，通常是1024，当然可以更改数量，但由于select<strong>采用轮询的方式扫描文件描述符</strong>，文件描述符数量越多，性能越差；(在linux内核头文件中，有这样的定义：#define __FD_SETSIZE 1024)<br>2、内核 / 用户空间内存拷贝问题    ，select需要复制大量的句柄数据结构，产生巨大的开销； </p>
+<p>select返回的是含有整个句柄的数组，应用程序需要遍历整个数组才能发现哪些句柄发生了事件；<br><strong>select的触发方式是水平触发，</strong>应用程序如果没有完成对一个已经就绪的文件描述符进行IO操作，那么之后每次select调用还是会将这些文件描述符通知进程。<br>3、相比select模型，poll使用链表保存文件描述符，因此没有了监视文件数量的限制，但其他三个缺点依然存在。 </p>
+<h2 id="拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在-FD-SETSIZE-为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核-用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。"><a href="#拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在-FD-SETSIZE-为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核-用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。" class="headerlink" title="拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在__FD_SETSIZE 为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核/用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。"></a>拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在__FD_SETSIZE 为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核/用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。</h2><p>socket函数格式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span><span class="params">(<span class="keyword">int</span> maxfdp,fd_set *readfds,fd_set *writefds,fd_set *errorfds,struct timeval *timeout)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>先说明两个结构体：<br>第一 .struct fd_set可以理解为一个集合，这个集合中存放的是文件描述符(filedescriptor)，即文件句柄，这可以是我们所说的普通意义的文件，当然 Unix下任何设备、管道、FIFO等都是文件形式，全部包括在内，所以毫无疑问一个socket就是一个文件，socket句柄就是一个文件描述符。<br>fd_set集合可以通过一些宏由人为来操作，比如：<br><strong>FD_ZERO(fd_set <em>);清空集合<br>FD_SET(int, fd_set </em>);将一个给定的文件描述符加入集合之中<br>FD_CLR(int, fd_set*); 将一个给定的文件描述符从集合中删除</strong><br><strong>检查集合中指定的文件描述符是否可以读写FD_ISSET(int ,fd_set* )</strong>。一会儿举例说明。</p>
+<p>第二 .struct timeval 是一个大家常用的结构，用来代表时间值，有两个成员，一个是秒数，另一个是微秒。 具体解释select的参数：<br>int maxfdp：是一个整数值，是指集合中所有文件描述符的范围，即所有文件描述符的最大值加1，不能错！在Windows中这个参数的值无所谓，可以设置不正确。</p>
+<p>fd_set<em> readfds：是指向fd_set结构的指针，这个集合中应该包括文件描述符，我们是要监视这些文件描述符的读变化的，即我们关心是否可以从这些文件中 读取数据了，如果这个集合中有一个文件可读，select就会返回一个大于0的值，表示有文件可读，如果没有可读的文件，则根据timeout参数再判断 是否超时，若超出timeout的时间，select返回0，若发生错误返回负值。可以传入NULL值，表示不关心任何文件的读变化。<br>fd_set</em> writefds：是指向fd_set结构的指针，这个集合中应该包括文件描述符，我们是要监视这些文件描述符的写变化的，即我们关心是否可以向这些文件 中写入数据了，如果这个集合中有一个文件可写，select就会返回一个大于0的值，表示有文件可写，如果没有可写的文件，则根据timeout参数再判 断是否超时，若超出timeout的时间，select返回0，若发生错误返回负值。可以传入NULL值，表示不关心任何文件的写变化。<br>fd_set * errorfds：同上面两个参数的意图，用来监视文件错误异常。</p>
+<p>struct timeval* timeout：是select的超时时间，这个参数至关重要，它可以使select处于三种状态：<br>第一，若将NULL以形参传入，即不传入时间结构，就是将select置于阻塞状态，一定等到监视文件描述符集合中某个文件描述符发生变化为止；<br>第二，若将时间值设为0秒0微秒，就变成一个纯粹的非阻塞函数，不管文件描述符是否有变化，都立刻返回继续执行，文件无变化返回0，有变化返回一个正值； </p>
+<p>第三，timeout的值大于0，这就是等待的超时时间，即select在timeout时间内阻塞，超时时间之内有事件到来就返回了，否则在超时后不管怎样一定返回，返回值同上述。</p>
+<p><strong>select 返回值：</strong><br>负值：select错误<br>正值：某些文件可读写或出错<br>0：等待超时，没有可读写或错误的文件<br>在有了select后可以写出像样的网络程序来！<br>举个简单的例子，就是从网络上接受数据写入一个文件中。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">main()  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">int</span> sock;  </span><br><span class="line">    FILE *fp;  </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">fd_set</span> <span class="title">fds</span>;</span>  </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">timeout</span>=&#123;</span><span class="number">3</span>,<span class="number">0</span>&#125;; <span class="comment">//select等待3秒，3秒轮询，要非阻塞就置0  </span></span><br><span class="line">    <span class="keyword">char</span> buffer[<span class="number">256</span>]=&#123;<span class="number">0</span>&#125;; <span class="comment">//256字节的接收缓冲区  </span></span><br><span class="line">    <span class="comment">/* 假定已经建立UDP连接，具体过程不写，简单，当然TCP也同理，主机ip和port都已经给定，要写的文件已经打开 </span></span><br><span class="line"><span class="comment">    sock=socket(...); </span></span><br><span class="line"><span class="comment">    bind(...); </span></span><br><span class="line"><span class="comment">    fp=fopen(...); */</span>  </span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)  </span><br><span class="line">   &#123;  </span><br><span class="line">        FD_ZERO(&amp;fds); <span class="comment">//每次循环都要清空集合，否则不能检测描述符变化  </span></span><br><span class="line">        FD_SET(sock,&amp;fds); <span class="comment">//添加描述符  </span></span><br><span class="line">        FD_SET(fp,&amp;fds); <span class="comment">//同上  </span></span><br><span class="line">        maxfdp=sock&gt;fp?sock+<span class="number">1</span>:fp+<span class="number">1</span>;    <span class="comment">//描述符最大值加1  </span></span><br><span class="line">        <span class="keyword">switch</span>(select(maxfdp,&amp;fds,&amp;fds,<span class="literal">NULL</span>,&amp;timeout))   <span class="comment">//select使用  </span></span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">case</span> <span class="number">-1</span>: <span class="built_in">exit</span>(<span class="number">-1</span>);<span class="keyword">break</span>; <span class="comment">//select错误，退出程序  </span></span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>:<span class="keyword">break</span>; <span class="comment">//再次轮询  </span></span><br><span class="line">            <span class="keyword">default</span>:  </span><br><span class="line">                  <span class="keyword">if</span>(FD_ISSET(sock,&amp;fds)) <span class="comment">//测试sock是否可读，即是否网络上有数据  </span></span><br><span class="line">                  &#123;  </span><br><span class="line">                        recvfrom(sock,buffer,<span class="number">256</span>,.....);<span class="comment">//接受网络数据  </span></span><br><span class="line">                        <span class="keyword">if</span>(FD_ISSET(fp,&amp;fds)) <span class="comment">//测试文件是否可写  </span></span><br><span class="line">                            fwrite(fp,buffer...);<span class="comment">//写入文件  </span></span><br><span class="line">                         buffer清空;  </span><br><span class="line">                   &#125;<span class="comment">// end if break;  </span></span><br><span class="line">          &#125;<span class="comment">// end switch  </span></span><br><span class="line">     &#125;<span class="comment">//end while  </span></span><br><span class="line">&#125;<span class="comment">//end main</span></span><br></pre></td></tr></table></figure>
+<h2 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络通信/" rel="tag"># 网络通信</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/20/gdb调试/" rel="next" title="gdb调试">
+                <i class="fa fa-chevron-left"></i> gdb调试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/22/IO模型epoll/" rel="prev" title="IO模型epoll">
+                IO模型epoll <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">yyyywd</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IO模型"><span class="nav-number">1.</span> <span class="nav-text">IO模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步、异步与阻塞、非阻塞的区别"><span class="nav-number">1.1.</span> <span class="nav-text">同步、异步与阻塞、非阻塞的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO模型可以分为"><span class="nav-number">1.2.</span> <span class="nav-text">IO模型可以分为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞IO"><span class="nav-number">1.3.</span> <span class="nav-text">阻塞IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非阻塞IO"><span class="nav-number">1.4.</span> <span class="nav-text">非阻塞IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信号驱动IO"><span class="nav-number">1.5.</span> <span class="nav-text">信号驱动IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO多路复用"><span class="nav-number">1.6.</span> <span class="nav-text">IO多路复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Linux支持epoll模型之前，都使用select-poll模型来实现IO多路复用。"><span class="nav-number">1.7.</span> <span class="nav-text">在Linux支持epoll模型之前，都使用select/poll模型来实现IO多路复用。 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在-FD-SETSIZE-为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核-用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。"><span class="nav-number">1.8.</span> <span class="nav-text">拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在__FD_SETSIZE 为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核/用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步IO"><span class="nav-number">1.9.</span> <span class="nav-text">异步IO</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yyyywd</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="YYYYWD">
 <meta property="og:description" content="Linux的基础知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-18T03:29:13.320Z">
+<meta property="og:updated_time" content="2018-11-22T10:42:28.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux的基础知识">
 <meta name="twitter:description" content="Linux的基础知识">
@@ -294,8 +294,8 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2018-11-18T11:29:13+08:00" content="2018-11-18">
-                2018-11-18
+              <time itemprop="dateUpdated" datetime="2018-11-22T18:42:28+08:00" content="2018-11-22">
+                2018-11-22
               </time>
             </span>
           
@@ -329,9 +329,19 @@
 
       
         <h1 id="Linux的基础知识"><a href="#Linux的基础知识" class="headerlink" title="Linux的基础知识"></a>Linux的基础知识</h1><a id="more"></a>
-<h2 id="linux怎么查看内存占用、CPU占用、IO占用"><a href="#linux怎么查看内存占用、CPU占用、IO占用" class="headerlink" title="linux怎么查看内存占用、CPU占用、IO占用"></a>linux怎么查看内存占用、CPU占用、IO占用</h2><p>free,top,iostat,vmstat,sar</p>
+<h2 id="Linux的用户态和内核态"><a href="#Linux的用户态和内核态" class="headerlink" title="Linux的用户态和内核态"></a>Linux的用户态和内核态</h2><p><a href="https://www.cnblogs.com/bakari/p/5520860.html" target="_blank" rel="noopener">https://www.cnblogs.com/bakari/p/5520860.html</a></p>
+<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><p>（1）拥有资源：进程是资源分配的基本单元，但是线程不拥有资源，线程可以访问其所隶属进程的资源。</p>
+<p>（2）调度：线程是独立调度的基本单位。在同一个进程中，线程的切换不会引起进程的切换，从一个进程中的线程切换到另一个进程中的线程时，会引起进程切换。</p>
+<p>（3）系统开销：由于创建或撤销进程时，系统都要为之分配或回收资源，如内存空间、I/O 设备等，所付出的开销远大于创建或撤销线程时的开销。类似地，在进行进程切换时，涉及当前执行进程 CPU环境的保存及新调度进程 CPU 环境的设置，而线程切换时只需保存和设置少量寄存器内容，开销很小。</p>
+<p>（4）线程间可以通过直接读写同一进程中的数据进行通信，但是进程通信需要借助 IPC。</p>
+<h2 id="linux怎么查看内存占用、CPU占用、IO占用"><a href="#linux怎么查看内存占用、CPU占用、IO占用" class="headerlink" title="linux怎么查看内存占用、CPU占用、IO占用"></a>linux怎么查看内存占用、CPU占用、IO占用</h2><p>进程：ps aux</p>
+<p>内存占用:free</p>
+<p>CPU占用:top,</p>
+<p>IO占用:iostat</p>
+<p>虚拟内存统计:vmstat</p>
+<p>sar</p>
 <h2 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h2><p>管道、共享内存、消息队列、套接字、信号、信号量</p>
-<h2 id="fork的返回值，什么时候是子进程，什么时候是父进程"><a href="#fork的返回值，什么时候是子进程，什么时候是父进程" class="headerlink" title="fork的返回值，什么时候是子进程，什么时候是父进程"></a>fork的返回值，什么时候是子进程，什么时候是父进程</h2><p>子：0  父：父pid</p>
+<h2 id="fork的返回值，什么时候是子进程，什么时候是父进程"><a href="#fork的返回值，什么时候是子进程，什么时候是父进程" class="headerlink" title="fork的返回值，什么时候是子进程，什么时候是父进程"></a>fork的返回值，什么时候是子进程，什么时候是父进程</h2><p>子：0  父：子进程的pid</p>
 <h2 id="进程和线程的区别以及孤儿、僵尸、守护进程"><a href="#进程和线程的区别以及孤儿、僵尸、守护进程" class="headerlink" title="进程和线程的区别以及孤儿、僵尸、守护进程"></a>进程和线程的区别以及孤儿、僵尸、守护进程</h2><h3 id="父进程、子进程："><a href="#父进程、子进程：" class="headerlink" title="父进程、子进程："></a><strong>父进程、子进程</strong>：</h3><p>父进程和子进程的关系是：子进程是父进程的一个副本，一个父进程能创建多个子进程，创建子进程能并发执行。一般来说，子进程先结束执行，然后父进程负责子进程的一些善后工作（回收资源）。</p>
 <h3 id="孤儿进程："><a href="#孤儿进程：" class="headerlink" title="孤儿进程："></a><strong>孤儿进程</strong>：</h3><p>父进程运行结束，但子进程还在运行(未运行结束)的子进程就称为孤儿进程。孤儿进程最终会被init进程(进程号为1)所收养，因此init进程此时变成孤儿进程的父进程，并由init进程对它们完成状态收集工作。（linux下，init是内核启动的第一个用户级进程，init有许多很重要的任务，比如像启动getty（用于用户登录）、实现运行级别、以及处理孤立进程。）</p>
 <h3 id="僵尸进程："><a href="#僵尸进程：" class="headerlink" title="僵尸进程："></a><strong>僵尸进程</strong>：</h3><p>一个进程使用fork创建子进程，如果子进程退出执行后，父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中，这种进程称之为僵死进程。</p>
@@ -456,7 +466,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -478,7 +488,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -511,7 +521,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux的基础知识"><span class="nav-number">1.</span> <span class="nav-text">Linux的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux怎么查看内存占用、CPU占用、IO占用"><span class="nav-number">1.1.</span> <span class="nav-text">linux怎么查看内存占用、CPU占用、IO占用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程间通信"><span class="nav-number">1.2.</span> <span class="nav-text">进程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fork的返回值，什么时候是子进程，什么时候是父进程"><span class="nav-number">1.3.</span> <span class="nav-text">fork的返回值，什么时候是子进程，什么时候是父进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的区别以及孤儿、僵尸、守护进程"><span class="nav-number">1.4.</span> <span class="nav-text">进程和线程的区别以及孤儿、僵尸、守护进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#父进程、子进程："><span class="nav-number">1.4.1.</span> <span class="nav-text">父进程、子进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#孤儿进程："><span class="nav-number">1.4.2.</span> <span class="nav-text">孤儿进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#僵尸进程："><span class="nav-number">1.4.3.</span> <span class="nav-text">僵尸进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#守护进程"><span class="nav-number">1.4.4.</span> <span class="nav-text">守护进程:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#讲讲守护进程"><span class="nav-number">1.5.</span> <span class="nav-text">讲讲守护进程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux的基础知识"><span class="nav-number">1.</span> <span class="nav-text">Linux的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的用户态和内核态"><span class="nav-number">1.1.</span> <span class="nav-text">Linux的用户态和内核态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的区别"><span class="nav-number">1.2.</span> <span class="nav-text">进程和线程的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux怎么查看内存占用、CPU占用、IO占用"><span class="nav-number">1.3.</span> <span class="nav-text">linux怎么查看内存占用、CPU占用、IO占用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程间通信"><span class="nav-number">1.4.</span> <span class="nav-text">进程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fork的返回值，什么时候是子进程，什么时候是父进程"><span class="nav-number">1.5.</span> <span class="nav-text">fork的返回值，什么时候是子进程，什么时候是父进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的区别以及孤儿、僵尸、守护进程"><span class="nav-number">1.6.</span> <span class="nav-text">进程和线程的区别以及孤儿、僵尸、守护进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#父进程、子进程："><span class="nav-number">1.6.1.</span> <span class="nav-text">父进程、子进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#孤儿进程："><span class="nav-number">1.6.2.</span> <span class="nav-text">孤儿进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#僵尸进程："><span class="nav-number">1.6.3.</span> <span class="nav-text">僵尸进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#守护进程"><span class="nav-number">1.6.4.</span> <span class="nav-text">守护进程:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#讲讲守护进程"><span class="nav-number">1.7.</span> <span class="nav-text">讲讲守护进程</span></a></li></ol></li></ol></div>
             
 
           </div>

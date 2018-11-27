@@ -87,12 +87,10 @@
 <meta property="og:site_name" content="YYYYWD">
 <meta property="og:description" content="C++的基础知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yyyywd.cn/2018/11/18/C++的基础知识/H:/hexo/source/_posts/C++%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.jpg">
-<meta property="og:updated_time" content="2018-11-19T04:24:16.342Z">
+<meta property="og:updated_time" content="2018-11-26T02:47:32.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++的基础知识">
 <meta name="twitter:description" content="C++的基础知识">
-<meta name="twitter:image" content="http://yyyywd.cn/2018/11/18/C++的基础知识/H:/hexo/source/_posts/C++%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.jpg">
 
 
 
@@ -296,8 +294,8 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2018-11-19T12:24:16+08:00" content="2018-11-19">
-                2018-11-19
+              <time itemprop="dateUpdated" datetime="2018-11-26T10:47:32+08:00" content="2018-11-26">
+                2018-11-26
               </time>
             </span>
           
@@ -331,10 +329,35 @@
 
       
         <h1 id="C-的基础知识"><a href="#C-的基础知识" class="headerlink" title="C++的基础知识"></a>C++的基础知识</h1><a id="more"></a>
-<p><img src="/2018/11/18/C++的基础知识/H:/hexo/source/_posts/C++%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.jpg" alt="你想输入的替代文字"></p>
+<h2 id="C-的默认构造函数"><a href="#C-的默认构造函数" class="headerlink" title="C++的默认构造函数"></a>C++的默认构造函数</h2><p><strong>默认构造函数是可以不用实参进行调用的构造函数，它包括了以下两种情况：</strong></p>
+<ol>
+<li><strong>没有带明显形参的构造函数。</strong></li>
+<li><strong>提供了默认实参的构造函数。</strong>  </li>
+</ol>
+<p><strong>类设计者可以自己写一个默认构造函数。编译器帮我们写的默认构造函数，称为“合成的默认构造函数”。强调“没有带明显形参”的原因是，编译器总是会为我们的构造函数形参表插入一个隐含的this指针，所以”本质上”是没有不带形参的构造函数的，只有不带明显形参的构造函数，它就是默认构造函数。</strong></p>
+<h2 id="C-类的构造顺序"><a href="#C-类的构造顺序" class="headerlink" title="C++类的构造顺序"></a>C++类的构造顺序</h2><ol>
+<li>分配内存，在调用构造函数时候，隐式/显式的初始化各项在初始化列表的成员。</li>
+<li>进入构造函数后在构造函数中执行一般的赋值与计算。</li>
+</ol>
+<h2 id="C-的初始化列表"><a href="#C-的初始化列表" class="headerlink" title="C++的初始化列表"></a>C++的初始化列表</h2><p><strong>对非内置类型成员变量，为了避免两次构造，推荐使用类构造函数初始化列表</strong>。但有的时候必须用带有初始化列表的构造函数：<br><strong>1.成员类型是没有默认构造函数的类。若没有提供显示初始化式，则编译器隐式使用成员类型的默认构造函数，若程序员没有为类写默认构造函数，则编译器尝试使用默认构造函数将会失败。</strong><br><strong>2.const成员或引用类型的成员。因为const对象或引用类型只能初始化，不能对他们赋值。</strong></p>
+<h2 id="初始化数据成员与对数据成员赋值的含义是什么？有什么区别？"><a href="#初始化数据成员与对数据成员赋值的含义是什么？有什么区别？" class="headerlink" title="初始化数据成员与对数据成员赋值的含义是什么？有什么区别？"></a>初始化数据成员与对数据成员赋值的含义是什么？有什么区别？</h2><p><strong>在构造函数中再进行成员对象的赋值，这会导致成员对象被构造多次。 更重要的是，因为常量类型、引用类型的成员不接受赋值，它们只能在初始化列表中进行初始化。</strong></p>
+<p>首先把数据成员按类型分类并分情况说明:<br>1.<strong>内置数据类型，复合类型（指针，引用）</strong><br>​    在成员初始化列表和构造函数体内进行，在性能和结果上都是一样的<br>2.<strong>用户定义类型（类类型）</strong><br>​    结果上相同，但是性能上存在很大的差别。因为类类型的数据成员对象在进入函数体前已经构造完成，也就是说在成员初始化列表处进行<strong>调用拷贝构造函数</strong>来构造对象的工作，调用构造函数，在进入函数体之后，进行的是对已经构造好的类对象的赋值，又调用个拷贝赋值操作符才能完成（如果并未提供，则使用编译器提供的默认按成员赋值行为）</p>
+<h2 id="C-引用和指针的区别"><a href="#C-引用和指针的区别" class="headerlink" title="C++ 引用和指针的区别"></a>C++ 引用和指针的区别</h2><p>(1)当引用被创建时，它必须被初始化。而指针则可以在任何时候被初始化。</p>
+<p>(2)一旦一个引用被初始化为指向一个对象，它就不能被改变为对另一个对象的引用。而指针则可以在任何时候指向另一个对象。</p>
+<p>(3)不可能有NULL引用。必须确保引用是和一块合法的存储单元关联。</p>
+<p>引用的一个优点是它一定不为空，因此相对于指针，它不用检查它所指对象是否为空，这增加了效率</p>
+<h2 id="C-中const和static的区别"><a href="#C-中const和static的区别" class="headerlink" title="C++中const和static的区别"></a>C++中const和static的区别</h2><p>const定义的常量在超出其作用域之后其空间会被释放，而static定义的静态常量在函数执行后不会释放其存储空间。</p>
+<p>​      static表示的是静态的。类的静态成员函数、静态成员变量是和类相关的，而不是和类的具体对象相关的。即使没有具体对象，也能调用类的静态成员函数和成员变量。一般类的静态函数几乎就是一个全局函数，只不过它的作用域限于包含它的文件中。</p>
+<p>​      在C++中，static静态成员变量不能在类的内部初始化。在类的内部只是声明，定义必须在类定义体的外部，通常在类的实现文件中初始化，如：double Account::Rate=2.25;static关键字只能用于类定义体内部的声明中，定义时不能标示为static</p>
+<p>​      在C++中，const成员变量也不能在类定义处初始化，只能通过构造函数初始化列表进行，并且必须有构造函数。</p>
+<p>​      const数据成员 只在某个对象生存期内是常量，而对于整个类而言却是可变的。因为类可以创建多个对象，不同的对象其const数据成员的值可以不同。所以不能在类的声明中初始化const数据成员，因为类的对象没被创建时，编译器不知道const数据成员的值是什么。</p>
+<p>const数据成员的初始化只能在类的构造函数的初始化列表中进行。要想建立在整个类中都恒定的常量，应该用类中的枚举常量来实现，或者static const。</p>
 <h2 id="在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？"><a href="#在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？" class="headerlink" title="在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？"></a>在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？</h2><p>父构造函数–&gt;子构造函数–&gt;子析构函数–&gt;父析构函数</p>
 <h2 id="在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为-virtual-吗？如果不申明为-virtual-会怎样？"><a href="#在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为-virtual-吗？如果不申明为-virtual-会怎样？" class="headerlink" title="在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为 virtual 吗？如果不申明为 virtual 会怎样？"></a>在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为 virtual 吗？如果不申明为 virtual 会怎样？</h2><p>构造函数不能够声明为virtual。因为创建对象之后虚函数表才开始创建。</p>
-<h2 id="什么是-C-多态？C-多态的实现原理是什么？"><a href="#什么是-C-多态？C-多态的实现原理是什么？" class="headerlink" title="什么是 C++ 多态？C++ 多态的实现原理是什么？"></a>什么是 C++ 多态？C++ 多态的实现原理是什么？</h2><p>C++的多态性用一句话概括就是：在基类的函数前加上virtual关键字，在派生类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数。如果对象类型是派生类，就调用派生类的函数；如果对象类型是基类，就调用基类的函数</p>
+<h2 id="什么是-C-多态？C-多态的实现原理是什么？"><a href="#什么是-C-多态？C-多态的实现原理是什么？" class="headerlink" title="什么是 C++ 多态？C++ 多态的实现原理是什么？"></a>什么是 C++ 多态？C++ 多态的实现原理是什么？</h2><p>C++的多态分为静态多态和动态多态：</p>
+<p>1.静态多态就是重载，因为在编译期决议确定，所以成为静态多态。</p>
+<p>2.动态多态就是通过继承重写基类的虚函数实现的多态，因为是在运行时决议确定的所以称为动态多态。</p>
+<p>C++的动态多态性用一句话概括就是：在基类的函数前加上virtual关键字，在派生类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数。如果对象类型是派生类，就调用派生类的函数；如果对象类型是基类，就调用基类的函数</p>
 <p>  1：用virtual关键字申明的函数叫做虚函数，虚函数肯定是类的成员函数。  </p>
 <p>  2：存在虚函数的类都有一个一维的虚函数表叫做虚表，类的对象有一个指向虚表开始的虚指针。虚表是和类对应的，虚表指针是和对象对应的。  </p>
 <p>  3：多态性是一个接口多种实现，是面向对象的核心，分为类的多态性和函数的多态性。  </p>
@@ -361,12 +384,15 @@
 <h2 id="什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？"><a href="#什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？" class="headerlink" title="什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？"></a>什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？</h2><h2 id="菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？"><a href="#菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？" class="headerlink" title="菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？"></a>菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？</h2><h2 id="C-中虚继承的作用及底层实现原理"><a href="#C-中虚继承的作用及底层实现原理" class="headerlink" title="C++中虚继承的作用及底层实现原理"></a>C++中虚继承的作用及底层实现原理</h2><p><strong>虚继承和虚函数是完全无相关的两个概念。</strong></p>
 <p>虚继承是解决C++多重继承问题的一种手段，从不同途径继承来的同一基类，会在子类中存在多份拷贝。这将存在两个问题：其一，浪费存储空间；第二，存在二义性问题，通常可以将派生类对象的地址赋值给基类对象，实现的具体方式是，将基类指针指向继承类（继承类有基类的拷贝）中的基类对象的地址，但是多重继承可能存在一个基类的多份拷贝，这就出现了二义性。</p>
 <p>虚继承可以解决多种继承前面提到的两个问题：</p>
-<p>虚继承底层实现原理与编译器相关，一般通过虚基类指针和虚基类表实现，每个虚继承的子类都有一个虚基类指针（占用一个指针的存储空间，4字节）和虚基类表（不占用类对象的存储空间）（需要强调的是，虚基类依旧会在子类里面存在拷贝，只是仅仅最多存在一份而已，并不是不在子类里面了）；当虚继承的子类被当做父类继承时，虚基类指针也会被继承。</p>
+<p>虚继承底层实现原理与编译器相关，一般通过虚基类指针和虚基类表实现，每个虚继承的子类都有一个虚基类指针（占用一个指针的存储空间，4字节）和虚基类表（不占用对象的存储空间）（需要强调的是，虚基类依旧会在子类里面存在拷贝，只是仅仅最多存在一份而已，并不是不在子类里面了）；当虚继承的子类被当做父类继承时，虚基类指针也会被继承。</p>
 <p>实际上，vbptr指的是虚基类表指针（virtual base table pointer），该指针指向了一个虚基类表（virtual table），虚表中记录了虚基类与本类的偏移地址；通过偏移地址，这样就找到了虚基类成员，而虚继承也不用像普通多继承那样维持着公共基类（虚基类）的两份同样的拷贝，节省了存储空间。</p>
 <p>在这里我们可以对比虚函数的实现原理：他们有相似之处，都利用了虚指针（均占用类的存储空间）和虚表（均不占用类的存储空间）。</p>
 <p>虚基类依旧存在继承类中，只占用存储空间；虚函数不占用存储空间。</p>
 <p>虚基类表存储的是虚基类相对直接继承类的偏移；而虚函数表存储的是虚函数地址。</p>
 <p>◇执行顺序<br>首先执行虚基类的构造函数，多个虚基类的构造函数按照被继承的顺序构造；<br>执行基类的构造函数，多个基类的构造函数按照被继承的顺序构造；<br>执行成员对象的构造函数，多个成员对象的构造函数按照申明的顺序构造；<br>执行派生类自己的构造函数；<br>析构以与构造相反的顺序执行； </p>
+<h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h2><p>简单的来说，【浅拷贝】是增加了一个指针，指向原来已经存在的内存。而【深拷贝】是增加了一个指针，并新开辟了一块空间</p>
+<p>让指针指向这块新开辟的空间。</p>
+<p>【浅拷贝】在多个对象指向一块空间的时候，释放一个空间会导致其他对象所使用的空间也被释放了，再次释放便会出现错误</p>
 <p><a href="https://www.cnblogs.com/jianxinzhou/p/3994248.html" target="_blank" rel="noopener">https://www.cnblogs.com/jianxinzhou/p/3994248.html</a></p>
 
       
@@ -489,7 +515,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -511,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -544,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-的基础知识"><span class="nav-number">1.</span> <span class="nav-text">C++的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？"><span class="nav-number">1.1.</span> <span class="nav-text">在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为-virtual-吗？如果不申明为-virtual-会怎样？"><span class="nav-number">1.2.</span> <span class="nav-text">在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为 virtual 吗？如果不申明为 virtual 会怎样？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-C-多态？C-多态的实现原理是什么？"><span class="nav-number">1.3.</span> <span class="nav-text">什么是 C++ 多态？C++ 多态的实现原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是虚函数？虚函数的实现原理是什么？"><span class="nav-number">1.4.</span> <span class="nav-text">什么是虚函数？虚函数的实现原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要虚析构函数？（什么情况下要用虚析构函数？）"><span class="nav-number">1.5.</span> <span class="nav-text">为什么需要虚析构函数？（什么情况下要用虚析构函数？）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个对象访问普通成员函数和虚函数哪个更快？"><span class="nav-number">1.6.</span> <span class="nav-text">一个对象访问普通成员函数和虚函数哪个更快？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联函数、构造函数、静态成员函数可以是虚函数吗？"><span class="nav-number">1.7.</span> <span class="nav-text">内联函数、构造函数、静态成员函数可以是虚函数吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数中可以调用虚函数吗？"><span class="nav-number">1.8.</span> <span class="nav-text">构造函数中可以调用虚函数吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述C-中虚继承的作用及底层实现原理"><span class="nav-number">1.9.</span> <span class="nav-text">简述C++中虚继承的作用及底层实现原理?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？"><span class="nav-number">1.10.</span> <span class="nav-text">什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？"><span class="nav-number">1.11.</span> <span class="nav-text">菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中虚继承的作用及底层实现原理"><span class="nav-number">1.12.</span> <span class="nav-text">C++中虚继承的作用及底层实现原理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-的基础知识"><span class="nav-number">1.</span> <span class="nav-text">C++的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-的默认构造函数"><span class="nav-number">1.1.</span> <span class="nav-text">C++的默认构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-类的构造顺序"><span class="nav-number">1.2.</span> <span class="nav-text">C++类的构造顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-的初始化列表"><span class="nav-number">1.3.</span> <span class="nav-text">C++的初始化列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化数据成员与对数据成员赋值的含义是什么？有什么区别？"><span class="nav-number">1.4.</span> <span class="nav-text">初始化数据成员与对数据成员赋值的含义是什么？有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-引用和指针的区别"><span class="nav-number">1.5.</span> <span class="nav-text">C++ 引用和指针的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中const和static的区别"><span class="nav-number">1.6.</span> <span class="nav-text">C++中const和static的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？"><span class="nav-number">1.7.</span> <span class="nav-text">在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为-virtual-吗？如果不申明为-virtual-会怎样？"><span class="nav-number">1.8.</span> <span class="nav-text">在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为 virtual 吗？如果不申明为 virtual 会怎样？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-C-多态？C-多态的实现原理是什么？"><span class="nav-number">1.9.</span> <span class="nav-text">什么是 C++ 多态？C++ 多态的实现原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是虚函数？虚函数的实现原理是什么？"><span class="nav-number">1.10.</span> <span class="nav-text">什么是虚函数？虚函数的实现原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要虚析构函数？（什么情况下要用虚析构函数？）"><span class="nav-number">1.11.</span> <span class="nav-text">为什么需要虚析构函数？（什么情况下要用虚析构函数？）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个对象访问普通成员函数和虚函数哪个更快？"><span class="nav-number">1.12.</span> <span class="nav-text">一个对象访问普通成员函数和虚函数哪个更快？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联函数、构造函数、静态成员函数可以是虚函数吗？"><span class="nav-number">1.13.</span> <span class="nav-text">内联函数、构造函数、静态成员函数可以是虚函数吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数中可以调用虚函数吗？"><span class="nav-number">1.14.</span> <span class="nav-text">构造函数中可以调用虚函数吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述C-中虚继承的作用及底层实现原理"><span class="nav-number">1.15.</span> <span class="nav-text">简述C++中虚继承的作用及底层实现原理?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？"><span class="nav-number">1.16.</span> <span class="nav-text">什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？"><span class="nav-number">1.17.</span> <span class="nav-text">菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中虚继承的作用及底层实现原理"><span class="nav-number">1.18.</span> <span class="nav-text">C++中虚继承的作用及底层实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝与浅拷贝"><span class="nav-number">1.19.</span> <span class="nav-text">深拷贝与浅拷贝</span></a></li></ol></li></ol></div>
             
 
           </div>
