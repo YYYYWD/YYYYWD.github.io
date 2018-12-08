@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Leetcode 22 Generate Parentheses(  √ Accepted √ 8/8 cases passed (0 ms) √ Your runtime beats 31.94 % of cpp submissions )">
+<meta name="description" content="全排列  全排列类型的题目一般使用回溯算法去解决，需要注意的是如何去递归，每次递归改变的条件。">
 <meta name="keywords" content="回溯,递归">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode 22 Generate Parentheses">
-<meta property="og:url" content="http://yyyywd.cn/2018/11/08/Leetcode22/index.html">
+<meta property="og:title" content="全排列">
+<meta property="og:url" content="http://yyyywd.cn/2018/12/08/全排列/index.html">
 <meta property="og:site_name" content="YYYYWD">
-<meta property="og:description" content="Leetcode 22 Generate Parentheses(  √ Accepted √ 8/8 cases passed (0 ms) √ Your runtime beats 31.94 % of cpp submissions )">
+<meta property="og:description" content="全排列  全排列类型的题目一般使用回溯算法去解决，需要注意的是如何去递归，每次递归改变的条件。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-08T09:24:46.598Z">
+<meta property="og:updated_time" content="2018-12-08T11:53:26.807Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode 22 Generate Parentheses">
-<meta name="twitter:description" content="Leetcode 22 Generate Parentheses(  √ Accepted √ 8/8 cases passed (0 ms) √ Your runtime beats 31.94 % of cpp submissions )">
+<meta name="twitter:title" content="全排列">
+<meta name="twitter:description" content="全排列  全排列类型的题目一般使用回溯算法去解决，需要注意的是如何去递归，每次递归改变的条件。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yyyywd.cn/2018/11/08/Leetcode22/"/>
+  <link rel="canonical" href="http://yyyywd.cn/2018/12/08/全排列/"/>
 
 
 
 
 
-  <title>Leetcode 22 Generate Parentheses | YYYYWD</title>
+  <title>全排列 | YYYYWD</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2018/11/08/Leetcode22/">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2018/12/08/全排列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yyyywd">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode 22 Generate Parentheses</h1>
+          <h1 class="post-title" itemprop="name headline">全排列</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-08T11:15:19+08:00">
-                2018-11-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-08T19:43:02+08:00">
+                2018-12-08
               </time>
             
 
@@ -294,34 +294,12 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2018-11-08T17:24:46+08:00" content="2018-11-08">
-                2018-11-08
+              <time itemprop="dateUpdated" datetime="2018-12-08T19:53:26+08:00" content="2018-12-08">
+                2018-12-08
               </time>
             </span>
           
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -350,11 +328,11 @@
       
 
       
-        <h1 id="Leetcode-22-Generate-Parentheses"><a href="#Leetcode-22-Generate-Parentheses" class="headerlink" title="Leetcode 22 Generate Parentheses"></a>Leetcode 22 Generate Parentheses</h1><p>(  √ Accepted</p>
-<p>√ 8/8 cases passed (0 ms)</p>
-<p>√ Your runtime beats 31.94 % of cpp submissions )</p>
+        <h1 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h1><p>  全排列类型的题目一般使用回溯算法去解决，需要注意的是如何去递归，每次递归改变的条件。</p>
 <a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [22] Generate Parentheses</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/generate-parentheses/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Medium (50.99%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    261.9K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 513.5K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '3'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Given n pairs of parentheses, write a function to generate all combinations</span></span><br><span class="line"><span class="comment"> * of well-formed parentheses.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * For example, given n = 3, a solution set is:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * [</span></span><br><span class="line"><span class="comment"> * ⁠ "((()))",</span></span><br><span class="line"><span class="comment"> * ⁠ "(()())",</span></span><br><span class="line"><span class="comment"> * ⁠ "(())()",</span></span><br><span class="line"><span class="comment"> * ⁠ "()(())",</span></span><br><span class="line"><span class="comment"> * ⁠ "()()()"</span></span><br><span class="line"><span class="comment"> * ]</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrade</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp;ans,<span class="built_in">string</span> ans1,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="number">0</span>&amp;&amp;right==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans.push_back(ans1);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&gt;<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            backtrade(ans,ans1+<span class="string">"("</span>,left<span class="number">-1</span>,right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(right&gt;left)</span><br><span class="line">        &#123;</span><br><span class="line">            backtrade(ans,ans1+<span class="string">")"</span>,left,right<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; generateParenthesis(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        backtrade(res,<span class="string">""</span>,n,n);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="Leetcode-46"><a href="#Leetcode-46" class="headerlink" title="Leetcode 46"></a>Leetcode 46</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">√ Accepted</span><br><span class="line">√ <span class="number">25</span>/<span class="number">25</span> <span class="function">cases <span class="title">passed</span> <span class="params">(<span class="number">8</span> ms)</span></span></span><br><span class="line">√ Your runtime beats 40.39 % of cpp submissions</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode id=46 lang=cpp</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [46] Permutations</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/permutations/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Medium (51.59%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    306.6K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 594.4K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '[1,2,3]'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Given a collection of distinct integers, return all possible permutations.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: [1,2,3]</span></span><br><span class="line"><span class="comment"> * Output:</span></span><br><span class="line"><span class="comment"> * [</span></span><br><span class="line"><span class="comment"> * ⁠ [1,2,3],</span></span><br><span class="line"><span class="comment"> * ⁠ [1,3,2],</span></span><br><span class="line"><span class="comment"> * ⁠ [2,1,3],</span></span><br><span class="line"><span class="comment"> * ⁠ [2,3,1],</span></span><br><span class="line"><span class="comment"> * ⁠ [3,1,2],</span></span><br><span class="line"><span class="comment"> * ⁠ [3,2,1]</span></span><br><span class="line"><span class="comment"> * ]</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrace</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;nums,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;now,<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;&amp;ans)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size()==<span class="number">0</span>)</span><br><span class="line">            ans.push_back(now);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> n=nums[i];</span><br><span class="line">                now.push_back(nums[i]);</span><br><span class="line">                nums.erase(nums.begin()+i);<span class="comment">//删除这个元素</span></span><br><span class="line">                backtrace(nums,now,ans);</span><br><span class="line">                nums.insert(nums.begin()+i, n);<span class="comment">//把删除的元素加回来，不改变相对位置。</span></span><br><span class="line">                now.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; permute(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;ans;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;now;</span><br><span class="line">        backtrace(nums,now,ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -386,15 +364,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/04/回溯算法/" rel="next" title="回溯算法">
+                <i class="fa fa-chevron-left"></i> 回溯算法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/09/Leetcode10/" rel="prev" title="Leetcode 10 Generate Parentheses">
-                Leetcode 10 Generate Parentheses <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +504,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Leetcode-22-Generate-Parentheses"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 22 Generate Parentheses</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#全排列"><span class="nav-number">1.</span> <span class="nav-text">全排列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode-46"><span class="nav-number">1.1.</span> <span class="nav-text">Leetcode 46</span></a></li></ol></li></ol></div>
             
 
           </div>
