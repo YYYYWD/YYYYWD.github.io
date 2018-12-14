@@ -27,7 +27,7 @@ OSI分层 （7层）：物理层、数据链路层、网络层、传输层、会
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -328,9 +328,9 @@ OSI分层 （7层）：物理层、数据链路层、网络层、传输层、会
 <p>TCP提供面向连接的、可靠的数据流传输，而UDP提供的是非面向连接的、不可靠的数据流传输。<br>TCP传输单位称为TCP报文段，UDP传输单位称为用户数据报。<br>TCP注重数据安全性，UDP数据传输快，因为不需要连接等待，少了许多操作，但是其安全性却一般。<br>TCP对应的协议和UDP对应的协议<br>TCP对应的协议：<br>（1） FTP：定义了文件传输协议，使用21端口。<br>（2） Telnet：一种用于远程登陆的端口，使用23端口，用户可以以自己的身份远程连接到计算机上，可提供基于DOS模式下的通信服务。<br>（3） SMTP：邮件传送协议，用于发送邮件。服务器开放的是25号端口。<br>（4） POP3：它是和SMTP对应，POP3用于接收邮件。POP3协议所用的是110端口。<br>（5）HTTP：是从Web服务器传输超文本到本地浏览器的传送协议。<br>UDP对应的协议：<br>（1） DNS：用于域名解析服务，将域名地址转换为IP地址。DNS用的是53号端口。<br>（2） SNMP：简单网络管理协议，使用161号端口，是用来管理网络设备的。由于网络设备很多，无连接的服务就体现出其优势。<br>（3） TFTP(Trival File Transfer Protocal)，简单文件传输协议，该协议在熟知端口69上使用UDP服务。</p>
 <h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>答:当DNS客户机需要在程序中使用名称时，它会查询DNS服务器来解析该名称。客户机发送的每条查询信息包括三条信息：包括：指定的DNS域名，指定的查询类型，DNS域名的指定类别。基于UDP服务，端口53. 该应用一般不直接为用户使用，而是为其他应用服务，如HTTP，SMTP等在其中需要完成主机名到IP地址的转换。</p>
 <h2 id="tcp粘包问题，怎么处理？"><a href="#tcp粘包问题，怎么处理？" class="headerlink" title="tcp粘包问题，怎么处理？"></a>tcp粘包问题，怎么处理？</h2><p><a href="https://www.cnblogs.com/kex1n/p/6502002.html" target="_blank" rel="noopener">https://www.cnblogs.com/kex1n/p/6502002.html</a></p>
-<h2 id="udp会粘包吗？为什么？"><a href="#udp会粘包吗？为什么？" class="headerlink" title="udp会粘包吗？为什么？"></a>udp会粘包吗？为什么？</h2><h2 id="https的原理，和http的区别"><a href="#https的原理，和http的区别" class="headerlink" title="https的原理，和http的区别"></a>https的原理，和http的区别</h2><h2 id="TCP状态机"><a href="#TCP状态机" class="headerlink" title="TCP状态机"></a>TCP状态机</h2><pre><code>客户端：SYN_SENT -&gt; ESTABLISHED -&gt; FIN_WAIT_1 -&gt; FIN_WAIT_2 -&gt; TIME_WAIT。 
+<h2 id="udp会粘包吗？为什么？"><a href="#udp会粘包吗？为什么？" class="headerlink" title="udp会粘包吗？为什么？"></a>udp会粘包吗？为什么？</h2><h2 id="https的原理，和http的区别"><a href="#https的原理，和http的区别" class="headerlink" title="https的原理，和http的区别"></a>https的原理，和http的区别</h2><h2 id="TCP状态机"><a href="#TCP状态机" class="headerlink" title="TCP状态机"></a>TCP状态机</h2><pre><code> 客户端：SYN_SENT -&gt; ESTABLISHED -&gt; FIN_WAIT_1 -&gt; FIN_WAIT_2 -&gt; TIME_WAIT。 
 
-服务端：LISTEN -&gt; SYN_RCVD -&gt; ESTABLISHED -&gt; CLOSE_WAIT -&gt; LAST_ACK -&gt; CLOSED。
+ 服务端：LISTEN -&gt; SYN_RCVD -&gt; ESTABLISHED -&gt; CLOSE_WAIT -&gt; LAST_ACK -&gt; CLOSED。
 </code></pre><h2 id="TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？"><a href="#TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？" class="headerlink" title="TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？"></a>TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？</h2><p>答:建立连接的过程是利用客户服务器模式，假设主机A为客户端，主机B为服务器端。<br>（1）TCP的三次握手过程：主机A向B发送连接请求；主机B对收到的主机A的报文段进行确认；主机A再次对主机B的确认进行确认。<br>（2）采用三次握手是为了防止失效的连接请求报文段突然又传送到主机B，因而产生错误。失效的连接请求报文段是指：主机A发出的连接请求没有收到主机B的确认，于是经过一段时间后，主机A又重新向主机B发送连接请求，且建立成功，顺序完成数据传输。考虑这样一种特殊情况，主机A第一次发送的连接请求并没有丢失，而是因为网络节点导致延迟达到主机B，主机B以为是主机A又发起的新连接，于是主机B同意连接，并向主机A发回确认，但是此时主机A根本不会理会，主机B就一直在等待主机A发送数据，导致主机B的资源浪费。<br>（3）采用两次握手不行，原因就是上面说的失效的连接请求的特殊情况。</p>
 <h2 id="对称加密和非对称加密"><a href="#对称加密和非对称加密" class="headerlink" title="对称加密和非对称加密"></a>对称加密和非对称加密</h2>
             </div>

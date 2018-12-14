@@ -30,7 +30,7 @@ https://leetcode-cn.com/problems/find-first-and-last-positi">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -324,10 +324,312 @@ https://leetcode-cn.com/problems/find-first-and-last-positi">
 <a id="more"></a>
 <p>参考题目链接</p>
 <p><a href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions/</a></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//寻找任意一个等于target的数字</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binary</span><span class="params">(<span class="keyword">int</span> nums[],<span class="keyword">int</span> target,<span class="keyword">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> right=length<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(left&lt;right)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(nums[mid]==target)<span class="keyword">return</span> mid;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;target)left=mid+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			right=mid;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(left==target)</span><br><span class="line">		<span class="keyword">return</span> left;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//求下界 ，返回的是第一个等于target的数字 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lower_binary</span><span class="params">(<span class="keyword">int</span> nums[],<span class="keyword">int</span> target,<span class="keyword">int</span> length)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> right=length<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(left&lt;right)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">			left=mid+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			right=mid; <span class="comment">//nums[mid]&lt;=target right一直往左边靠 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(nums[left]==target)</span><br><span class="line">		<span class="keyword">return</span> left; <span class="comment">//返回的是第一个等于target的数字 </span></span><br><span class="line">		<span class="comment">//return left-1  //返回的是第一个小于target的数字 </span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//求上界 ,返回的是第一个大于target的位置</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">up_binary</span><span class="params">(<span class="keyword">int</span> nums[],<span class="keyword">int</span> target,<span class="keyword">int</span> length)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> right=length<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(left&lt;right)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(nums[mid]&lt;=target)</span><br><span class="line">			left=mid+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			right=mid;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>((right<span class="number">-1</span>)&gt;=<span class="number">0</span>&amp;&amp;nums[right<span class="number">-1</span>]==target)</span><br><span class="line">		<span class="keyword">return</span> right;<span class="comment">//返回的是第一个大于target的位置</span></span><br><span class="line">		<span class="comment">//return right-1; //返回的是最后一个等于target的位置</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[]=&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">9</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">10</span>&#125;;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;binary(a,<span class="number">1</span>,<span class="number">22</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Leetcode-33"><a href="#Leetcode-33" class="headerlink" title="Leetcode-33"></a>Leetcode-33</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [33] Search in Rotated Sorted Array</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/search-in-rotated-sorted-array/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Medium (32.28%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    330.9K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 1M</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '[4,5,6,7,0,1,2]\n0'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Suppose an array sorted in ascending order is rotated at some pivot unknown</span></span><br><span class="line"><span class="comment"> * to you beforehand.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * You are given a target value to search. If found in the array return its</span></span><br><span class="line"><span class="comment"> * index, otherwise return -1.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * You may assume no duplicate exists in the array.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Your algorithm's runtime complexity must be in the order of O(log n).</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 1:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: nums = [4,5,6,7,0,1,2], target = 0</span></span><br><span class="line"><span class="comment"> * Output: 4</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 2:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: nums = [4,5,6,7,0,1,2], target = 3</span></span><br><span class="line"><span class="comment"> * Output: -1</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right=nums.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)</span><br><span class="line">        &#123;</span><br><span class="line">            mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;nums[right])<span class="comment">//搜索右边</span></span><br><span class="line">            &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(nums[mid]&lt;=target&amp;&amp;target&lt;=nums[right])</span><br><span class="line">                &#123;</span><br><span class="line">                    left=mid+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    right=mid;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&gt;nums[right])<span class="comment">//搜索左边</span></span><br><span class="line">            &#123;</span><br><span class="line">             </span><br><span class="line">                <span class="keyword">if</span>(nums[left]&lt;=target&amp;&amp;target&lt;=nums[mid])</span><br><span class="line">                &#123;</span><br><span class="line">                    right=mid;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    left=mid+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nums[left]==target||nums[right]==target)</span><br><span class="line">            <span class="keyword">return</span> left;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="Leetcode-35"><a href="#Leetcode-35" class="headerlink" title="Leetcode-35"></a>Leetcode-35</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [35] Search Insert Position</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/search-insert-position/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Easy (40.02%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    325.8K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 814K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '[1,3,5,6]\n5'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Given a sorted array and a target value, return the index if the target is</span></span><br><span class="line"><span class="comment"> * found. If not, return the index where it would be if it were inserted in</span></span><br><span class="line"><span class="comment"> * order.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * You may assume no duplicates in the array.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 1:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: [1,3,5,6], 5</span></span><br><span class="line"><span class="comment"> * Output: 2</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 2:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: [1,3,5,6], 2</span></span><br><span class="line"><span class="comment"> * Output: 1</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 3:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: [1,3,5,6], 7</span></span><br><span class="line"><span class="comment"> * Output: 4</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 4:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: [1,3,5,6], 0</span></span><br><span class="line"><span class="comment"> * Output: 0</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length=nums.size();</span><br><span class="line">    <span class="keyword">if</span>(length==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right=length<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(left&lt;right)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid]==target)</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">        &#123;</span><br><span class="line">            left=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            right=mid;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(left==length<span class="number">-1</span>&amp;&amp;nums[length<span class="number">-1</span>]&lt;target)</span><br><span class="line">        <span class="keyword">return</span> length;</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="Leetcode-34"><a href="#Leetcode-34" class="headerlink" title="Leetcode-34"></a>Leetcode-34</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [34] Find First and Last Position of Element in Sorted Array</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Medium (32.34%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    240.4K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 743.1K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '[5,7,7,8,8,10]\n8'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Given an array of integers nums sorted in ascending order, find the starting</span></span><br><span class="line"><span class="comment"> * and ending position of a given target value.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Your algorithm's runtime complexity must be in the order of O(log n).</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * If the target is not found in the array, return [-1, -1].</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 1:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: nums = [5,7,7,8,8,10], target = 8</span></span><br><span class="line"><span class="comment"> * Output: [3,4]</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 2:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input: nums = [5,7,7,8,8,10], target = 6</span></span><br><span class="line"><span class="comment"> * Output: [-1,-1]</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; searchRange(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">-1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right=nums.size()<span class="number">-1</span>;</span><br><span class="line">         <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)<span class="comment">//求第一个等于target的位置</span></span><br><span class="line">        &#123;</span><br><span class="line">           mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">                left=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                right=mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nums[left]!=target)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">-1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> t1=left;</span><br><span class="line">        </span><br><span class="line">        right=nums.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)</span><br><span class="line">        &#123;</span><br><span class="line">            mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]&lt;=target)</span><br><span class="line">                left=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                right=mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> t2=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>((left<span class="number">-1</span>)&gt;=<span class="number">0</span>&amp;&amp;nums[left<span class="number">-1</span>]==target&amp;&amp;nums[left]!=target)</span><br><span class="line">            t2=left<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>((left<span class="number">-1</span>)&gt;=<span class="number">0</span>&amp;&amp;nums[left]==target)</span><br><span class="line">            t2=left;</span><br><span class="line">        <span class="keyword">return</span> &#123;t1,t2&#125;;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">#include<iostream>
+#include<math.h>
+#include<cstdio>
+#include<string>
+#include<cstring>
+#include<algorithm>
+#include<stack>
+#include<queue>
+#include<vector>
+using namespace std;
+
+//寻找任意一个等于target的数字
+int binary(int nums[],int target,int length)
+{
+    int left=0;
+    int right=length-1;
+    while(left<right)
+    {
+        int mid=left+(right-left)/2;
+        if(nums[mid]==target)return mid;
+        else if(nums[mid]<target)left=mid+1;
+        else
+            right=mid;
+    }
+    if(left==target)
+        return left;
+    else
+        return -1;
+} 
+
+//求下界 ，返回的是第一个等于target的数字 
+int lower_binary(int nums[],int target,int length) 
+{
+    int left=0;
+    int right=length-1;
+    while(left<right)
+    {
+        int mid=left+(right-left)/2;
+        if(nums[mid]<target)
+            left=mid+1;
+        else
+            right=mid; //nums[mid]<=target right一直往左边靠 
+    }
+    if(nums[left]==target)
+        return left; //返回的是第一个等于target的数字 
+        //return left-1  //返回的是第一个小于target的数字 
+    else
+        return -1;
+}
+//求上界 ,返回的是第一个大于target的位置
+int up_binary(int nums[],int target,int length) 
+{
+    int left=0;
+    int right=length-1;
+    while(left<right)
+    {
+        int mid=left+(right-left)/2;
+        if(nums[mid]<=target)
+            left=mid+1;
+        else
+            right=mid;
+    }
+    if((right-1)>=0&&nums[right-1]==target)
+        return right;//返回的是第一个大于target的位置
+        //return right-1; //返回的是最后一个等于target的位置
+    else
+        return -1;
+
+}
+int main()
+{
+    int a[]={1,1,1,1,1,1,1,2,2,2,3,3,3,3,4,4,4,5,6,7,7,8,8,9,9,9,10,10};
+    cout<<binary(a,1,22)<<endl;
+}
+
+</code></pre>
+<h1 id="Leetcode-33"><a href="#Leetcode-33" class="headerlink" title="Leetcode-33"></a>Leetcode-33</h1><pre class=" language-c++"><code class="language-c++">/*
+ * [33] Search in Rotated Sorted Array
+ *
+ * https://leetcode.com/problems/search-in-rotated-sorted-array/description/
+ *
+ * algorithms
+ * Medium (32.28%)
+ * Total Accepted:    330.9K
+ * Total Submissions: 1M
+ * Testcase Example:  '[4,5,6,7,0,1,2]\n0'
+ *
+ * Suppose an array sorted in ascending order is rotated at some pivot unknown
+ * to you beforehand.
+ * 
+ * (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
+ * 
+ * You are given a target value to search. If found in the array return its
+ * index, otherwise return -1.
+ * 
+ * You may assume no duplicate exists in the array.
+ * 
+ * Your algorithm's runtime complexity must be in the order of O(log n).
+ * 
+ * Example 1:
+ * 
+ * 
+ * Input: nums = [4,5,6,7,0,1,2], target = 0
+ * Output: 4
+ * 
+ * 
+ * Example 2:
+ * 
+ * 
+ * Input: nums = [4,5,6,7,0,1,2], target = 3
+ * Output: -1
+ * 
+ */
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        if(nums.size()==0)
+            return -1;
+        int left=0;
+        int right=nums.size()-1;
+        int mid;
+        while(left<right)
+        {
+            mid=left+(right-left)/2;
+            if(nums[mid]==target)
+                return mid;
+            else if(nums[mid]<nums[right])//搜索右边
+            {
+
+                if(nums[mid]<=target&&target<=nums[right])
+                {
+                    left=mid+1;
+                }
+                else
+                {
+                    right=mid;
+                }
+            }
+            else if(nums[mid]>nums[right])//搜索左边
+            {
+
+                if(nums[left]<=target&&target<=nums[mid])
+                {
+                    right=mid;
+                }
+                else
+                {
+                    left=mid+1;
+                }
+            }
+        }
+        if(nums[left]==target||nums[right]==target)
+            return left;
+        return -1;
+
+
+    }
+};
+
+</code></pre>
+<h1 id="Leetcode-35"><a href="#Leetcode-35" class="headerlink" title="Leetcode-35"></a>Leetcode-35</h1><pre class=" language-c++"><code class="language-c++">/*
+ * [35] Search Insert Position
+ *
+ * https://leetcode.com/problems/search-insert-position/description/
+ *
+ * algorithms
+ * Easy (40.02%)
+ * Total Accepted:    325.8K
+ * Total Submissions: 814K
+ * Testcase Example:  '[1,3,5,6]\n5'
+ *
+ * Given a sorted array and a target value, return the index if the target is
+ * found. If not, return the index where it would be if it were inserted in
+ * order.
+ * 
+ * You may assume no duplicates in the array.
+ * 
+ * Example 1:
+ * 
+ * 
+ * Input: [1,3,5,6], 5
+ * Output: 2
+ * 
+ * 
+ * Example 2:
+ * 
+ * 
+ * Input: [1,3,5,6], 2
+ * Output: 1
+ * 
+ * 
+ * Example 3:
+ * 
+ * 
+ * Input: [1,3,5,6], 7
+ * Output: 4
+ * 
+ * 
+ * Example 4:
+ * 
+ * 
+ * Input: [1,3,5,6], 0
+ * Output: 0
+ * 
+ * 
+ */
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+    int length=nums.size();
+    if(length==0)
+        return 0;
+    int left=0;
+    int right=length-1;
+    while(left<right)
+    {
+        int mid=left+(right-left)/2;
+        if(nums[mid]==target)
+            return mid;
+        else if(nums[mid]<target)
+        {
+            left=mid+1;
+        }
+        else
+            right=mid;
+    }
+
+    if(left==length-1&&nums[length-1]<target)
+        return length;
+    return left;
+    }
+};
+
+</code></pre>
+<h1 id="Leetcode-34"><a href="#Leetcode-34" class="headerlink" title="Leetcode-34"></a>Leetcode-34</h1><pre class=" language-c++"><code class="language-c++">/*
+ * [34] Find First and Last Position of Element in Sorted Array
+ *
+ * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/
+ *
+ * algorithms
+ * Medium (32.34%)
+ * Total Accepted:    240.4K
+ * Total Submissions: 743.1K
+ * Testcase Example:  '[5,7,7,8,8,10]\n8'
+ *
+ * Given an array of integers nums sorted in ascending order, find the starting
+ * and ending position of a given target value.
+ * 
+ * Your algorithm's runtime complexity must be in the order of O(log n).
+ * 
+ * If the target is not found in the array, return [-1, -1].
+ * 
+ * Example 1:
+ * 
+ * 
+ * Input: nums = [5,7,7,8,8,10], target = 8
+ * Output: [3,4]
+ * 
+ * Example 2:
+ * 
+ * 
+ * Input: nums = [5,7,7,8,8,10], target = 6
+ * Output: [-1,-1]
+ * 
+ */
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        if(nums.size()==0)
+            return {-1,-1};
+        int left=0;
+        int right=nums.size()-1;
+         int mid;
+        while(left<right)//求第一个等于target的位置
+        {
+           mid=left+(right-left)/2;
+           if(nums[mid]<target)
+                left=mid+1;
+            else
+                right=mid;
+        }
+        if(nums[left]!=target)
+            return {-1,-1};
+        int t1=left;
+
+        right=nums.size()-1;
+        while(left<right)
+        {
+            mid=left+(right-left)/2;
+            if(nums[mid]<=target)
+                left=mid+1;
+            else
+                right=mid;
+        }
+        int t2=0;
+        if((left-1)>=0&&nums[left-1]==target&&nums[left]!=target)
+            t2=left-1;
+        else if((left-1)>=0&&nums[left]==target)
+            t2=left;
+        return {t1,t2};
+
+
+    }
+};
+
+</code></pre>
 
             </div>
             <hr/>
@@ -503,7 +805,10 @@ https://leetcode-cn.com/problems/find-first-and-last-positi">
                     <div class="summary">Leetcode 39
 参考链接
 https://blog.csdn.net/zr1076311296/article/details/51374923
-1234567891011121314151617181920212223242526</div>
+/*
+ * [39] Combination Sum
+ *
+ * https://le</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-04

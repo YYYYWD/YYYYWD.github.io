@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>旋转矩阵</title>
+      <link href="/2018/12/14/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/"/>
+      <url>/2018/12/14/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/</url>
+      
+        <content type="html"><![CDATA[<h1 id="旋转矩阵"><a href="#旋转矩阵" class="headerlink" title="旋转矩阵"></a>旋转矩阵</h1><h2 id="Leetcode-48"><a href="#Leetcode-48" class="headerlink" title="Leetcode-48"></a>Leetcode-48</h2><p>下面给出两种解法：</p><pre class=" language-c++"><code class="language-c++">/* * @lc app=leetcode id=48 lang=cpp * * [48] Rotate Image * * https://leetcode.com/problems/rotate-image/description/ * * algorithms * Medium (45.23%) * Total Accepted:    204.8K * Total Submissions: 452.8K * Testcase Example:  '[[1,2,3],[4,5,6],[7,8,9]]' * * You are given an n x n 2D matrix representing an image. *  * Rotate the image by 90 degrees (clockwise). *  * Note: *  * You have to rotate the image in-place, which means you have to modify the * input 2D matrix directly. DO NOT allocate another 2D matrix and do the * rotation. *  * Example 1: *  *  * Given input matrix =  * [ * ⁠ [1,2,3], * ⁠ [4,5,6], * ⁠ [7,8,9] * ], *  * rotate the input matrix in-place such that it becomes: * [ * ⁠ [7,4,1], * ⁠ [8,5,2], * ⁠ [9,6,3] * ] *  *  * Example 2: *  *  * Given input matrix = * [ * ⁠ [ 5, 1, 9,11], * ⁠ [ 2, 4, 8,10], * ⁠ [13, 3, 6, 7], * ⁠ [15,14,12,16] * ],  *  * rotate the input matrix in-place such that it becomes: * [ * ⁠ [15,13, 2, 5], * ⁠ [14, 3, 4, 1], * ⁠ [12, 6, 8, 9], * ⁠ [16, 7,10,11] * ] *  *  */class Solution {public:    void swap(int &a,int &b)    {        int t=a;        a=b;        b=t;    }    void rotate(vector<vector<int>>& matrix) {        int n=matrix[0].size();       /* for(int i=0;i<n/2;i++)        {            for(int j=i;j<n-1-i;j++)            {                int temp=matrix[j][n-i-1];                matrix[j][n-i-1]=matrix[i][j];                matrix[i][j]=matrix[n-j-1][i];                matrix[n-j-1][i] = matrix[n-i-1][n-j-1];                matrix[n-i-1][n-j-1] = temp;            }        }*/        for(int i=0;i<n;i++)//对角线对折        {            for(int j=i;j<n;j++)            {                swap(matrix[i][j],matrix[j][i]);            }        }//for        for(int i=0;i<n;i++)//对中线对折        {            for(int j=0;j<n/2;j++)            {                swap(matrix[i][j],matrix[i][n-1-j]);            }        }//for    }};</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 数组 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>全排列</title>
+      <link href="/2018/12/08/%E5%85%A8%E6%8E%92%E5%88%97/"/>
+      <url>/2018/12/08/%E5%85%A8%E6%8E%92%E5%88%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h1><p>  全排列类型的题目一般使用回溯算法去解决，需要注意的是如何去递归，每次递归改变的条件。</p><a id="more"></a><h2 id="Leetcode-46"><a href="#Leetcode-46" class="headerlink" title="Leetcode 46"></a>Leetcode 46</h2><pre class=" language-c++"><code class="language-c++">  √ Accepted  √ 25/25 cases passed (8 ms)  √ Your runtime beats 40.39 % of cpp submissions</code></pre><pre class=" language-c++"><code class="language-c++">/* * @lc app=leetcode id=46 lang=cpp * * [46] Permutations * * https://leetcode.com/problems/permutations/description/ * * algorithms * Medium (51.59%) * Total Accepted:    306.6K * Total Submissions: 594.4K * Testcase Example:  '[1,2,3]' * * Given a collection of distinct integers, return all possible permutations. *  * Example: *  *  * Input: [1,2,3] * Output: * [ * ⁠ [1,2,3], * ⁠ [1,3,2], * ⁠ [2,1,3], * ⁠ [2,3,1], * ⁠ [3,1,2], * ⁠ [3,2,1] * ] *  *  */class Solution {public:    void backtrace(vector<int>nums,vector<int>now,vector<vector<int> >&ans)    {        if(nums.size()==0)            ans.push_back(now);        else        {            for(int i=0;i<nums.size();i++)            {                int n=nums[i];                now.push_back(nums[i]);                nums.erase(nums.begin()+i);//删除这个元素                backtrace(nums,now,ans);                nums.insert(nums.begin()+i, n);//把删除的元素加回来，不改变相对位置。                now.pop_back();            }        }    }    vector<vector<int>> permute(vector<int>& nums) {        vector<vector<int> >ans;        vector<int>now;        backtrace(nums,now,ans);        return ans;    }};</code></pre><h2 id="Leetcode-47"><a href="#Leetcode-47" class="headerlink" title="Leetcode 47"></a>Leetcode 47</h2><pre class=" language-c++"><code class="language-c++">/* * @lc app=leetcode id=47 lang=cpp * * [47] Permutations II * * https://leetcode.com/problems/permutations-ii/description/ * * algorithms * Medium (37.93%) * Total Accepted:    203.9K * Total Submissions: 537.4K * Testcase Example:  '[1,1,2]' * * Given a collection of numbers that might contain duplicates, return all * possible unique permutations. *  * Example: *  *  * Input: [1,1,2] * Output: * [ * ⁠ [1,1,2], * ⁠ [1,2,1], * ⁠ [2,1,1] * ] *  *  */class Solution {public:     void backtrace(vector<int>nums,vector<int>now,vector<vector<int> >&ans)    {        if(nums.size()==0)            ans.push_back(now);        else        {            for(int i=0;i<nums.size();i++)   //表示每一次都选数组中的一个一个数当作第一个数            {                /* 和leetcode46 比起来 相对于重复的元素进行了处理！ */                if(i>0&&nums[i]==nums[i-1])// 精华！！！ 和46题的对比！！！                    continue;               //精华！！！                int n=nums[i];                now.push_back(nums[i]);                nums.erase(nums.begin()+i);//删除这个元素                backtrace(nums,now,ans);                nums.insert(nums.begin()+i, n);//把删除的元素加回来，不改变相对位置。                now.pop_back();            }        }    }      vector<vector<int>> permuteUnique(vector<int>& nums) {        vector<vector<int> >ans;        vector<int>now;        sort(nums.begin(),nums.end());        backtrace(nums,now,ans);        return ans;    }};</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 回溯 </tag>
+            
+            <tag> 递归 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>回溯算法</title>
+      <link href="/2018/12/04/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/"/>
+      <url>/2018/12/04/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Leetcode-39"><a href="#Leetcode-39" class="headerlink" title="Leetcode 39"></a>Leetcode 39</h1><a id="more"></a><p>参考链接</p><p><a href="https://blog.csdn.net/zr1076311296/article/details/51374923" target="_blank" rel="noopener">https://blog.csdn.net/zr1076311296/article/details/51374923</a></p><pre class=" language-c++"><code class="language-c++">/* * [39] Combination Sum * * https://leetcode.com/problems/combination-sum/description/ * * algorithms * Medium (44.92%) * Total Accepted:    275.2K * Total Submissions: 612.7K * Testcase Example:  '[2,3,6,7]\n7' * * Given a set of candidate numbers (candidates) (without duplicates) and a * target number (target), find all unique combinations in candidates where the * candidate numbers sums to target. *  * The same repeated number may be chosen from candidates unlimited number of * times. *  * Note: *  *  * All numbers (including target) will be positive integers. * The solution set must not contain duplicate combinations. *  *  * Example 1: *  *  * Input: candidates = [2,3,6,7], target = 7, * A solution set is: * [ * ⁠ [7], * ⁠ [2,2,3] * ] *  *  * Example 2: *  *  * Input: candidates = [2,3,5], target = 8, * A solution set is: * [ * [2,2,2,2], * [2,3,3], * [3,5] * ] *  *  */class Solution {public:    void backTrace(vector<int>& candidates,vector<vector<int> >&res,vector<int>&tmp,int target,int index)    {        if(target==0)        {            res.push_back(tmp);            return;        }        else        {            for(int i=index;i<candidates.size();i++)            {                if(candidates[i]>target)                {                    return;                }                tmp.push_back(candidates[i]);                backTrace(candidates,res,tmp,target-candidates[i],i);                tmp.pop_back();//把元素弹出            }        }    }    vector<vector<int> > combinationSum(vector<int>& candidates, int target) {       vector<vector<int> >ret;       ret.clear();       vector<int>tmp;       tmp.clear();       sort(candidates.begin(),candidates.end());       backTrace(candidates,ret,tmp,target,0);       return ret;    }};</code></pre><h1 id="Leetcode-40"><a href="#Leetcode-40" class="headerlink" title="Leetcode 40"></a>Leetcode 40</h1><p>与39题类似，但是要注意去重复，还有从i+1进入下次递归。</p><pre class=" language-c++"><code class="language-c++">/* * [40] Combination Sum II * * https://leetcode.com/problems/combination-sum-ii/description/ * * algorithms * Medium (38.78%) * Total Accepted:    184.7K * Total Submissions: 476.1K * Testcase Example:  '[10,1,2,7,6,1,5]\n8' * * Given a collection of candidate numbers (candidates) and a target number * (target), find all unique combinations in candidates where the candidate * numbers sums to target. *  * Each number in candidates may only be used once in the combination. *  * Note: *  *  * All numbers (including target) will be positive integers. * The solution set must not contain duplicate combinations. *  *  * Example 1: *  *  * Input: candidates = [10,1,2,7,6,1,5], target = 8, * A solution set is: * [ * ⁠ [1, 7], * ⁠ [1, 2, 5], * ⁠ [2, 6], * ⁠ [1, 1, 6] * ] *  *  * Example 2: *  *  * Input: candidates = [2,5,2,1,2], target = 5, * A solution set is: * [ * [1,2,2], * [5] * ] *  *  */class Solution {public:    void backtracing(vector<int>now,vector<int>& candidates, int target,vector<vector<int> >&ans,int index)    {        if(target==0)        {            ans.push_back(now);        }        else        {            for(int i=index;i<candidates.size();i++)            {                if(candidates[i]<=target)                {                    if(i>index&&candidates[i]==candidates[i-1])//精华！                        continue;                                       now.push_back(candidates[i]);                    backtracing(now,candidates,target-candidates[i],ans,i+1);//精华！                    now.pop_back();                }                else                    return;            }        }    }    vector<vector<int> > combinationSum2(vector<int>& candidates, int target) {       vector<vector<int> >ret;       ret.clear();       vector<int>tmp;       tmp.clear();       sort(candidates.begin(),candidates.end());       backtracing(tmp,candidates,target,ret,0);       return ret;    }};</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 回溯 </tag>
+            
+            <tag> 递归 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>二分搜索的写法</title>
+      <link href="/2018/11/28/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E7%9A%84%E5%86%99%E6%B3%95/"/>
+      <url>/2018/11/28/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E7%9A%84%E5%86%99%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="二分搜索的写法总结"><a href="#二分搜索的写法总结" class="headerlink" title="二分搜索的写法总结"></a>二分搜索的写法总结</h1><p>参考了</p><p><a href="https://www.zhihu.com/question/36132386" target="_blank" rel="noopener">https://www.zhihu.com/question/36132386</a></p><a id="more"></a><p>参考题目链接</p><p><a href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions/</a></p><pre class=" language-c++"><code class="language-c++">#include<iostream>#include<math.h>#include<cstdio>#include<string>#include<cstring>#include<algorithm>#include<stack>#include<queue>#include<vector>using namespace std;//寻找任意一个等于target的数字int binary(int nums[],int target,int length){    int left=0;    int right=length-1;    while(left<right)    {        int mid=left+(right-left)/2;        if(nums[mid]==target)return mid;        else if(nums[mid]<target)left=mid+1;        else            right=mid;    }    if(left==target)        return left;    else        return -1;} //求下界 ，返回的是第一个等于target的数字 int lower_binary(int nums[],int target,int length) {    int left=0;    int right=length-1;    while(left<right)    {        int mid=left+(right-left)/2;        if(nums[mid]<target)            left=mid+1;        else            right=mid; //nums[mid]<=target right一直往左边靠     }    if(nums[left]==target)        return left; //返回的是第一个等于target的数字         //return left-1  //返回的是第一个小于target的数字     else        return -1;}//求上界 ,返回的是第一个大于target的位置int up_binary(int nums[],int target,int length) {    int left=0;    int right=length-1;    while(left<right)    {        int mid=left+(right-left)/2;        if(nums[mid]<=target)            left=mid+1;        else            right=mid;    }    if((right-1)>=0&&nums[right-1]==target)        return right;//返回的是第一个大于target的位置        //return right-1; //返回的是最后一个等于target的位置    else        return -1;}int main(){    int a[]={1,1,1,1,1,1,1,2,2,2,3,3,3,3,4,4,4,5,6,7,7,8,8,9,9,9,10,10};    cout<<binary(a,1,22)<<endl;}</code></pre><h1 id="Leetcode-33"><a href="#Leetcode-33" class="headerlink" title="Leetcode-33"></a>Leetcode-33</h1><pre class=" language-c++"><code class="language-c++">/* * [33] Search in Rotated Sorted Array * * https://leetcode.com/problems/search-in-rotated-sorted-array/description/ * * algorithms * Medium (32.28%) * Total Accepted:    330.9K * Total Submissions: 1M * Testcase Example:  '[4,5,6,7,0,1,2]\n0' * * Suppose an array sorted in ascending order is rotated at some pivot unknown * to you beforehand. *  * (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]). *  * You are given a target value to search. If found in the array return its * index, otherwise return -1. *  * You may assume no duplicate exists in the array. *  * Your algorithm's runtime complexity must be in the order of O(log n). *  * Example 1: *  *  * Input: nums = [4,5,6,7,0,1,2], target = 0 * Output: 4 *  *  * Example 2: *  *  * Input: nums = [4,5,6,7,0,1,2], target = 3 * Output: -1 *  */class Solution {public:    int search(vector<int>& nums, int target) {        if(nums.size()==0)            return -1;        int left=0;        int right=nums.size()-1;        int mid;        while(left<right)        {            mid=left+(right-left)/2;            if(nums[mid]==target)                return mid;            else if(nums[mid]<nums[right])//搜索右边            {                if(nums[mid]<=target&&target<=nums[right])                {                    left=mid+1;                }                else                {                    right=mid;                }            }            else if(nums[mid]>nums[right])//搜索左边            {                if(nums[left]<=target&&target<=nums[mid])                {                    right=mid;                }                else                {                    left=mid+1;                }            }        }        if(nums[left]==target||nums[right]==target)            return left;        return -1;    }};</code></pre><h1 id="Leetcode-35"><a href="#Leetcode-35" class="headerlink" title="Leetcode-35"></a>Leetcode-35</h1><pre class=" language-c++"><code class="language-c++">/* * [35] Search Insert Position * * https://leetcode.com/problems/search-insert-position/description/ * * algorithms * Easy (40.02%) * Total Accepted:    325.8K * Total Submissions: 814K * Testcase Example:  '[1,3,5,6]\n5' * * Given a sorted array and a target value, return the index if the target is * found. If not, return the index where it would be if it were inserted in * order. *  * You may assume no duplicates in the array. *  * Example 1: *  *  * Input: [1,3,5,6], 5 * Output: 2 *  *  * Example 2: *  *  * Input: [1,3,5,6], 2 * Output: 1 *  *  * Example 3: *  *  * Input: [1,3,5,6], 7 * Output: 4 *  *  * Example 4: *  *  * Input: [1,3,5,6], 0 * Output: 0 *  *  */class Solution {public:    int searchInsert(vector<int>& nums, int target) {    int length=nums.size();    if(length==0)        return 0;    int left=0;    int right=length-1;    while(left<right)    {        int mid=left+(right-left)/2;        if(nums[mid]==target)            return mid;        else if(nums[mid]<target)        {            left=mid+1;        }        else            right=mid;    }    if(left==length-1&&nums[length-1]<target)        return length;    return left;    }};</code></pre><h1 id="Leetcode-34"><a href="#Leetcode-34" class="headerlink" title="Leetcode-34"></a>Leetcode-34</h1><pre class=" language-c++"><code class="language-c++">/* * [34] Find First and Last Position of Element in Sorted Array * * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/ * * algorithms * Medium (32.34%) * Total Accepted:    240.4K * Total Submissions: 743.1K * Testcase Example:  '[5,7,7,8,8,10]\n8' * * Given an array of integers nums sorted in ascending order, find the starting * and ending position of a given target value. *  * Your algorithm's runtime complexity must be in the order of O(log n). *  * If the target is not found in the array, return [-1, -1]. *  * Example 1: *  *  * Input: nums = [5,7,7,8,8,10], target = 8 * Output: [3,4] *  * Example 2: *  *  * Input: nums = [5,7,7,8,8,10], target = 6 * Output: [-1,-1] *  */class Solution {public:    vector<int> searchRange(vector<int>& nums, int target) {        if(nums.size()==0)            return {-1,-1};        int left=0;        int right=nums.size()-1;         int mid;        while(left<right)//求第一个等于target的位置        {           mid=left+(right-left)/2;           if(nums[mid]<target)                left=mid+1;            else                right=mid;        }        if(nums[left]!=target)            return {-1,-1};        int t1=left;        right=nums.size()-1;        while(left<right)        {            mid=left+(right-left)/2;            if(nums[mid]<=target)                left=mid+1;            else                right=mid;        }        int t2=0;        if((left-1)>=0&&nums[left-1]==target&&nums[left]!=target)            t2=left-1;        else if((left-1)>=0&&nums[left]==target)            t2=left;        return {t1,t2};    }};</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 二分 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>ResNet</title>
+      <link href="/2018/11/27/ResNet/"/>
+      <url>/2018/11/27/ResNet/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h1><p><strong>网络的深度为什么重要？</strong></p><p>  因为CNN能够提取low/mid/high-level的特征，网络的层数越多，意味着能够提取到不同level的特征越丰富。并且，越深的网络提取的特征越抽象，越具有语义信息。</p><p><strong>为什么不能简单地增加网络层数？</strong></p><p>对于原来的网络，如果简单地增加深度，会导致梯度弥散或梯度爆炸。</p><p><strong>对于该问题的解决方法是正则化初始化和中间的正则化层（Batch Normalization），这样的话可以训练几十层的网络。</strong></p><p>虽然通过上述方法能够训练了，但是又会出现另一个问题，就是<strong>退化问题</strong>，网络层数增加，但是在训练集上的准确率却饱和甚至下降了。这个不能解释为overfitting，因为overfit应该表现为在训练集上表现更好才对。</p><p><strong>怎么解决退化问题？</strong></p><p>深度残差网络。如果深层网络的后面那些层是恒等映射，那么模型就退化为一个浅层网络。那现在要解决的就是学习恒等映射函数了。 但是直接让一些层去拟合一个潜在的恒等映射函数H(x) = x，比较困难，这可能就是深层网络难以训练的原因。但是，如果把网络设计为H(x) = F(x) + x,如下图。我们可以转换为学习一个残差函数F(x) = H(x) - x. 只要F(x)=0，就构成了一个恒等映射H(x) = x. 而且，拟合残差肯定更加容易。</p><h2 id="为什么非常深度的网络在增加更多层时会表现得更差？"><a href="#为什么非常深度的网络在增加更多层时会表现得更差？" class="headerlink" title="为什么非常深度的网络在增加更多层时会表现得更差？"></a>为什么非常深度的网络在增加更多层时会表现得更差？</h2><p>   直觉上推测，更深度的网络不会比更浅度的同类型网络表现更差吧，至少在训练时间上是这样（当不存在过拟合的风险时）。让我们进行一个思想实验，假设我们已经构建了一个   n   层网络，并且实现了一定准确度。那么一个   n+1   层网络至少也应该能够实现同样的准确度——只要简单复制前面   n   层，再在最后一层增加一层恒等映射就可以了。类似地，n+2、n+3   和   n+4   层的网络都可以继续增加恒等映射，然后实现同样的准确度。但是在实际情况下，这些更深度的网络基本上都会表现得更差。</p><p>ResNet   的作者将这些问题归结成了一个单一的假设：直接映射是难以学习的。而且他们提出了一种修正方法：不再学习从   x   到   H ( x )   的基本映射关系，而是学习这两者之间的差异，也就是「残差（residual）」。然后，为了计算   H ( x ) ，我们只需要将这个残差加到输入上即可。</p><p>假设残差为   F ( x ) =H ( x ) -x，那么现在我们的网络不会直接学习   H ( x )   了，而是学习   F ( x ) +x。</p><p>ResNet   的每一个「模块（block）」都由一系列层和一个「捷径（shortcut）」连接组成，这个「捷径」将该模块的输入和输出连接到了一起。然后在元素层面上执行「加法（add）」运算，如果输入和输出的大小不同，那就可以使用零填充或投射（通过   1 × 1   卷积）来得到匹配的大小。</p><p>回到我们的思想实验，这能大大简化我们对恒等层的构建。直觉上就能知道，比起从头开始学习一个恒等变换，学会使   F ( x )   为   0   并使输出仍为   x   要容易得多。一般来说，ResNet   会给层一个「参考」点   x，以   x   为基础开始学习。</p><p>在此之前，深度神经网络常常会有梯度消失问题的困扰，即来自误差函数的梯度信号会在反向传播回更早的层时指数级地下降。本质上讲，在误差信号反向回到更早的层时，它们会变得非常小以至于网络无法学习。但是，因为   ResNet   的梯度信号可以直接通过捷径连接回到更早的层，所以我们一下子就可以构建   50   层、101   层、152   层甚至   1000   层以上的网络了，而且它们的表现依然良好。</p><p>对于shortcut的方式，作者提出了三个选项：<br>A. 使用恒等映射，如果residual block的输入输出维度不一致，对增加的维度用0来填充；<br>B. 在block输入输出维度一致时使用恒等映射，不一致时使用线性投影以保证维度一致； </p><p>C. 对于所有的block均使用线性投影。 </p><p>对这三个选项都进行了实验，发现虽然C的效果好于B的效果好于A的效果，但是差距很小，因此线性投影并不是必需的，而使用0填充时，可以保证模型的复杂度最低，这对于更深的网络是更加有利的。<br>模型结构图中，我们可以清楚的<strong>”实线“</strong>和<strong>”虚线“</strong>两种连接方式，<br>1）实线的的Connection部分都是3x3x64的特征图，他们的channel个数一致，所以采用计算方式：<br><strong>y=F(x)+x</strong><br>2）虚线的的Connection部分分别是3x3x64和3x3x128的特征图，他们的channel个数不同(64和128)，所以采用计算方式： <strong>y=F(x)+Wx</strong> 。其中W是卷积操作，用来调整x的channel维度的。 </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> 神经网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>B树，B+树和红黑树</title>
+      <link href="/2018/11/22/B%E6%A0%91%EF%BC%8CB-%E6%A0%91%E5%92%8C%E7%BA%A2%E9%BB%91%E6%A0%91/"/>
+      <url>/2018/11/22/B%E6%A0%91%EF%BC%8CB-%E6%A0%91%E5%92%8C%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
+      
+        <content type="html"><![CDATA[<h1 id="B树，B-树和红黑树"><a href="#B树，B-树和红黑树" class="headerlink" title="B树，B+树和红黑树"></a>B树，B+树和红黑树</h1>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>IO模型epoll</title>
+      <link href="/2018/11/22/IO%E6%A8%A1%E5%9E%8Bepoll/"/>
+      <url>/2018/11/22/IO%E6%A8%A1%E5%9E%8Bepoll/</url>
+      
+        <content type="html"><![CDATA[<h1 id="IO模型epoll"><a href="#IO模型epoll" class="headerlink" title="IO模型epoll"></a>IO模型epoll</h1><p>epoll的设计和实现与select完全不同。epoll使用红黑树实现的。把原先的select/poll调用分成了3个部分：<br>1）调用epoll_create()建立一个epoll对象(在epoll文件系统中为这个句柄对象分配资源)<br>2）调用epoll_ctl向epoll对象中添加这100万个连接的套接字 </p><p>3）调用epoll_wait收集发生的事件的连接</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 网络编程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>IO模型</title>
+      <link href="/2018/11/22/IO%E6%A8%A1%E5%9E%8B/"/>
+      <url>/2018/11/22/IO%E6%A8%A1%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h1><h2 id="同步、异步与阻塞、非阻塞的区别"><a href="#同步、异步与阻塞、非阻塞的区别" class="headerlink" title="同步、异步与阻塞、非阻塞的区别"></a>同步、异步与阻塞、非阻塞的区别</h2><p><strong>同步和异步关注的是消息通信机制。</strong></p><p>同步就是发出一个调用之后，在没有得到结果之前，这个调用就不返回。调用返回就得到了结果。调用者主动等待得到这个结果。</p><p>异步就是发出一个调用之后，就直接返回了，没有返回结果。有结果之后被调用者通过其他方式通知调用者消息。</p><p><strong>阻塞和非阻塞关注的是程序等待调用结果（消息，返回值）时的状态</strong></p><p>阻塞调用是指调用结果返回之前，当前线程被挂起来。调用线程只有在得到结果之后才会返回。</p><p>非阻塞调用是指不能立即得到结果之前，这个调用不会阻塞当前线程。</p><h2 id="IO模型可以分为"><a href="#IO模型可以分为" class="headerlink" title="IO模型可以分为"></a>IO模型可以分为</h2><h2 id="阻塞IO"><a href="#阻塞IO" class="headerlink" title="阻塞IO"></a>阻塞IO</h2><p>同步阻塞迭代模型是最简单的一种IO模型</p><pre class=" language-c++"><code class="language-c++">bind(srvfd);listen(srvfd);for(;;){    clifd = accept(srvfd,...); //开始接受客户端来的连接    read(clifd,buf,...); //从客户端读取数据    dosomthingonbuf(buf);    write(clifd,buf)//发送数据到客户端}</code></pre><p>上面的程序存在如下一些弊端：</p><p>1）如果没有客户端的连接请求，进程会阻塞在accept系统调用处，程序不能执行其他任何操作。(系统调用使得程序从用户态陷入内核态，具体请参考：程序员的自我修养<br>2）在与客户端建立好一条链路后，通过read系统调用从客户端接受数据，而客户端合适发送数据过来是不可控的。如果客户端迟迟不发生数据过来，则程序同样会阻塞在read调用，此时，如果另外的客户端来尝试连接时，都会失败。 </p><p>3）同样的道理，<strong>write系统</strong>调用也会使得程序出现阻塞(例如：客户端接受数据异常缓慢，导致写缓冲区满，数据迟迟发送不出)。</p><p><strong>2.多进程并发模型</strong><br>同步阻塞迭代模型有诸多缺点。多进程并发模型在同步阻塞迭代模型的基础上进行了一些改进，以避免是程序阻塞在read系统调用上。</p><pre class=" language-c++"><code class="language-c++">bind(srvfd);listen(srvfd);for(;;){clifd = accept(srvfd,...); //开始接受客户端来的连接ret = fork();switch( ret ){    case -1 :        do_err_handler();        break;    case 0: // 子进程        client_handler(clifd);        break ;    default : // 父进程        close(clifd);        continue ;}}void client_handler(clifd){    read(clifd,buf,...); //从客户端读取数据    dosomthingonbuf(buf);    write(clifd,buf)//发送数据到客户端}</code></pre><p>上述程序在accept系统调用时，如果没有客户端来建立连接，择<strong>会阻塞在accept处</strong>。一旦某个客户端连接建立起来，则立即开启一个新的进程来处理与这个客户的数据交互。避免程序阻塞在read调用，而影响其他客户端的连接。 </p><p><strong>多线程并发模型</strong><br>在多进程并发模型中，每一个客户端连接开启fork一个进程，虽然linux中引入了写实拷贝机制，大大降低了fork一个子进程的消耗，但若客户端连接较大，则系统依然将不堪负重。<strong>通过多线程(或线程池)并发模型，可以在一定程度上改善这一问题。</strong></p><p>在服务端的线程模型实现方式一般有三种：<br>（1）按需生成(来一个连接生成一个线程)<br>（2）线程池(预先生成很多线程)**<br>（3）Leader follower（LF）</p><pre class=" language-c++"><code class="language-c++">void *thread_callback( void *args ) //线程回调函数{    int clifd = *(int *)args ;    client_handler(clifd);}void client_handler(clifd){    read(clifd,buf,...); //从客户端读取数据    dosomthingonbuf(buf);    write(clifd,buf)//发送数据到客户端}bind(srvfd);listen(srvfd);for(;;){    clifd = accept();    pthread_create(...,thread_callback,&clifd);}</code></pre><p>服务端分为主线程和工作线程，主线程负责accept()连接，而工作线程负责处理业务逻辑和流的读取等。<br>因此，即使在工作线程阻塞的情况下，也只是阻塞在线程范围内，对继续接受新的客户端连接不会有影响。<br>第二种实现方式，通过线程池的引入可以避免频繁的创建、销毁线程，能在很大程序上提升性能。<br>但不管如何实现，<strong>多线程模型先天具有如下缺点：</strong><br><strong>1）稳定性相对较差。一个线程的崩溃会导致整个程序崩溃。</strong> </p><p><strong>2）临界资源的访问控制，在加大程序复杂性的同时，锁机制的引入会是严重降低程序的性能。性能上可能会出现“辛辛苦苦好几年，一夜回到解放前”的情况。</strong></p><h2 id="非阻塞IO"><a href="#非阻塞IO" class="headerlink" title="非阻塞IO"></a>非阻塞IO</h2><p>采用轮询的方式 （大量浪费CPU的资源）</p><h2 id="信号驱动IO"><a href="#信号驱动IO" class="headerlink" title="信号驱动IO"></a>信号驱动IO</h2><p>发送一个SIGIO信号通知，一般只适用与单线程。</p><h2 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h2><p>IO多路复用模型之select/poll<br>多进程模型和多线程(线程池)模型每个进程/线程只能处理一路IO，在服务器并发数较高的情况下，过多的进程/线程会使得服务器性能下降。而通过多路IO复用，能使得一个进程同时处理多路IO，提升服务器吞吐量。 </p><h2 id="在Linux支持epoll模型之前，都使用select-poll模型来实现IO多路复用。"><a href="#在Linux支持epoll模型之前，都使用select-poll模型来实现IO多路复用。" class="headerlink" title="在Linux支持epoll模型之前，都使用select/poll模型来实现IO多路复用。 "></a>在Linux支持epoll模型之前，都使用select/poll模型来实现IO多路复用。 </h2><p>核心代码：</p><pre class=" language-c++"><code class="language-c++">bind(listenfd);listen(listenfd);FD_ZERO(&allset);FD_SET(listenfd, &allset);for(;;){    select(...);    if (FD_ISSET(listenfd, &rset))     {/*有新的客户端连接到来*/        clifd = accept();        cliarray[] = clifd; /*保存新的连接套接字*/        FD_SET(clifd, &allset);/*将新的描述符加入监听数组中*/    }    for(;;)    {/*这个for循环用来检查所有已经连接的客户端是否有数据可读写*/        fd = cliarray[i];        if (FD_ISSET(fd , &rset))            dosomething();    }}</code></pre><p>select IO多路复用同样存在一些缺点，罗列如下：</p><p>1、单个进程能够监视的文件描述符的数量存在最大限制，通常是1024，当然可以更改数量，但由于select<strong>采用轮询的方式扫描文件描述符</strong>，文件描述符数量越多，性能越差；(在linux内核头文件中，有这样的定义：#define __FD_SETSIZE 1024)<br>2、内核 / 用户空间内存拷贝问题    ，select需要复制大量的句柄数据结构，产生巨大的开销； </p><p>select返回的是含有整个句柄的数组，应用程序需要遍历整个数组才能发现哪些句柄发生了事件；<br><strong>select的触发方式是水平触发，</strong>应用程序如果没有完成对一个已经就绪的文件描述符进行IO操作，那么之后每次select调用还是会将这些文件描述符通知进程。<br>3、相比select模型，poll使用链表保存文件描述符，因此没有了监视文件数量的限制，但其他三个缺点依然存在。 </p><h2 id="拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在-FD-SETSIZE-为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核-用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。"><a href="#拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在-FD-SETSIZE-为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核-用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。" class="headerlink" title="拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在__FD_SETSIZE 为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核/用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。"></a>拿select模型为例，假设我们的服务器需要支持100万的并发连接，则在__FD_SETSIZE 为1024的情况下，则我们至少需要开辟1k个进程才能实现100万的并发连接。除了进程间上下文切换的时间消耗外，从内核/用户空间大量的无脑内存拷贝、数组轮询等，是系统难以承受的。因此，基于select模型的服务器程序，要达到10万级别的并发访问，是一个很难完成的任务。</h2><p>socket函数格式：</p><pre class=" language-C++"><code class="language-C++">int select(int maxfdp,fd_set *readfds,fd_set *writefds,fd_set *errorfds,struct timeval *timeout);</code></pre><p>先说明两个结构体：<br>第一 .struct fd_set可以理解为一个集合，这个集合中存放的是文件描述符(filedescriptor)，即文件句柄，这可以是我们所说的普通意义的文件，当然 Unix下任何设备、管道、FIFO等都是文件形式，全部包括在内，所以毫无疑问一个socket就是一个文件，socket句柄就是一个文件描述符。<br>fd_set集合可以通过一些宏由人为来操作，比如：<br><strong>FD_ZERO(fd_set <em>);清空集合<br>FD_SET(int, fd_set </em>);将一个给定的文件描述符加入集合之中<br>FD_CLR(int, fd_set*); 将一个给定的文件描述符从集合中删除</strong><br><strong>检查集合中指定的文件描述符是否可以读写FD_ISSET(int ,fd_set* )</strong>。一会儿举例说明。</p><p>第二 .struct timeval 是一个大家常用的结构，用来代表时间值，有两个成员，一个是秒数，另一个是微秒。 具体解释select的参数：<br>int maxfdp：是一个整数值，是指集合中所有文件描述符的范围，即所有文件描述符的最大值加1，不能错！在Windows中这个参数的值无所谓，可以设置不正确。</p><p>fd_set<em> readfds：是指向fd_set结构的指针，这个集合中应该包括文件描述符，我们是要监视这些文件描述符的读变化的，即我们关心是否可以从这些文件中 读取数据了，如果这个集合中有一个文件可读，select就会返回一个大于0的值，表示有文件可读，如果没有可读的文件，则根据timeout参数再判断 是否超时，若超出timeout的时间，select返回0，若发生错误返回负值。可以传入NULL值，表示不关心任何文件的读变化。<br>fd_set</em> writefds：是指向fd_set结构的指针，这个集合中应该包括文件描述符，我们是要监视这些文件描述符的写变化的，即我们关心是否可以向这些文件 中写入数据了，如果这个集合中有一个文件可写，select就会返回一个大于0的值，表示有文件可写，如果没有可写的文件，则根据timeout参数再判 断是否超时，若超出timeout的时间，select返回0，若发生错误返回负值。可以传入NULL值，表示不关心任何文件的写变化。<br>fd_set * errorfds：同上面两个参数的意图，用来监视文件错误异常。</p><p>struct timeval* timeout：是select的超时时间，这个参数至关重要，它可以使select处于三种状态：<br>第一，若将NULL以形参传入，即不传入时间结构，就是将select置于阻塞状态，一定等到监视文件描述符集合中某个文件描述符发生变化为止；<br>第二，若将时间值设为0秒0微秒，就变成一个纯粹的非阻塞函数，不管文件描述符是否有变化，都立刻返回继续执行，文件无变化返回0，有变化返回一个正值； </p><p>第三，timeout的值大于0，这就是等待的超时时间，即select在timeout时间内阻塞，超时时间之内有事件到来就返回了，否则在超时后不管怎样一定返回，返回值同上述。</p><p><strong>select 返回值：</strong><br>负值：select错误<br>正值：某些文件可读写或出错<br>0：等待超时，没有可读写或错误的文件<br>在有了select后可以写出像样的网络程序来！<br>举个简单的例子，就是从网络上接受数据写入一个文件中。</p><pre class=" language-c++"><code class="language-c++">main()  {      int sock;      FILE *fp;      struct fd_set fds;      struct timeval timeout={3,0}; //select等待3秒，3秒轮询，要非阻塞就置0      char buffer[256]={0}; //256字节的接收缓冲区      /* 假定已经建立UDP连接，具体过程不写，简单，当然TCP也同理，主机ip和port都已经给定，要写的文件已经打开     sock=socket(...);     bind(...);     fp=fopen(...); */      while(1)     {          FD_ZERO(&fds); //每次循环都要清空集合，否则不能检测描述符变化          FD_SET(sock,&fds); //添加描述符          FD_SET(fp,&fds); //同上          maxfdp=sock>fp?sock+1:fp+1;    //描述符最大值加1          switch(select(maxfdp,&fds,&fds,NULL,&timeout))   //select使用          {              case -1: exit(-1);break; //select错误，退出程序              case 0:break; //再次轮询              default:                    if(FD_ISSET(sock,&fds)) //测试sock是否可读，即是否网络上有数据                    {                          recvfrom(sock,buffer,256,.....);//接受网络数据                          if(FD_ISSET(fp,&fds)) //测试文件是否可写                              fwrite(fp,buffer...);//写入文件                           buffer清空;                     }// end if break;            }// end switch       }//end while  }//end main   </code></pre><h2 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 网络通信 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>gdb调试</title>
+      <link href="/2018/11/20/gdb%E8%B0%83%E8%AF%95/"/>
+      <url>/2018/11/20/gdb%E8%B0%83%E8%AF%95/</url>
+      
+        <content type="html"><![CDATA[<p>Cmake：</p><p><a href="https://blog.csdn.net/gg_18826075157/article/details/72780431" target="_blank" rel="noopener">https://blog.csdn.net/gg_18826075157/article/details/72780431</a></p><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-cmake/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/linux/l-cn-cmake/</a></p><table><thead><tr><th>命令</th><th>命令缩写</th><th>命令说明</th></tr></thead><tbody><tr><td>list</td><td>l</td><td>显示多行源代码</td></tr><tr><td>break</td><td>b</td><td>设置断点,程序运行到断点的位置会停下来</td></tr><tr><td>info</td><td>i</td><td>描述程序的状态</td></tr><tr><td>run</td><td>r</td><td>开始运行程序</td></tr><tr><td>display</td><td>disp</td><td>跟踪查看某个变量,每次停下来都显示它的值</td></tr><tr><td>step</td><td>s</td><td>执行下一条语句,如果该语句为函数调用,则进入函数执行其中的第一条语句</td></tr><tr><td>next</td><td>n</td><td>执行下一条语句,如果该语句为函数调用,不会进入函数内部执行(即不会一步步地调试函数内部语句)</td></tr><tr><td>print</td><td>p</td><td>打印内部变量值</td></tr><tr><td>continue</td><td>c</td><td>继续程序的运行,直到遇到下一个断点</td></tr><tr><td>set var name=v</td><td></td><td>设置变量的值</td></tr><tr><td>start</td><td>st</td><td>开始执行程序,在main函数的第一条语句前面停下来</td></tr><tr><td>file</td><td></td><td>装入需要调试的程序</td></tr><tr><td>kill</td><td>k</td><td>终止正在调试的程序</td></tr><tr><td>watch</td><td></td><td>监视变量值的变化</td></tr><tr><td>backtrace</td><td>bt</td><td>产看函数调用信息(堆栈)</td></tr><tr><td>frame</td><td>f</td><td>查看栈帧</td></tr><tr><td>quit</td><td>q</td><td>退出GDB环境</td></tr></tbody></table>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>进程通信</title>
+      <link href="/2018/11/20/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
+      <url>/2018/11/20/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h1><p>进程同步与进程通信很容易混淆，它们的区别在于：<br>​    进程同步：控制多个进程按一定顺序执行；<br>​    进程通信：进程间传输信息。<br>进程通信是一种手段，而进程同步是一种目的。也可以说，为了能够达到进程同步的目的，需要让进程进行通信，传输一些进程同步所需要的信息。</p><p>进程原语和线程原语的比较：</p><p>进程原语    线程原语            描述<br>fork      pthread_create        创建新的控制流<br>exit            pthread_exit                   从现有的控制流退出<br>waitpid    pthread_join            从控制流中得到退出状态<br>atexit    pthread_cancle_push    注册在退出控制流时调用的函数<br>getpid    pthread_self            获取控制流的ID</p><p>abort    pthread_cancle    请求控制流的非正常退出</p><h2 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h2><p><a href="https://blog.csdn.net/kowzb/article/details/77160249" target="_blank" rel="noopener">https://blog.csdn.net/kowzb/article/details/77160249</a></p><p>一、进程间的通信方式</p><p>管道( pipe )：管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p><p>有名管道 (FIFO) ： 有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p><p>信号量(semophore ) ： 信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p><p>消息队列( messagequeue ) ： 消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p><p>信号 (sinal ) (异步的过程)： 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p><p>共享内存(shared memory ) ：共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号量，配合使用，来实现进程间的同步和通信。</p><p>套接字(socket ) ： 套解口也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同及其间的进程通信。</p><p>二、线程间的通信方式</p><p>锁机制：<strong>包括互斥锁、条件变量、读写锁</strong><br>互斥锁提供了以排他方式防止数据结构被并发修改的方法。<br>读写锁允许多个线程同时读共享数据，而对写操作是互斥的。<br>条件变量可以以原子的方式阻塞进程，直到某个特定条件为真为止。对条件的测试是在互斥锁的保护下进行的。条件变量始终与互斥锁一起使用。<br>信号量机制(Semaphore)：包括无名线程信号量和命名线程信号量<br>信号机制(Signal)：类似进程间的信号处理<br>线程间的通信目的主要是用于线程同步，所以线程没有像进程通信中的用于数据交换的通信机制。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>STL原理实现</title>
+      <link href="/2018/11/20/STL%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0/"/>
+      <url>/2018/11/20/STL%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="STL原理实现"><a href="#STL原理实现" class="headerlink" title="STL原理实现"></a>STL原理实现</h1><h2 id="智能指针原理"><a href="#智能指针原理" class="headerlink" title="智能指针原理"></a>智能指针原理</h2><p>智能指针是一种资源管理类，通过对原始指针进行封装，在资源管理对象进行析构时对指针指向的内存进行释放；通常使用引用计数方式进行管理</p><h2 id="STL中vector的实现原理"><a href="#STL中vector的实现原理" class="headerlink" title="STL中vector的实现原理"></a>STL中vector的实现原理</h2><p><strong>vector动态增加大小时，并不是在原空间之后持续新空间（因为无法保证原空间之后尚有可供配置的空间），而是以原大小的两倍另外配置一块较大的空间，然后将原内容拷贝过来，然后才开始在原内容之后构造新元素，并释放原空间。因此，  对vector的任何操作，一旦引起空间重新配置，指向原vector的所有迭代器就都失效了  。</strong></p><h2 id="STL中map的实现原理"><a href="#STL中map的实现原理" class="headerlink" title="STL中map的实现原理"></a>STL中map的实现原理</h2><p>Map是关联容器，以键值对的形式进行存储，方便进行查找，关键词起到索引的作用，值则表示与索引相关联的数据，以红黑树的结构实现，插入删除等操作都可以在O(log n)时间内完成</p><h2 id="STL中set的实现原理"><a href="#STL中set的实现原理" class="headerlink" title="STL中set的实现原理"></a>STL中set的实现原理</h2><p>Set是关联容器，set中每个元素都只包含一个关键字，set支持高效的关键字查询操作—检查每一个给定的关键字是否在set中，set是以红黑树的平衡二叉检索树结构实现的，支持高效插入删除，插如元素的时候会自动调整二叉树的结构，使得每个子树根节点键值大于左子树所有节点的键值，小于右子树所有节点的键值，另外还得保证左子树和右子树的高度相等</p><p>​     平衡二叉检索树使用中序遍历算法，检索效率高于vector，deque，list等容器，另外使用中序遍历可将键值按照从小到大遍历出来</p><p>  构造set集合的主要目的是为了快速检索，不可直接去修改键值</p><h2 id="verctor"><a href="#verctor" class="headerlink" title="verctor"></a>verctor</h2><p>vector类似于C语言中的数组，它维护一段连续的内存空间，具有固定的起始地址，因而能非常方便地进行随机存取，即 [] 操作符，但因为它的内存区域是连续的，所以在它中间插入或删除某个元素，需要复制并移动现有的元素。此外，当被插入的内存空间不够时，需要重新申请一块足够大的内存并进行内存拷贝。值得注意的是，vector每次扩容为原来的两倍，对小对象来说执行效率高，但如果遇到大对象，执行效率就低了。</p><h2 id="list"><a href="#list" class="headerlink" title="list"></a><strong>list</strong></h2><p>list类似于C语言中的双向链表，它通过指针来进行数据的访问，因此维护的内存空间可以不连续，这也非常有利于数据的随机存取，因而它没有提供 [] 操作符重载。</p><h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a><strong>deque</strong></h2><p>deque类似于C语言中的双向队列，即两端都可以插入或者删除的队列。queue支持 [] 操作符，也就是支持随机存取，而且跟vector的效率相差无几。它支持两端的操作：push_back,push_front,pop_back,pop_front等，并且在两端操作上与list的效率<br>也差不多。或者我们可以这么认为，deque是vector跟list的折中。</p><p><strong>map</strong></p><p>map类似于数据库中的１:１关系，它是一种关联容器，提供一对一(<a href="http://www.cpplive.com/html/tag/cpp" target="_blank" rel="noopener">C++</a> primer中文版中将第一个译为键，每个键只能在map中出现一次，第二个被译为该键对应的值)的数据处理能力，这种特性了使得map类似于数据结构里的红黑二叉树。</p><h2 id="multimap"><a href="#multimap" class="headerlink" title="multimap"></a><strong>multimap</strong></h2><p>multimap类似于数据库中的１:Ｎ关系，它是一种关联容器,提供一对多的数据处理能力。</p><h2 id="set"><a href="#set" class="headerlink" title="set"></a><strong>set</strong></h2><p>set类似于数学里面的集合，不过set的集合中不包含重复的元素，这是和vector的第一个区别，第二个区别是set内部用平衡二叉树实现，便于元素查找，而vector是使用连续内存存储，便于随机存取。</p><h2 id="multiset"><a href="#multiset" class="headerlink" title="multiset"></a><strong>multiset</strong></h2><p>multiset类似于数学里面的集合，集合中可以包含重复的元素。</p><h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>１、如果需要高效的随机存取，不在乎插入和删除的效率，使用vector；</p><p>2、如果需要大量的插入和删除元素，不关心随机存取的效率，使用list；</p><p>3、如果需要随机存取，并且关心两端数据的插入和删除效率，使用deque；</p><p>4、如果打算存储数据字典，并且要求方便地根据key找到value，一对一的情况使用map，一对多的情况使用multimap；</p><p>5、如果打算查找一个元素是否存在于某集合中，唯一存在的情况使用set，不唯一存在的情况使用multiset。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>数据库</title>
+      <link href="/2018/11/20/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <url>/2018/11/20/%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><ul><li>索引的概述(什么是索引,索引的优缺点)</li><li>索引的基本使用（创建索引）</li><li>索引的基本原理（面试重点）</li><li>索引的数据结构（B树，hash）</li><li>创建索引的原则（重中之重，面试必问！敬请收藏！）</li><li>百万级别或以上的数据如何删除</li></ul><p><a href="https://www.cnblogs.com/shijingxiang/articles/4743324.html" target="_blank" rel="noopener">https://www.cnblogs.com/shijingxiang/articles/4743324.html</a></p><p><strong>一、索引的概述</strong></p><p><strong>1）什么是索引？</strong></p><p>索引是一种特殊的文件(InnoDB数据表上的索引是表空间的一个组成部分)，它们包含着对数据表里所有记录的引用指针。更通俗的说，索引就相当于目录。当你在用新华字典时，帮你把目录撕掉了，你查询某个字开头的成语只能从第一页翻到第一千页。累！把目录还给你，则能快速定位！</p><p><strong>2）索引的优缺点：</strong></p><p>可以大大加快数据的检索速度，这也是创建索引的最主要的原因。，且通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。但是，索引也是有缺点的：索引需要额外的维护成本；因为索引文件是单独存在的文件,对数据的增加,修改,删除,都会产生额外的对索引文件的操作,这些操作需要消耗额外的IO,会降低增/改/删的执行效率。</p><p><strong>二、索引的基本使用（真技术文）</strong></p><p><strong>1）创建索引：（三种方式）</strong></p><p>第一种方式：创建表的时候创建</p><p><img src="https://files.jb51.net/file_images/article/201711/2017111691555019.jpg?201710169164" alt="img"></p><p><strong>第二种方式：使用ALTER TABLE命令去增加索引：</strong></p><p>ALTER TABLE用来创建普通索引、UNIQUE索引或PRIMARY KEY索引。</p><p><img src="https://files.jb51.net/file_images/article/201711/2017111691657597.jpg?201710169175" alt="img"></p><p>其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。</p><p>索引名index_name可自己命名，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。</p><p><strong>第三种方式：使用CREATE INDEX命令创建</strong></p><p>CREATE INDEX可对表增加普通索引或UNIQUE索引。（但是，不能创建PRIMARY KEY索引）</p><p><img src="https://files.jb51.net/file_images/article/201711/2017111691857883.jpg?201710169196" alt="img"></p><p><strong>三、索引的基本原理（不想像别的文章那样一大堆篇幅废话）</strong></p><p>索引用来快速地寻找那些具有特定值的记录。如果没有索引，一般来说执行查询时遍历整张表。</p><p>索引的原理很简单，就是把无序的数据变成有序的查询</p><p>​      1、把创建了索引的列的内容进行排序</p><p>​      2、对排序结果生成倒排表</p><p>​      3、在倒排表内容上拼上数据地址链</p><p>​      4、在查询的时候，先拿到倒排表内容，再取出数据地址链，从而拿到具体数据</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>常用的数据结构</title>
+      <link href="/2018/11/20/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <url>/2018/11/20/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+      
+        <content type="html"><![CDATA[<h1 id="常用的数据结构"><a href="#常用的数据结构" class="headerlink" title="常用的数据结构"></a>常用的数据结构</h1><h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>是根据关键码值(Key value)而直接进行访问的<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1450" target="_blank" rel="noopener">数据结构</a>。它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做<a href="https://baike.baidu.com/item/%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0/2366288" target="_blank" rel="noopener">散列函数</a>，存放记录的<a href="https://baike.baidu.com/item/%E6%95%B0%E7%BB%84/3794097" target="_blank" rel="noopener">数组</a>叫做<a href="https://baike.baidu.com/item/%E6%95%A3%E5%88%97%E8%A1%A8/10027933" target="_blank" rel="noopener">散列表</a>。</p><ul><li>若关键字为<strong>k</strong>，则其值存放在<strong>f(k)</strong>的存储位置上。由此，不需比较便可直接取得所查记录。称这个对应关系<strong>f</strong>为散列函数，按这个思想建立的表为散列表。</li><li>对不同的关键字可能得到同一散列地址，即<strong>k1≠k2</strong>，而<strong>f(k1)=f(k2)</strong>，这种现象称为冲突（英语：Collision）。具有相同函数值的关键字对该散列函数来说称做同义词。综上所述，根据散列函数<strong>f(k)</strong>和处理冲突的方法将一组关键字映射到一个有限的连续的地址集（区间）上，并以关键字在地址集中的“像”作为记录在表中的存储位置，这种表便称为散列表，这一映射过程称为散列造表或散列，所得的存储位置称散列地址。</li><li>若对于关键字集合中的任一个关键字，经散列函数映象到地址集合中任何一个地址的概率是相等的，则称此类散列函数为均匀散列函数（Uniform Hash function），这就是使关键字经过散列函数得到一个“随机的地址”，从而减少冲突。</li></ul><p><strong>常用的构造散列函数的方法</strong></p><p>　　散列函数能使对一个数据序列的访问过程更加迅速有效，通过散列函数，数据元素将被更快地定位：</p><p>　　<strong>1. 直接寻址法：</strong>取关键字或关键字的某个线性函数值为散列地址。即H(key)=key或H(key) = a•key + b，其中a和b为常数（这种散列函数叫做自身函数）</p><p>　　<strong>2. 数字分析法：</strong>分析一组数据，比如一组员工的出生年月日，这时我们发现出生年月日的前几位数字大体相同，这样的话，出现冲突的几率就会很大，但是我们发现年月日的后几位表示月份和具体日期的数字差别很大，如果用后面的数字来构成散列地址，则冲突的几率会明显降低。因此数字分析法就是找出数字的规律，尽可能利用这些数据来构造冲突几率较低的散列地址。</p><p>　　<strong>3. 平方取中法：</strong>取关键字平方后的中间几位作为散列地址。</p><p>　　<strong>4. 折叠法：</strong>将关键字分割成位数相同的几部分，最后一部分位数可以不同，然后取这几部分的叠加和（去除进位）作为散列地址。</p><p>　　<strong>5. 随机数法：</strong>选择一随机函数，取关键字的随机值作为散列地址，通常用于关键字长度不同的场合。</p><p>　　<strong>6. 除留余数法：</strong>取关键字被某个不大于散列表表长m的数p除后所得的余数为散列地址。即 H(key) = key MOD p, p&lt;=m。不仅可以对关键字直接取模，也可在折叠、平方取中等运算之后取模。对p的选择很重要，一般取素数或m，若p选的不好，容易产生同义词。<br><strong>查找的性能分析</strong></p><p>实际工作中需视不同的情况采用不同的<a href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">哈希函数</a>，通常考虑的因素有：</p><p>· 计算<a href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">哈希函数</a>所需时间</p><p>· 关键字的长度</p><p>· 哈希表的大小</p><p>· 关键字的分布情况</p><p>· 记录的查找频率</p><h2 id="处理冲突的方法"><a href="#处理冲突的方法" class="headerlink" title="处理冲突的方法"></a>处理冲突的方法</h2><p>（1）开散列的方法：把冲突记录存在表外。</p><p>把散列表的每个槽定义为一个链表的表头，散列到一个槽的所有记录都要放在这个槽的链表里面。</p><p>（2）闭散列的方法：</p><p>桶式散列</p><p>线性探测</p><p>伪随机探测</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 面向面试复习法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>redis 概要</title>
+      <link href="/2018/11/20/redis-%E6%A6%82%E8%A6%81/"/>
+      <url>/2018/11/20/redis-%E6%A6%82%E8%A6%81/</url>
+      
+        <content type="html"><![CDATA[<p>Redis 是速度非常快的非关系型（NoSQL）内存键值数据库，可以存储键和五种不同类型的值之间的映射。<br>键的类型只能为字符串，值支持五种数据类型：字符串、列表、集合、散列表、有序集合。<br>Redis 支持很多特性，例如将内存中的数据持久化到硬盘中，使用复制来扩展读性能，使用分片来扩展写性能。</p><p>Key-Value存储:(基于Redis)</p><p>传统的关系型数据库，处理一对多的问题，需要把外键放在多的一端，因为RDBMS理论中没有集合这个概念。而使用Redis，我们可以在一端来管理一对多的关系，使用Set。</p><p>如果使用MySQL，当数据规模非常大时，上面两个查询操作都需要借助表关联技术，而大表间的join在大型系统中是需要极力避免的操作。相反Redis的每个操作都会局限在一个较小的数据集范围内，而且key-value的存储形式，定位key只是一个复杂度为O(1)的操作。在very huge的数据量下，Redis性能效果非常优异，这就是NoSQL的优势所在！</p><h2 id="Redis是由C语言编写的。Redis支持5种数据类型，以K-V形式进行存储，K是String类型的，V支持5种不同的数据类型，分别是：string，list，hash，set，sorted-set，每一种数据结构都有其特定的应用场景。从内部实现的角度来看是如何更好的实现这些数据类型。"><a href="#Redis是由C语言编写的。Redis支持5种数据类型，以K-V形式进行存储，K是String类型的，V支持5种不同的数据类型，分别是：string，list，hash，set，sorted-set，每一种数据结构都有其特定的应用场景。从内部实现的角度来看是如何更好的实现这些数据类型。" class="headerlink" title="Redis是由C语言编写的。Redis支持5种数据类型，以K-V形式进行存储，K是String类型的，V支持5种不同的数据类型，分别是：string，list，hash，set，sorted set，每一种数据结构都有其特定的应用场景。从内部实现的角度来看是如何更好的实现这些数据类型。"></a>Redis是由C语言编写的。Redis支持5种数据类型，以K-V形式进行存储，K是String类型的，V支持5种不同的数据类型，分别是：string，list，hash，set，sorted set，每一种数据结构都有其特定的应用场景。从内部实现的角度来看是如何更好的实现这些数据类型。</h2><h2 id="Redis底层数据结构有以下数据类型：简单动态字符串（SDS），链表，字典，跳跃表，整数集合，压缩列表，对象。"><a href="#Redis底层数据结构有以下数据类型：简单动态字符串（SDS），链表，字典，跳跃表，整数集合，压缩列表，对象。" class="headerlink" title="Redis底层数据结构有以下数据类型：简单动态字符串（SDS），链表，字典，跳跃表，整数集合，压缩列表，对象。"></a>Redis底层数据结构有以下数据类型：简单动态字符串（SDS），链表，字典，跳跃表，整数集合，压缩列表，对象。</h2><p><strong>Redis 选择了高效且实现简单的哈希表作为字典的底层实现。</strong></p><p>Redis通常将数据存储于内存中，或被配置为使用虚拟内存。Redis有一个很重要的特点就是它可以实现持久化数据，通过两种方式可以实现数据持久化：使用RDB快照的方式，将内存中的数据不断写入磁盘；或使用类似MySQL的AOF日志方式，记录每次更新的日志。前者性能较高，但是可能会引起一定程度的数据丢失；后者相反。 Redis支持将数据同步到多台从数据库上，这种特性对提高读取性能非常有益。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>拓展</title>
+      <link href="/2018/11/19/%E6%8B%93%E5%B1%95/"/>
+      <url>/2018/11/19/%E6%8B%93%E5%B1%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="手游如何克服网络延迟问题？"><a href="#手游如何克服网络延迟问题？" class="headerlink" title="手游如何克服网络延迟问题？"></a>手游如何克服网络延迟问题？</h1><p>网络游戏同步，常用的两种方案是<strong>帧同步和状态同步</strong></p><p>帧同步：是同步玩家的指令，服务器负责转发客户端的操作，每个客户端以固定的逻辑帧执行所有客户端的操作指令，通过在严格一致的时间轴上执行同样的命令序列获得同样的结果。</p><p>状态同步跟帧同步的最大区别是服务器不在进行切逻辑帧，而是同步玩家状态信息，比如位置、属性、跟玩法相关的数据。通常主逻辑在服务器运行，客户端只是作为一个显示。采用状态同步的游戏有CFM、LOL等。</p><p>帧同步的网络流量较小，但防外挂、断线重连的难度比较大。状态同步中服务器有所有玩家的状态，安全性较高，游戏运营更可控。是否选择状态同步，需要看同步的实体数量。在大场景中，同步的单位比较多时，往往会放弃状态同步。比如星际争霸中玩家可操作的实体多达上百个，如采用状态同步的话网络流量将非常大。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 面向面试复习法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Linux下的常用操作</title>
+      <link href="/2018/11/19/Linux%E4%B8%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+      <url>/2018/11/19/Linux%E4%B8%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux-下的常用操作"><a href="#Linux-下的常用操作" class="headerlink" title="Linux 下的常用操作"></a>Linux 下的常用操作</h1><p><img src="/2018/11/19/Linux下的常用操作/H:/hexo\source\_posts\Linux下的常用操作\1.png" alt=""></p><h2 id="shell怎么写"><a href="#shell怎么写" class="headerlink" title="shell怎么写"></a>shell怎么写</h2><p><a href="https://www.cnblogs.com/wuyuegb2312/p/3399566.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuyuegb2312/p/3399566.html</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 面向面试复习法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>字符串处理</title>
+      <link href="/2018/11/19/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/"/>
+      <url>/2018/11/19/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>计算机网络的基础知识</title>
+      <link href="/2018/11/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <url>/2018/11/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="计算机网络的基础知识"><a href="#计算机网络的基础知识" class="headerlink" title="计算机网络的基础知识"></a>计算机网络的基础知识</h1><a id="more"></a><p>OSI分层 （7层）：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。<br>TCP/IP分层（4层）：网络接口层、 网际层、运输层、 应用层。<br>五层协议 （5层）：物理层、数据链路层、网络层、运输层、 应用层。<br>每一层的协议如下：<br>物理层：RJ45、CLOCK、IEEE802.3 （中继器，集线器）<br>数据链路：PPP、FR、HDLC、VLAN、MAC （网桥，交换机）<br>网络层：IP、ICMP、ARP、RARP、OSPF、IPX、RIP、IGRP、 （路由器）<br>传输层：TCP、UDP、SPX<br>会话层：NFS、SQL、NETBIOS、RPC<br>表示层：JPEG、MPEG、ASII<br>应用层：FTP、DNS、Telnet、SMTP、HTTP、WWW、NFS<br>每一层的作用如下：<br>物理层：通过媒介传输比特,确定机械及电气规范（比特Bit）<br>数据链路层：将比特组装成帧和点到点的传递（帧Frame）<br>网络层：负责数据包从源到宿的传递和网际互连（包PackeT）<br>传输层：提供端到端的可靠报文传递和错误恢复（段Segment）<br>会话层：建立、管理和终止会话（会话协议数据单元SPDU）<br>表示层：对数据进行翻译、加密和压缩（表示协议数据单元PPDU）<br>应用层：允许访问OSI环境的手段（应用协议数据单元APDU）</p><h2 id="ARP是地址解析协议，简单语言解释一下工作原理。"><a href="#ARP是地址解析协议，简单语言解释一下工作原理。" class="headerlink" title="ARP是地址解析协议，简单语言解释一下工作原理。"></a>ARP是地址解析协议，简单语言解释一下工作原理。</h2><p>答:1：首先，每个主机都会在自己的ARP缓冲区中建立一个ARP列表，以表示IP地址和MAC地址之间的对应关系。<br>2：当源主机要发送数据时，首先检查ARP列表中是否有对应IP地址的目的主机的MAC地址，如果有，则直接发送数据，如果没有，就向本网段的所有主机发送ARP数据包，该数据包包括的内容有：源主机 IP地址，源主机MAC地址，目的主机的IP 地址。<br>3：当本网络的所有主机收到该ARP数据包时，首先检查数据包中的IP地址是否是自己的IP地址，如果不是，则忽略该数据包，如果是，则首先从数据包中取出源主机的IP和MAC地址写入到ARP列表中，如果已经存在，则覆盖，然后将自己的MAC地址写入ARP响应包中，告诉源主机自己是它想要找的MAC地址。<br>4：源主机收到ARP响应包后。将目的主机的IP和MAC地址写入ARP列表，并利用此信息发送数据。如果源主机一直没有收到ARP响应数据包，表示ARP查询失败。<br>广播发送ARP请求，单播发送ARP响应。</p><h2 id="各种协议的介绍"><a href="#各种协议的介绍" class="headerlink" title="各种协议的介绍"></a>各种协议的介绍</h2><p>ICMP协议： 因特网控制报文协议。它是TCP/IP协议族的一个子协议，用于在IP主机、路由器之间传递控制消息。</p><p>TFTP协议： 是TCP/IP协议族中的一个用来在客户机与服务器之间进行简单文件传输的协议，提供不复杂、开销不大的文件传输服务。</p><p>HTTP协议： 超文本传输协议，是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。</p><p>NAT协议：网络地址转换属接入广域网(WAN)技术，是一种将私有（保留）地址转化为合法IP地址的转换技术，</p><p>DHCP协议：动态主机配置协议，是一种让系统得以连接到网络上，并获取所需要的配置参数手段，使用UDP协议工作。具体用途：给内部网络或网络服务供应商自动分配IP地址，给用户或者内部网络管理员作为对所有计算机作中央管理的手段。</p><h1 id="tcp和udp的区别"><a href="#tcp和udp的区别" class="headerlink" title="tcp和udp的区别"></a>tcp和udp的区别</h1><p><strong>TCP与UDP区别总结：</strong><br>1、TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接<br>2、TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证可靠交付</p><p>Tcp通过校验和，重传控制，序号标识，滑动窗口、确认应答实现可靠传输。如丢包时的重发控制，还可以对次序乱掉的分包进行顺序控制。</p><p>3、UDP具有较好的实时性，工作效率比TCP高，适用于对高速传输和实时性有较高的通信或广播通信。</p><p>4.每一条TCP连接只能是点到点的;UDP支持一对一，一对多，多对一和多对多的交互通信</p><p>5、TCP对系统资源要求较多，UDP对系统资源要求较少。</p><p>TCP提供面向连接的、可靠的数据流传输，而UDP提供的是非面向连接的、不可靠的数据流传输。<br>TCP传输单位称为TCP报文段，UDP传输单位称为用户数据报。<br>TCP注重数据安全性，UDP数据传输快，因为不需要连接等待，少了许多操作，但是其安全性却一般。<br>TCP对应的协议和UDP对应的协议<br>TCP对应的协议：<br>（1） FTP：定义了文件传输协议，使用21端口。<br>（2） Telnet：一种用于远程登陆的端口，使用23端口，用户可以以自己的身份远程连接到计算机上，可提供基于DOS模式下的通信服务。<br>（3） SMTP：邮件传送协议，用于发送邮件。服务器开放的是25号端口。<br>（4） POP3：它是和SMTP对应，POP3用于接收邮件。POP3协议所用的是110端口。<br>（5）HTTP：是从Web服务器传输超文本到本地浏览器的传送协议。<br>UDP对应的协议：<br>（1） DNS：用于域名解析服务，将域名地址转换为IP地址。DNS用的是53号端口。<br>（2） SNMP：简单网络管理协议，使用161号端口，是用来管理网络设备的。由于网络设备很多，无连接的服务就体现出其优势。<br>（3） TFTP(Trival File Transfer Protocal)，简单文件传输协议，该协议在熟知端口69上使用UDP服务。</p><h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>答:当DNS客户机需要在程序中使用名称时，它会查询DNS服务器来解析该名称。客户机发送的每条查询信息包括三条信息：包括：指定的DNS域名，指定的查询类型，DNS域名的指定类别。基于UDP服务，端口53. 该应用一般不直接为用户使用，而是为其他应用服务，如HTTP，SMTP等在其中需要完成主机名到IP地址的转换。</p><h2 id="tcp粘包问题，怎么处理？"><a href="#tcp粘包问题，怎么处理？" class="headerlink" title="tcp粘包问题，怎么处理？"></a>tcp粘包问题，怎么处理？</h2><p><a href="https://www.cnblogs.com/kex1n/p/6502002.html" target="_blank" rel="noopener">https://www.cnblogs.com/kex1n/p/6502002.html</a></p><h2 id="udp会粘包吗？为什么？"><a href="#udp会粘包吗？为什么？" class="headerlink" title="udp会粘包吗？为什么？"></a>udp会粘包吗？为什么？</h2><h2 id="https的原理，和http的区别"><a href="#https的原理，和http的区别" class="headerlink" title="https的原理，和http的区别"></a>https的原理，和http的区别</h2><h2 id="TCP状态机"><a href="#TCP状态机" class="headerlink" title="TCP状态机"></a>TCP状态机</h2><pre><code> 客户端：SYN_SENT -&gt; ESTABLISHED -&gt; FIN_WAIT_1 -&gt; FIN_WAIT_2 -&gt; TIME_WAIT。  服务端：LISTEN -&gt; SYN_RCVD -&gt; ESTABLISHED -&gt; CLOSE_WAIT -&gt; LAST_ACK -&gt; CLOSED。</code></pre><h2 id="TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？"><a href="#TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？" class="headerlink" title="TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？"></a>TCP的三次握手过程？为什么会采用三次握手，若采用二次握手可以吗？</h2><p>答:建立连接的过程是利用客户服务器模式，假设主机A为客户端，主机B为服务器端。<br>（1）TCP的三次握手过程：主机A向B发送连接请求；主机B对收到的主机A的报文段进行确认；主机A再次对主机B的确认进行确认。<br>（2）采用三次握手是为了防止失效的连接请求报文段突然又传送到主机B，因而产生错误。失效的连接请求报文段是指：主机A发出的连接请求没有收到主机B的确认，于是经过一段时间后，主机A又重新向主机B发送连接请求，且建立成功，顺序完成数据传输。考虑这样一种特殊情况，主机A第一次发送的连接请求并没有丢失，而是因为网络节点导致延迟达到主机B，主机B以为是主机A又发起的新连接，于是主机B同意连接，并向主机A发回确认，但是此时主机A根本不会理会，主机B就一直在等待主机A发送数据，导致主机B的资源浪费。<br>（3）采用两次握手不行，原因就是上面说的失效的连接请求的特殊情况。</p><h2 id="对称加密和非对称加密"><a href="#对称加密和非对称加密" class="headerlink" title="对称加密和非对称加密"></a>对称加密和非对称加密</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 面向面试复习法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Linux的基础知识</title>
+      <link href="/2018/11/18/Linux%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <url>/2018/11/18/Linux%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux的基础知识"><a href="#Linux的基础知识" class="headerlink" title="Linux的基础知识"></a>Linux的基础知识</h1><a id="more"></a><h2 id="Linux的用户态和内核态"><a href="#Linux的用户态和内核态" class="headerlink" title="Linux的用户态和内核态"></a>Linux的用户态和内核态</h2><p><a href="https://www.cnblogs.com/bakari/p/5520860.html" target="_blank" rel="noopener">https://www.cnblogs.com/bakari/p/5520860.html</a></p><h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><p>（1）拥有资源：进程是资源分配的基本单元，但是线程不拥有资源，线程可以访问其所隶属进程的资源。</p><p>（2）调度：线程是独立调度的基本单位。在同一个进程中，线程的切换不会引起进程的切换，从一个进程中的线程切换到另一个进程中的线程时，会引起进程切换。</p><p>（3）系统开销：由于创建或撤销进程时，系统都要为之分配或回收资源，如内存空间、I/O 设备等，所付出的开销远大于创建或撤销线程时的开销。类似地，在进行进程切换时，涉及当前执行进程 CPU环境的保存及新调度进程 CPU 环境的设置，而线程切换时只需保存和设置少量寄存器内容，开销很小。</p><p>（4）线程间可以通过直接读写同一进程中的数据进行通信，但是进程通信需要借助 IPC。</p><h2 id="linux怎么查看内存占用、CPU占用、IO占用"><a href="#linux怎么查看内存占用、CPU占用、IO占用" class="headerlink" title="linux怎么查看内存占用、CPU占用、IO占用"></a>linux怎么查看内存占用、CPU占用、IO占用</h2><p>进程：ps aux</p><p>内存占用:free</p><p>CPU占用:top,</p><p>IO占用:iostat</p><p>虚拟内存统计:vmstat</p><p>sar</p><h2 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h2><p>管道、共享内存、消息队列、套接字、信号、信号量</p><h2 id="fork的返回值，什么时候是子进程，什么时候是父进程"><a href="#fork的返回值，什么时候是子进程，什么时候是父进程" class="headerlink" title="fork的返回值，什么时候是子进程，什么时候是父进程"></a>fork的返回值，什么时候是子进程，什么时候是父进程</h2><p>子：0  父：子进程的pid</p><h2 id="进程和线程的区别以及孤儿、僵尸、守护进程"><a href="#进程和线程的区别以及孤儿、僵尸、守护进程" class="headerlink" title="进程和线程的区别以及孤儿、僵尸、守护进程"></a>进程和线程的区别以及孤儿、僵尸、守护进程</h2><h3 id="父进程、子进程："><a href="#父进程、子进程：" class="headerlink" title="父进程、子进程："></a><strong>父进程、子进程</strong>：</h3><p>父进程和子进程的关系是：子进程是父进程的一个副本，一个父进程能创建多个子进程，创建子进程能并发执行。一般来说，子进程先结束执行，然后父进程负责子进程的一些善后工作（回收资源）。</p><h3 id="孤儿进程："><a href="#孤儿进程：" class="headerlink" title="孤儿进程："></a><strong>孤儿进程</strong>：</h3><p>父进程运行结束，但子进程还在运行(未运行结束)的子进程就称为孤儿进程。孤儿进程最终会被init进程(进程号为1)所收养，因此init进程此时变成孤儿进程的父进程，并由init进程对它们完成状态收集工作。（linux下，init是内核启动的第一个用户级进程，init有许多很重要的任务，比如像启动getty（用于用户登录）、实现运行级别、以及处理孤立进程。）</p><h3 id="僵尸进程："><a href="#僵尸进程：" class="headerlink" title="僵尸进程："></a><strong>僵尸进程</strong>：</h3><p>一个进程使用fork创建子进程，如果子进程退出执行后，父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中，这种进程称之为僵死进程。</p><p>如果进程不调用wait / waitpid的话， 那么保留的那段信息就不会释放，其进程号就会一直被占用，但是系统所能使用的进程号是有限的，如果大量的产生僵死进程，将因为没有可用的进程号而导致系统不能产生新的进程。所以僵尸进程是有危害的。</p><h3 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程:"></a><strong>守护进程</strong>:</h3><p>守护进程也就是通常说的Daemon进程（精灵进程），是Linux中的后台服务进程，是个特殊的孤儿进程。它是一个生存期较长的进程，通常独立于控制终端（不会因为控制终端被关闭而中断）并且周期性地执行某种任务或等待处理某些发生的事件。举例：nignx、mysql、cron都是守护进程。</p><h2 id="讲讲守护进程"><a href="#讲讲守护进程" class="headerlink" title="讲讲守护进程"></a>讲讲守护进程</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 面向面试复习法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>C++的基础知识</title>
+      <link href="/2018/11/18/C++%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <url>/2018/11/18/C++%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C-的基础知识"><a href="#C-的基础知识" class="headerlink" title="C++的基础知识"></a>C++的基础知识</h1><a id="more"></a><h2 id="C-的默认构造函数"><a href="#C-的默认构造函数" class="headerlink" title="C++的默认构造函数"></a>C++的默认构造函数</h2><p><strong>默认构造函数是可以不用实参进行调用的构造函数，它包括了以下两种情况：</strong></p><ol><li><strong>没有带明显形参的构造函数。</strong></li><li><strong>提供了默认实参的构造函数。</strong>  </li></ol><p><strong>类设计者可以自己写一个默认构造函数。编译器帮我们写的默认构造函数，称为“合成的默认构造函数”。强调“没有带明显形参”的原因是，编译器总是会为我们的构造函数形参表插入一个隐含的this指针，所以”本质上”是没有不带形参的构造函数的，只有不带明显形参的构造函数，它就是默认构造函数。</strong></p><h2 id="C-类的构造顺序"><a href="#C-类的构造顺序" class="headerlink" title="C++类的构造顺序"></a>C++类的构造顺序</h2><ol><li>分配内存，在调用构造函数时候，隐式/显式的初始化各项在初始化列表的成员。</li><li>进入构造函数后在构造函数中执行一般的赋值与计算。</li></ol><h2 id="C-的初始化列表"><a href="#C-的初始化列表" class="headerlink" title="C++的初始化列表"></a>C++的初始化列表</h2><p><strong>对非内置类型成员变量，为了避免两次构造，推荐使用类构造函数初始化列表</strong>。但有的时候必须用带有初始化列表的构造函数：<br><strong>1.成员类型是没有默认构造函数的类。若没有提供显示初始化式，则编译器隐式使用成员类型的默认构造函数，若程序员没有为类写默认构造函数，则编译器尝试使用默认构造函数将会失败。</strong><br><strong>2.const成员或引用类型的成员。因为const对象或引用类型只能初始化，不能对他们赋值。</strong></p><h2 id="初始化数据成员与对数据成员赋值的含义是什么？有什么区别？"><a href="#初始化数据成员与对数据成员赋值的含义是什么？有什么区别？" class="headerlink" title="初始化数据成员与对数据成员赋值的含义是什么？有什么区别？"></a>初始化数据成员与对数据成员赋值的含义是什么？有什么区别？</h2><p><strong>在构造函数中再进行成员对象的赋值，这会导致成员对象被构造多次。 更重要的是，因为常量类型、引用类型的成员不接受赋值，它们只能在初始化列表中进行初始化。</strong></p><p>首先把数据成员按类型分类并分情况说明:<br>1.<strong>内置数据类型，复合类型（指针，引用）</strong><br>​    在成员初始化列表和构造函数体内进行，在性能和结果上都是一样的<br>2.<strong>用户定义类型（类类型）</strong><br>​    结果上相同，但是性能上存在很大的差别。因为类类型的数据成员对象在进入函数体前已经构造完成，也就是说在成员初始化列表处进行<strong>调用拷贝构造函数</strong>来构造对象的工作，调用构造函数，在进入函数体之后，进行的是对已经构造好的类对象的赋值，又调用个拷贝赋值操作符才能完成（如果并未提供，则使用编译器提供的默认按成员赋值行为）</p><h2 id="C-引用和指针的区别"><a href="#C-引用和指针的区别" class="headerlink" title="C++ 引用和指针的区别"></a>C++ 引用和指针的区别</h2><p>(1)当引用被创建时，它必须被初始化。而指针则可以在任何时候被初始化。</p><p>(2)一旦一个引用被初始化为指向一个对象，它就不能被改变为对另一个对象的引用。而指针则可以在任何时候指向另一个对象。</p><p>(3)不可能有NULL引用。必须确保引用是和一块合法的存储单元关联。</p><p>引用的一个优点是它一定不为空，因此相对于指针，它不用检查它所指对象是否为空，这增加了效率</p><h2 id="C-中const和static的区别"><a href="#C-中const和static的区别" class="headerlink" title="C++中const和static的区别"></a>C++中const和static的区别</h2><p>const定义的常量在超出其作用域之后其空间会被释放，而static定义的静态常量在函数执行后不会释放其存储空间。</p><p>​      static表示的是静态的。类的静态成员函数、静态成员变量是和类相关的，而不是和类的具体对象相关的。即使没有具体对象，也能调用类的静态成员函数和成员变量。一般类的静态函数几乎就是一个全局函数，只不过它的作用域限于包含它的文件中。</p><p>​      在C++中，static静态成员变量不能在类的内部初始化。在类的内部只是声明，定义必须在类定义体的外部，通常在类的实现文件中初始化，如：double Account::Rate=2.25;static关键字只能用于类定义体内部的声明中，定义时不能标示为static</p><p>​      在C++中，const成员变量也不能在类定义处初始化，只能通过构造函数初始化列表进行，并且必须有构造函数。</p><p>​      const数据成员 只在某个对象生存期内是常量，而对于整个类而言却是可变的。因为类可以创建多个对象，不同的对象其const数据成员的值可以不同。所以不能在类的声明中初始化const数据成员，因为类的对象没被创建时，编译器不知道const数据成员的值是什么。</p><p>const数据成员的初始化只能在类的构造函数的初始化列表中进行。要想建立在整个类中都恒定的常量，应该用类中的枚举常量来实现，或者static const。</p><h2 id="在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？"><a href="#在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？" class="headerlink" title="在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？"></a>在有继承关系的父子类中，构建和析构一个子类对象时，父子构造函数和析构函数的执行顺序分别是怎样的？</h2><p>父构造函数–&gt;子构造函数–&gt;子析构函数–&gt;父析构函数</p><h2 id="在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为-virtual-吗？如果不申明为-virtual-会怎样？"><a href="#在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为-virtual-吗？如果不申明为-virtual-会怎样？" class="headerlink" title="在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为 virtual 吗？如果不申明为 virtual 会怎样？"></a>在有继承关系的类体系中，父类的构造函数和析构函数一定要申明为 virtual 吗？如果不申明为 virtual 会怎样？</h2><p>构造函数不能够声明为virtual。因为创建对象之后虚函数表才开始创建。</p><h2 id="什么是-C-多态？C-多态的实现原理是什么？"><a href="#什么是-C-多态？C-多态的实现原理是什么？" class="headerlink" title="什么是 C++ 多态？C++ 多态的实现原理是什么？"></a>什么是 C++ 多态？C++ 多态的实现原理是什么？</h2><p>C++的多态分为静态多态和动态多态：</p><p>1.静态多态就是重载，因为在编译期决议确定，所以成为静态多态。</p><p>2.动态多态就是通过继承重写基类的虚函数实现的多态，因为是在运行时决议确定的所以称为动态多态。</p><p>C++的动态多态性用一句话概括就是：在基类的函数前加上virtual关键字，在派生类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数。如果对象类型是派生类，就调用派生类的函数；如果对象类型是基类，就调用基类的函数</p><p>  1：用virtual关键字申明的函数叫做虚函数，虚函数肯定是类的成员函数。  </p><p>  2：存在虚函数的类都有一个一维的虚函数表叫做虚表，类的对象有一个指向虚表开始的虚指针。虚表是和类对应的，虚表指针是和对象对应的。  </p><p>  3：多态性是一个接口多种实现，是面向对象的核心，分为类的多态性和函数的多态性。  </p><p>  4：多态用虚函数来实现，结合动态绑定.  </p><p>  5:纯虚函数是虚函数再加上 = 0；  </p><p>  6：抽象类是指包括至少一个纯虚函数的类。</p><p>纯虚函数:virtual void fun()=0;即抽象类！必须在子类实现这个函数，即先有名称，没有内容，在派生类实现内容。</p><h2 id="什么是虚函数？虚函数的实现原理是什么？"><a href="#什么是虚函数？虚函数的实现原理是什么？" class="headerlink" title="什么是虚函数？虚函数的实现原理是什么？"></a>什么是虚函数？虚函数的实现原理是什么？</h2><p>类中的<strong>成员函数</strong>分为<strong>静态成员函数</strong>和<strong>非静态成员函数</strong>，而<strong>非静态成员函数</strong>又分为<strong>普通函数</strong>和<strong>虚函数</strong>。</p><p>虚函数是用来实现动态绑定的。</p><p>虚函数使用虚函数表和虚函数表指针实现，虚函数表是一个类的虚函数的地址表，用于索引类本身以及父类的虚函数的地址，假如子类重写了父类的虚函数，则对应在虚函数表中会把对应的虚函数替换为子类的函数的地址（子类中可以不是<strong>虚</strong>函数，但是必须同名）；虚函数表指针存在于每个对象中（通常出于效率考虑，会放在对象的开始地址处），它指向对象所在类的虚函数表的地址；在多继承环境下，会存在多个虚函数表指针，分别指向对应不同基类的虚函数表。</p><p><strong>虚函数表</strong>是每个（有虚函数的）<strong>类</strong>对应一个。<strong>虚函数表指针</strong>是每个<strong>对象</strong>对应一个。</p><p>虚函数表里只能存放虚函数，不能存放普通函数。</p><p>如果一个函数不是虚函数，那么对它的调用（即该函数的地址）在<strong>编译</strong>阶段就会确定。调用虚函数的话（它的地址）要<strong>运行</strong>时才能确定。</p><p>虚函数的函数入口是动态绑定的。在运行时，程序根据基类指针指向的<strong>实际对象</strong>，来调用<strong>该对象</strong>对应版本的函数。（用<strong>该对象</strong>的<strong>虚函数表指针</strong>找到其虚函数表，进而调用不同的函数。）（只有是<strong>虚函数</strong>的情况下才会这么做（用虚函数表指针去查虚函数表）。非虚函数直接就调用自己的。）</p><h2 id="为什么需要虚析构函数？（什么情况下要用虚析构函数？）"><a href="#为什么需要虚析构函数？（什么情况下要用虚析构函数？）" class="headerlink" title="为什么需要虚析构函数？（什么情况下要用虚析构函数？）"></a>为什么需要<strong>虚析构函数</strong>？（什么情况下要用虚析构函数？）</h2><p>在存在类继承并且析构函数中需要析构某些资源时，析构函数需要是虚函数。否则若使用父类指针指向子类对象，在delete时只会调用父类的析构函数，而不能调用子类的析构函数，造成内存泄露。</p><h2 id="一个对象访问普通成员函数和虚函数哪个更快？"><a href="#一个对象访问普通成员函数和虚函数哪个更快？" class="headerlink" title="一个对象访问普通成员函数和虚函数哪个更快？"></a><strong>一个对象访问普通成员函数和虚函数哪个更快？</strong></h2><p>访问普通成员函数更快，因为普通成员函数的<strong>地址</strong>在<strong>编译</strong>阶段就已确定，因此在访问时直接调用对应地址的函数；</p><p>而虚函数在调用时，需要首先在虚函数表中<strong>寻找</strong>虚函数所在<strong>地址</strong>，因此相比普通成员函数速度要慢一些。</p><h2 id="内联函数、构造函数、静态成员函数可以是虚函数吗？"><a href="#内联函数、构造函数、静态成员函数可以是虚函数吗？" class="headerlink" title="内联函数、构造函数、静态成员函数可以是虚函数吗？"></a>内联函数、构造函数、静态成员函数可以是虚函数吗？</h2><p>都不可以。</p><p><strong>内联函数</strong>（inline）需要在<strong>编译</strong>阶段展开（在编译时就已经确定了），而虚函数是<strong>运行时</strong>动态绑定的，编译时无法展开，因此是矛盾的；</p><p><strong>构造函数</strong>在进行调用时还不存在父类和子类的概念，父类只会调用父类的构造函数，子类调用子类的，因此不存在动态绑定的概念（先有父类才能有子类，构造父类的时候子类还不存在，子类都还没有怎么可能在父类里动态调用子类）；</p><p><strong>静态成员函数</strong>（static）是以<strong>类</strong>为单位的函数，<strong>与具体对象无关</strong>，虚函数是与对象动态绑定的，因此是两个矛盾的概念；</p><h2 id="构造函数中可以调用虚函数吗？"><a href="#构造函数中可以调用虚函数吗？" class="headerlink" title="构造函数中可以调用虚函数吗？"></a>构造函数中可以调用虚函数吗？</h2><p> 可以，但是没有意义，起不到动态绑定的效果。父类构造函数中调用的仍然是父类版本的函数，子类中调用的仍然是子类版本的函数。</p><h2 id="简述C-中虚继承的作用及底层实现原理"><a href="#简述C-中虚继承的作用及底层实现原理" class="headerlink" title="简述C++中虚继承的作用及底层实现原理?"></a>简述C++中虚继承的作用及底层实现原理?</h2><p>虚继承用于解决多继承条件下的<strong>菱形继承</strong>问题，底层实现原理与编译器相关，一般通过虚基类指针实现，即各对象中只保存一份父类的对象，多继承时通过虚基类指针引用该公共对象，从而避免菱形继承中的二义性问题。</p><h2 id="什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？"><a href="#什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？" class="headerlink" title="什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？"></a>什么是虚表？虚表的内存结构布局如何？虚表的第一项（或第二项）是什么？</h2><h2 id="菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？"><a href="#菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？" class="headerlink" title="菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？"></a>菱形继承（类D同时继承B和C，B和C又继承自A）体系下，虚表在各个类中的布局如何？如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？</h2><h2 id="C-中虚继承的作用及底层实现原理"><a href="#C-中虚继承的作用及底层实现原理" class="headerlink" title="C++中虚继承的作用及底层实现原理"></a>C++中虚继承的作用及底层实现原理</h2><p><strong>虚继承和虚函数是完全无相关的两个概念。</strong></p><p>虚继承是解决C++多重继承问题的一种手段，从不同途径继承来的同一基类，会在子类中存在多份拷贝。这将存在两个问题：其一，浪费存储空间；第二，存在二义性问题，通常可以将派生类对象的地址赋值给基类对象，实现的具体方式是，将基类指针指向继承类（继承类有基类的拷贝）中的基类对象的地址，但是多重继承可能存在一个基类的多份拷贝，这就出现了二义性。</p><p>虚继承可以解决多种继承前面提到的两个问题：</p><p>虚继承底层实现原理与编译器相关，一般通过虚基类指针和虚基类表实现，每个虚继承的子类都有一个虚基类指针（占用一个指针的存储空间，4字节）和虚基类表（不占用对象的存储空间）（需要强调的是，虚基类依旧会在子类里面存在拷贝，只是仅仅最多存在一份而已，并不是不在子类里面了）；当虚继承的子类被当做父类继承时，虚基类指针也会被继承。</p><p>实际上，vbptr指的是虚基类表指针（virtual base table pointer），该指针指向了一个虚基类表（virtual table），虚表中记录了虚基类与本类的偏移地址；通过偏移地址，这样就找到了虚基类成员，而虚继承也不用像普通多继承那样维持着公共基类（虚基类）的两份同样的拷贝，节省了存储空间。</p><p>在这里我们可以对比虚函数的实现原理：他们有相似之处，都利用了虚指针（均占用类的存储空间）和虚表（均不占用类的存储空间）。</p><p>虚基类依旧存在继承类中，只占用存储空间；虚函数不占用存储空间。</p><p>虚基类表存储的是虚基类相对直接继承类的偏移；而虚函数表存储的是虚函数地址。</p><p>◇执行顺序<br>首先执行虚基类的构造函数，多个虚基类的构造函数按照被继承的顺序构造；<br>执行基类的构造函数，多个基类的构造函数按照被继承的顺序构造；<br>执行成员对象的构造函数，多个成员对象的构造函数按照申明的顺序构造；<br>执行派生类自己的构造函数；<br>析构以与构造相反的顺序执行； </p><h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h2><p>简单的来说，【浅拷贝】是增加了一个指针，指向原来已经存在的内存。而【深拷贝】是增加了一个指针，并新开辟了一块空间</p><p>让指针指向这块新开辟的空间。</p><p>【浅拷贝】在多个对象指向一块空间的时候，释放一个空间会导致其他对象所使用的空间也被释放了，再次释放便会出现错误</p><p><a href="https://www.cnblogs.com/jianxinzhou/p/3994248.html" target="_blank" rel="noopener">https://www.cnblogs.com/jianxinzhou/p/3994248.html</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> 编程语言 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>几种常见的排序算法</title>
+      <link href="/2018/11/18/%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+      <url>/2018/11/18/%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="常见的排序算法"><a href="#常见的排序算法" class="headerlink" title="常见的排序算法"></a>常见的排序算法</h1><p>本文来谈谈几种常见的排序算法</p><p><img src="/2018/11/18/几种常见的排序算法/1.jpg" alt="你想输入的替代文字"></p><a id="more"></a><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>时间复杂度O（n*n）</p><p>空间复杂度O(1)</p><p>不稳定</p><pre class=" language-c++"><code class="language-c++">void select_sort(vector<int>&a){    for(int i=0;i<a.size();i++)    {        int min=i;        for(int j=i+1;j<a.size();j++)        {            if(a[j]<a[min])            {                min=j;            }        }         swap(a,i,min);    }}</code></pre><h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>时间复杂度O（n*n）</p><p>空间复杂度O(1)</p><p>稳定</p><pre class=" language-C++"><code class="language-C++">void maopao_sort(vector<int>&a)//冒泡排序 {    bool is_change=0;    for(int i=a.size()-1;i>=0&&!is_change;i--)    {        is_change=1;        for(int j=0;j<i;j++)        {            if(a[j]>a[j+1])            {                is_change=0;                swap(a,j,j+1);                }            }    }}</code></pre><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>时间复杂度O（n*n）</p><p>空间复杂度O(1)</p><p>稳定</p><pre class=" language-c++"><code class="language-c++">void charu_sort(vector<int>&a)//插入排序 {    for(int i=1;i<a.size();i++)    {        for(int j=i;j>0&&(a[j]<a[j-1]);j--)        {            swap(a,j,j-1);        }    }}</code></pre><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>时间复杂度O（n*n）</p><p>空间复杂度O(M)</p><p>稳定</p><pre class=" language-c++"><code class="language-c++">int b[10];void merge(int a[],int l,int m,int h) //归并排序 {    int i=l,j=m+1;    for(int k=l;k<=h;k++)    {        b[k]=a[k]; //数组复制到辅助数组     }    for(int k=l;k<=h;k++)    {        if(i>m)            a[k]=b[j++];        else if(j>h)            a[k]=b[i++];        else if(b[i]<=b[j])        {            a[k]=b[i++];        }        else        {            a[k]=b[j++];        }    }}//将一个大数组分成两个小数组去求解。//因为每次都将问题对半分成两个子问题，这种对半分的算法复杂度一般为 O(NlogN)。void merge_sort(int a[],int l ,int h)//自顶向下归并排序 {    if(h<=l)        return ;    int mid=l+(h-l)/2;    merge_sort(a,l,mid);    merge_sort(a,mid+1,h);    merge(a,l,mid,h);}</code></pre><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>时间复杂度O（n*log(n)）</p><p>空间复杂度O(logN)-O(logN)</p><p>不稳定</p><pre class=" language-c++"><code class="language-c++">int partition(int a[],int l,int h){    int i=l,j=h+1;    int divide_num=a[l];    while(1)    {        while((a[++i]<divide_num)&&i!=h);        while((a[--j]>divide_num)&&j!=l);        if(i>=j)        {            break;            }            swap(a,i,j);    }     swap(a,l,j);    return j;}void quick_sort(int a[],int l,int h)//当前的快排只是取最左边的第一个数作为划分点。 {    if(l>=h)        return ;    int j=partition(a,l,h);    quick_sort(a,l,j-1);    quick_sort(a,j+1,h);    }</code></pre><h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p>不稳定</p><h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>时间复杂度O（n*log（n））</p><p>空间复杂度O(1)</p><p>不稳定</p><h1 id="桶排序的思想"><a href="#桶排序的思想" class="headerlink" title="桶排序的思想"></a>桶排序的思想</h1><p>非比较的排序：</p><h2 id="计数排序："><a href="#计数排序：" class="headerlink" title="计数排序："></a>计数排序：</h2><p>稳定</p><h2 id="基数排序："><a href="#基数排序：" class="headerlink" title="基数排序："></a>基数排序：</h2><p>稳定</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面向面试学习法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>TCP/IP 协议</title>
+      <link href="/2018/11/16/TCP-IP-%E5%8D%8F%E8%AE%AE/"/>
+      <url>/2018/11/16/TCP-IP-%E5%8D%8F%E8%AE%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="TCP的三次握手和四次挥手"><a href="#TCP的三次握手和四次挥手" class="headerlink" title="TCP的三次握手和四次挥手"></a>TCP的三次握手和四次挥手</h1><p>本文对TCP的三次握手和四次挥手做一个简单的小结。</p><a id="more"></a><h2 id="get和post的区别"><a href="#get和post的区别" class="headerlink" title="get和post的区别"></a>get和post的区别</h2><ul><li><p>get参数通过url传递，post放在request body中。</p></li><li><p>get请求在url中传递的参数是有长度限制的，而post没有。</p></li><li><p>get比post更不安全，因为参数直接暴露在url中，所以不能用来传递敏感信息。</p></li><li><ul><li><p>get请求只能进行url编码，而post支持多种编码方式</p></li><li><p>get请求会浏览器主动cache，而post支持多种编码方式。</p></li><li><p>get请求参数会被完整保留在浏览历史记录里，而post中的参数不会被保留。</p></li></ul></li><li><p>GET和POST本质上就是TCP链接，并无差别。但是由于HTTP的规定和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同。</p></li><li><p>GET产生一个TCP数据包；POST产生两个TCP数据包。</p></li></ul><p>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</p><p>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</p><h2 id="TCP报文格式"><a href="#TCP报文格式" class="headerlink" title="TCP报文格式"></a>TCP报文格式</h2><p><img src="http://dl2.iteye.com/upload/attachment/0108/8317/ef70c29e-651b-33a4-b188-d4e8e0ff9915.png" alt="img"></p><p>上图中有几个字段需要重点介绍下：</p><p>  （1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。</p><p>  （2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，ack=Seq+1。</p><p>  （3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：</p><p>  （A）URG：紧急指针（urgent pointer）有效。</p><p>  （B）ACK：确认序号有效。</p><p>  （C）PSH：接收方应该尽快将这个报文交给应用层。</p><p>  （D）RST：重置连接。</p><p>  （E）SYN：发起一个新连接。</p><p>  （F）FIN：释放一个连接。</p><p> 需要注意的是：</p><p>  （A）不要将确认序号ack与标志位中的ACK搞混了。</p><p>  （B）确认方Ack=发起方Req+1，两端配对。 </p><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a><strong>三次握手</strong></h3><p>  所谓<strong>三次握手</strong>（Three-Way Handshake）即建立TCP连接，<strong>是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立</strong>。在socket编程中，这一过程由客户端执行connect来触发，整个流程如下图所示：</p><p><img src="http://dl2.iteye.com/upload/attachment/0108/8313/8352d9a8-8c91-32e5-adf8-2bdaf8d567d6.png" alt="img"></p><p>第一次握手，Client 发送一个SYN表示建立一个新的连接，生成一个seq序号。然后处于SYN_SENT状态。</p><p>第二次握手，Server收到了数据包后，发送一个新的数据包。SYN=1,ACK=1（表示）确认，ack=J+1（上一个数据包的seq序号+1），再随机生成一个seq。Server进入SYN_RCVD状态。</p><p>第三次握手，Client收到了数据包后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，<strong>如果正确则连接建立成功，Client和Server进入ESTABLISHED状态</strong>，完成三次握手，随后Client与Server之间可以开始传输数据了。</p><p><strong><em>SYN攻击：</em></strong></p><p>  在三次握手过程中，<strong>Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态</strong>，当收到ACK后，Server转入ESTABLISHED状态。<strong>SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时</strong>，这些<strong>伪造的SYN包将长时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃</strong>，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：</p><p>#netstat -nap | grep SYN_RECV</p><p>  <code>`</code> #netstat -nap | grep SYN_RECV</p><h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a><strong>四次挥手</strong></h3><p>所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，整个流程如下图所示：</p><p><img src="http://dl2.iteye.com/upload/attachment/0108/8315/51a9937d-3155-3a95-b853-97e8e20e758b.png" alt="img"></p><p>由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。</p><p> （1）第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</p><p>  （2）第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</p><p> （3）第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</p><p>  （4）第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p><p><img src="http://dl2.iteye.com/upload/attachment/0108/8321/b32a11f5-7b60-364b-874d-67b096bec348.jpg" alt="img"></p><p>上面是一方主动关闭，另一方被动关闭的情况，实际中还会出现同时发起主动关闭的情况，具体流程如下图：</p><p><img src="http://dl2.iteye.com/upload/attachment/0108/8323/f8d7bde0-fd48-334a-bf6d-6be0b1706f86.png" alt="img"></p><p> 流程和状态在上图中已经很明了了，在此不再赘述，可以参考前面的四次挥手解析步骤。</p><h3 id="四、附注"><a href="#四、附注" class="headerlink" title="四、附注"></a><strong>四、附注</strong></h3><p>  关于三次握手与四次挥手通常都会有典型的面试题，在此提出供有需求的XDJM们参考：</p><p>  （1）三次握手是什么或者流程？四次握手呢？答案前面分析就是。</p><p>  （2）为什么建立连接是三次握手，而关闭连接却是四次挥手呢？</p><p>  这是因为<strong>服务端在LISTEN状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端。而关闭连接时，当收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据</strong>，己方也未必全部数据都发送给对方了，所以己方可以立即close，也可以发送一些数据给对方后，再发送FIN报文给对方来表示同意现在关闭连接，因此，己方ACK和FIN一般都会分开发送。<br>  <code>`</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> TCP </tag>
+            
+            <tag> 服务器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Leetcode 2</title>
+      <link href="/2018/11/16/Leetcode-2/"/>
+      <url>/2018/11/16/Leetcode-2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Leetcode-2"><a href="#Leetcode-2" class="headerlink" title="Leetcode 2"></a>Leetcode 2</h1><a id="more"></a><pre class=" language-C++"><code class="language-C++">/** * Definition for singly-linked list. * struct ListNode { *     int val; *     ListNode *next; *     ListNode(int x) : val(x), next(NULL) {} * }; */class Solution {public:    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {        ListNode*p1=l1;        ListNode*p2=l2;        ListNode *l3=new ListNode(-1);        ListNode *l4=l3;        int temp=0;        while(p1!=NULL||p2!=NULL)        {            if(p1!=NULL)            {                 temp+=p1->val;                   p1=p1->next;            }            if(p2!=NULL)            {              temp+=p2->val ;              p2=p2->next;            }             l3->next=new ListNode(temp%10);               temp=temp/10;            l3=l3->next;        }        if(temp!=0)        {            l3->next=new ListNode(temp);        }        return l4->next;    }};</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 链表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Leetcode 31</title>
+      <link href="/2018/11/16/Leetcode-31/"/>
+      <url>/2018/11/16/Leetcode-31/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Leetcode-31-Next-Permutation"><a href="#Leetcode-31-Next-Permutation" class="headerlink" title="Leetcode 31 Next Permutation"></a>Leetcode 31 Next Permutation</h1><p>详情见图</p><a id="more"></a><p><a href="https://leetcode.com/media/original_images/31_Next_Permutation.gif" target="_blank" rel="noopener">https://leetcode.com/media/original_images/31_Next_Permutation.gif</a></p><p><img src="https://leetcode.com/media/original_images/31_Next_Permutation.gif" alt="img"></p><pre class=" language-C++"><code class="language-C++">/* * [31] Next Permutation * * https://leetcode.com/problems/next-permutation/description/ * * algorithms * Medium (29.41%) * Total Accepted:    188.4K * Total Submissions: 640.4K * Testcase Example:  '[1,2,3]' * * Implement next permutation, which rearranges numbers into the * lexicographically next greater permutation of numbers. *  * If such arrangement is not possible, it must rearrange it as the lowest * possible order (ie, sorted in ascending order). *  * The replacement must be in-place and use only constant extra memory. *  * Here are some examples. Inputs are in the left-hand column and its * corresponding outputs are in the right-hand column. *  * 1,2,3 → 1,3,2 * 3,2,1 → 1,2,3 * 1,1,5 → 1,5,1 *  */class Solution {public:    void nextPermutation(vector<int>& nums)     {        int i, j;        for (i = nums.size() - 2; i >= 0; i--)         {            if (nums[i] < nums[i + 1])                 break;        }        if (i < 0)             reverse(nums.begin(), nums.end());         else         {            for(j = nums.size() - 1; j > i; j--)             {                if (nums[j] > nums[i])                     break;            }             swap(nums[i], nums[j]);            reverse(nums.begin() + i + 1, nums.end());        }    }};</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数组 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Delete repeated element</title>
+      <link href="/2018/11/15/Delete-repeated-element/"/>
+      <url>/2018/11/15/Delete-repeated-element/</url>
+      
+        <content type="html"><![CDATA[<h1 id="删除数组中相同的元素"><a href="#删除数组中相同的元素" class="headerlink" title="删除数组中相同的元素"></a>删除数组中相同的元素</h1><a id="more"></a><h2 id="leetcode-26"><a href="#leetcode-26" class="headerlink" title="leetcode 26"></a>leetcode 26</h2><pre class=" language-C++"><code class="language-C++">/* * [26] Remove Duplicates from Sorted Array * * https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/ * * algorithms * Easy (38.30%) * Total Accepted:    454.3K * Total Submissions: 1.2M * Testcase Example:  '[1,1,2]' * * Given a sorted array nums, remove the duplicates in-place such that each * element appear only once and return the new length. *  * Do not allocate extra space for another array, you must do this by modifying * the input array in-place with O(1) extra memory. *  * Example 1: *  *  * Given nums = [1,1,2], *  * Your function should return length = 2, with the first two elements of nums * being 1 and 2 respectively. *  * It doesn't matter what you leave beyond the returned length. *  * Example 2: *  *  * Given nums = [0,0,1,1,1,2,2,3,3,4], *  * Your function should return length = 5, with the first five elements of nums * being modified to 0, 1, 2, 3, and 4 respectively. *  * It doesn't matter what values are set beyond the returned length. *  *  * Clarification: *  * Confused why the returned value is an integer but your answer is an array? *  * Note that the input array is passed in by reference, which means * modification to the input array will be known to the caller as well. *  * Internally you can think of this: *  *  * // nums is passed in by reference. (i.e., without making a copy) * int len = removeDuplicates(nums); *  * // any modification to nums in your function would be known by the caller. * // using the length returned by your function, it prints the first len * elements. * for (int i = 0; i < len; i++) { * print(nums[i]); * } *  */class Solution {public:    int removeDuplicates(vector<int>& nums) {        if(nums.size()<2)            return nums.size();        int lens=1;        for(int i=1;i<nums.size();i++)        {            if(nums[i]!=nums[i-1])            {                nums[lens++]=nums[i];            }        }        return lens;    }};</code></pre><h2 id="Leetcode-27"><a href="#Leetcode-27" class="headerlink" title="Leetcode 27"></a>Leetcode 27</h2><pre class=" language-C++"><code class="language-C++">/* * [27] Remove Element * * https://leetcode.com/problems/remove-element/description/ * * algorithms * Easy (42.38%) * Total Accepted:    332.6K * Total Submissions: 784.7K * Testcase Example:  '[3,2,2,3]\n3' * * Given an array nums and a value val, remove all instances of that value * in-place and return the new length. *  * Do not allocate extra space for another array, you must do this by modifying * the input array in-place with O(1) extra memory. *  * The order of elements can be changed. It doesn't matter what you leave * beyond the new length. *  * Example 1: *  *  * Given nums = [3,2,2,3], val = 3, *  * Your function should return length = 2, with the first two elements of nums * being 2. *  * It doesn't matter what you leave beyond the returned length. *  *  * Example 2: *  *  * Given nums = [0,1,2,2,3,0,4,2], val = 2, *  * Your function should return length = 5, with the first five elements of nums * containing 0, 1, 3, 0, and 4. *  * Note that the order of those five elements can be arbitrary. *  * It doesn't matter what values are set beyond the returned length. *  * Clarification: *  * Confused why the returned value is an integer but your answer is an array? *  * Note that the input array is passed in by reference, which means * modification to the input array will be known to the caller as well. *  * Internally you can think of this: *  *  * // nums is passed in by reference. (i.e., without making a copy) * int len = removeElement(nums, val); *  * // any modification to nums in your function would be known by the caller. * // using the length returned by your function, it prints the first len * elements. * for (int i = 0; i < len; i++) { * print(nums[i]); * } *  */class Solution {public:    int removeElement(vector<int>& nums, int val) {        int lens=0;        for(int i=0;i<nums.size();i++)        {            if(nums[i]!=val)            {                nums[lens]=nums[i];                lens++;            }        }        return lens;    }};</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 链表 </tag>
+            
+            <tag> 数组 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>TCP/IP 第一章</title>
+      <link href="/2018/11/15/TCP-IP-%E7%AC%AC%E4%B8%80%E7%AB%A0/"/>
+      <url>/2018/11/15/TCP-IP-%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="TCP-IP网络编程-第一章"><a href="#TCP-IP网络编程-第一章" class="headerlink" title="TCP/IP网络编程 第一章"></a>TCP/IP网络编程 第一章</h1><h2 id="创建套接字的过程"><a href="#创建套接字的过程" class="headerlink" title="创建套接字的过程"></a>创建套接字的过程</h2><a id="more"></a><h3 id="服务器端："><a href="#服务器端：" class="headerlink" title="服务器端："></a>服务器端：</h3><pre class=" language-c++"><code class="language-c++">#include<stdio.h>#include<stdlib.h>#include<string.h>#include<unistd.h>#include<arpa/inet.h>#include<sys/socket.h>void error_handing(char *message){    fputs(message,stderr);    fputc('\n',stderr);    exit(1);}int main(int argc, char const *argv[]){    int serv_sock;    int clnt_sock;    struct sockaddr_in serv_addr;    struct sockaddr_in clnt_addr;    socklen_t clnt_addr_size;    char message[]="Hello world!";    if (argc!=2)    {        printf("Usage:%s <port>\n",argv[0]);        exit(1);    }    serv_sock=socket(PF_INET,SOCK_STREAM,0);    if(serv_sock==-1)        error_handing("socker() error!");    memset(&serv_addr,0,sizeof(serv_addr));    serv_addr.sin_family=AF_INET;    serv_addr.sin_addr.s_addr=htonl(INADDR_ANY);//IP    serv_addr.sin_port=htons(atoi(argv[1])); //port    if(bind(serv_sock,(struct sockaddr*)&serv_addr,sizeof(serv_addr))==-1)    {        error_handing("bind()!error!");    }    if(listen(serv_sock,5)==-1)    {           error_handing("listen()!error!");    }    clnt_addr_size=sizeof(clnt_addr);    clnt_sock=accept(serv_sock,(struct sockaddr*)&clnt_addr,&clnt_addr_size);    if(clnt_sock==-1)    {            error_handing("accept()!error!");    }    write(clnt_sock,message,sizeof(message));    close(clnt_sock);    close(serv_sock);    return 0;}</code></pre><ul><li>先创建socket套接字</li><li>用bind分配IP和端口号</li><li>用listen函数将socket转换成可以接收连接的状态</li><li>用accept函数接收请求连接</li></ul><pre class=" language-c++"><code class="language-c++">struct sockaddr_in  {    __SOCKADDR_COMMON (sin_);    in_port_t sin_port;            /* Port number.  */    struct in_addr sin_addr;        /* Internet address.  */    /* Pad to size of `struct sockaddr'.  */    unsigned char sin_zero[sizeof (struct sockaddr) -               __SOCKADDR_COMMON_SIZE -               sizeof (in_port_t) -               sizeof (struct in_addr)];  };struct sockaddr  {    __SOCKADDR_COMMON (sa_);    /* Common data: address family and length.  */    char sa_data[14];        /* Address data.  */  };</code></pre><p>struct sockaddr 是通用的套接字地址，而struct sockaddr_in 是Internet环境下的套接字地址形式。两者的长度一样，都是16字节。两者是并列结构，指向sockaddr_in结构的指针也可以指向sockaddr。</p><p><strong>一般情况下，需要把sockaddr_in结构强制转换成sockaddr结构，再传入系统函数中</strong> </p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><pre class=" language-C++"><code class="language-C++">#include<stdio.h>#include<stdlib.h>#include<string.h>#include<unistd.h>#include<arpa/inet.h>#include<sys/socket.h>void error_handing(char *message){    fputs(message,stderr);    fputc('\n',stderr);    exit(1);}int main(int argc, char const *argv[]){    int sock;    struct sockaddr_in serv_addr;    char message[30];    int str_len;    if(argc!=3)    {        printf("Usage:%s <IP> <port>\n",argv[0]);        exit(1);    }    sock=socket(PF_INET,SOCK_STREAM,0);    if(sock==-1)        error_handing("socket()!error!");    memset(&serv_addr,0,sizeof(serv_addr));    serv_addr.sin_family=AF_INET;    serv_addr.sin_addr.s_addr=inet_addr(argv[1]);    serv_addr.sin_port=htons(atoi(argv[2]));    if(connect(sock,(struct sockaddr*)&serv_addr,sizeof(serv_addr))==-1)        error_handing("connect() error!");    str_len=read(sock,message,sizeof(message)-1);    if(str_len==-1)        error_handing("read()!error!");    printf("Message from server : %s \n",message);    close(sock);    return 0;}</code></pre><pre class=" language-C++"><code class="language-C++">int open(const char *path,int flag);int close(int fd);ssize_t write(int fd,const void *buf,size_t nbytes);ssize_t read(int fd,void *buf,size_t nbytes);</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> TCP/IP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Deblur 论文总结</title>
+      <link href="/2018/11/14/Deblur-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/"/>
+      <url>/2018/11/14/Deblur-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<h1 id="论文总结"><a href="#论文总结" class="headerlink" title="论文总结"></a>论文总结</h1><a id="more"></a><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>图像模糊一般被看作清晰图像卷积模糊核得到模糊图像的过程，其退化模型如下式所示：</p><p><img src="https://img-blog.csdn.net/20161010131848914" alt="img"></p><p>其中，B为模糊图像( blurry image )，I为待估计的清晰图像( latent image )，K为模糊核( blur kernel )，N为附加的噪声，ⓧ为卷积操作。</p><h3 id="图像卷积基本概念"><a href="#图像卷积基本概念" class="headerlink" title="图像卷积基本概念"></a>图像卷积基本概念</h3><h4 id="线性滤波"><a href="#线性滤波" class="headerlink" title="线性滤波"></a>线性滤波</h4><p>　　线性滤波是图像处理的基本方法。假设我们有图像矩阵A和滤波器矩阵（卷积核）B，如下图所示： </p><p><img src="https://img-blog.csdn.net/20161010152740621" alt="img"><img src="https://img-blog.csdn.net/20161010152826162" alt="img">   </p><p>​    对于图像的每一个像素点，计算它的邻域像素和滤波器矩阵的对应元素的乘积，然后加起来，作为该像素位置的值。这样就完成了滤波过程。 </p><p><img src="https://img-blog.csdn.net/20161010153027585" alt="img"></p><p><strong>卷积与相关</strong><br>　　对图像和滤波矩阵进行逐个元素相乘再求和的操作就相当于将一个二维的函数移动到另一个二维函数的所有位置，这个操作就叫卷积或者相关。卷积和相关的差别是，卷积需要先对滤波矩阵进行180的翻转，但如果矩阵是对称的，那么两者就没有什么差别了。</p><p><strong>模糊核（卷积核）</strong><br>　　模糊核实际上就是一个矩阵，清晰图像与模糊核卷积后导致图像变得模糊，因此叫模糊核。模糊核是卷积核的一种。图像卷积操作的本质是矩阵卷积。某些特殊的卷积核会使图像产生特殊的效果。</p><h2 id="编码器-解码器网络-U-net"><a href="#编码器-解码器网络-U-net" class="headerlink" title="编码器-解码器网络(U-net)"></a>编码器-解码器网络(U-net)</h2><p><a href="http://www.bubuko.com/infodetail-2608619.html" target="_blank" rel="noopener">http://www.bubuko.com/infodetail-2608619.html</a></p><p>卷积层负责特征提取，捕获图像内容的抽象信息，同时消除噪声/损失。相对应，反卷积层用来恢复图像细节。</p><h2 id="Scale-recurrent-Network-for-Deep-Image-Deblurring"><a href="#Scale-recurrent-Network-for-Deep-Image-Deblurring" class="headerlink" title="Scale-recurrent Network for Deep Image Deblurring"></a>Scale-recurrent Network for Deep Image Deblurring</h2><h2 id="尺度循环网络（SRN）"><a href="#尺度循环网络（SRN）" class="headerlink" title="尺度循环网络（SRN）"></a>尺度循环网络（SRN）</h2><h3 id="创新点："><a href="#创新点：" class="headerlink" title="创新点："></a>创新点：</h3><p><img src="http://static.tongtianta.site/paper_image/2520f142-6ae1-11e8-8a08-6045cb803e2f/image_1_0_0.jpg" alt="img"></p><p>用于图像处理的不同CNN。（a）U-Net [27]或编码器 - 解码器网络[24]。 （b）多尺度[25]或级联改良网络[4]。（c）扩张卷积网络[5]。（d）我们提出的规模经常性网络（SRN）。</p><ul><li><p><strong>网络结构上</strong>：在多尺度模型里，每一尺度的网络结构和任务都相似，但是各尺度的参数仍然是相互独立的。本文提出的在不同尺度之间共享网络权重可以减少网络参数、使模型的学习能力更加稳固。</p></li><li><p><strong>编解码残差网络结构：</strong>编解码器的结构在CV任务中非常有用，与残差网络相结合可以结合两者优势，还能扩大感受野，对于捕捉运动模糊很重要。本文设计的网络训练收敛快、参数少、去模糊效果好，超过了当前的最好水平。</p></li></ul><h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作:"></a>相关工作:</h3><ul><li>利用图像的各种先验知识</li><li>带跳跃连接的自编码器</li><li>U-net(编解码器网络)</li><li>多尺度网络。</li></ul><h3 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a>网络结构：</h3><p><img src="https://img-blog.csdn.net/2018062313015729?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI4NjM1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><p>在每一个尺度上，以两张图像作为输入，一张模糊图像，一张上采样后的去模糊图像。同时还在中间输入了隐藏状态的特征。循环网络用ConvLSTM.它能在利用时间相关性的同时利用空间相关性。不同尺度之间对图像和feature的上采样都使用双线性插值（bilinear interpolation），因为简单有效。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CV论文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 误差建模 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Leetcode23</title>
+      <link href="/2018/11/12/Leetcode23/"/>
+      <url>/2018/11/12/Leetcode23/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Leetcode-23-Merge-k-Sorted-Lists"><a href="#Leetcode-23-Merge-k-Sorted-Lists" class="headerlink" title="Leetcode 23 Merge k Sorted Lists"></a>Leetcode 23 Merge k Sorted Lists</h1><p>  √ Accepted<br>  √ 131/131 cases passed (20 ms)<br>  √ Your runtime beats 55.85 % of cpp submissions</p><a id="more"></a><pre class=" language-C++"><code class="language-C++">/* * [23] Merge k Sorted Lists * * https://leetcode.com/problems/merge-k-sorted-lists/description/ * * algorithms * Hard (30.96%) * Total Accepted:    291.4K * Total Submissions: 938.7K * Testcase Example:  '[[1,4,5],[1,3,4],[2,6]]' * * Merge k sorted linked lists and return it as one sorted list. Analyze and * describe its complexity. *  * Example: *  *  * Input: * [ * 1->4->5, * 1->3->4, * 2->6 * ] * Output: 1->1->2->3->4->4->5->6 *  *  *//** * Definition for singly-linked list. * struct ListNode { *     int val; *     ListNode *next; *     ListNode(int x) : val(x), next(NULL) {} * }; */class Solution {public:    ListNode* mergeKLists(vector<ListNode*>& lists)     {       if(lists.size()==0)            return NULL;        int k=lists.size();        while(k>1)        {            int n=(k+1)/2;            for(int i=0;i<k/2;i++)                lists[i]=merge2List2(lists[i],lists[i+n]);            k=n;        }        return lists[0];    }    ListNode*merge2List2(ListNode*l1,ListNode*l2)    {        if(l1==NULL)return l2;        if(l2==NULL)return l1;        ListNode *ans1=new ListNode(-1);        ListNode *ans = ans1;          while(l1!=NULL&&l2!=NULL)        {            if(l1->val<l2->val)            {                ans->next=l1;                l1=l1->next;            }            else            {                ans->next=l2;                l2=l2->next;            }            ans=ans->next;        }        if(l1==NULL)ans->next=l2;        else if(l2==NULL)            ans->next=l1;        return ans1->next;    }};</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 链表 </tag>
+            
+            <tag> 分治 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Leetcode 10 Generate Parentheses</title>
+      <link href="/2018/11/09/Leetcode10/"/>
+      <url>/2018/11/09/Leetcode10/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Leetcode-10-Regular-Expression-Matching"><a href="#Leetcode-10-Regular-Expression-Matching" class="headerlink" title="Leetcode 10 Regular Expression Matching"></a>Leetcode 10 Regular Expression Matching</h1><p>  √ Accepted<br>  √ 447/447 cases passed (4 ms)<br>  √ Your runtime beats 71.84 % of cpp submissions</p><a id="more"></a><p><code>`</code>layout: Leetcode-22<br>/*</p><ul><li>[10] Regular Expression Matching<br>*</li><li><a href="https://leetcode.com/problems/regular-expression-matching/description/" target="_blank" rel="noopener">https://leetcode.com/problems/regular-expression-matching/description/</a><br>*</li><li>algorithms</li><li>Hard (24.44%)</li><li>Total Accepted:    240.5K</li><li>Total Submissions: 984.1K</li><li>Testcase Example:  ‘“aa”\n”a”‘<br>*</li><li>Given an input string (s) and a pattern (p), implement regular expression</li><li>matching with support for ‘.’ and ‘*’.</li><li></li><li></li><li>‘.’ Matches any single character.</li><li>‘*’ Matches zero or more of the preceding element.</li><li></li><li></li><li>The matching should cover the entire input string (not partial).</li><li></li><li>Note:</li><li></li><li></li><li>s could be empty and contains only lowercase letters a-z.</li><li>p could be empty and contains only lowercase letters a-z, and characters</li><li>like . or *.</li><li></li><li></li><li>Example 1:</li><li></li><li></li><li>Input:</li><li>s = “aa”</li><li>p = “a”</li><li>Output: false</li><li>Explanation: “a” does not match the entire string “aa”.</li><li></li><li></li><li>Example 2:</li><li></li><li></li><li>Input:</li><li>s = “aa”</li><li>p = “a*”</li><li>Output: true</li><li>Explanation: ‘*’ means zero or more of the precedeng element, ‘a’.</li><li>Therefore, by repeating ‘a’ once, it becomes “aa”.</li><li></li><li></li><li>Example 3:</li><li></li><li></li><li>Input:</li><li>s = “ab”</li><li>p = “.*”</li><li>Output: true</li><li>Explanation: “.<em>“ means “zero or more (</em>) of any character (.)”.</li><li></li><li></li><li>Example 4:</li><li></li><li></li><li>Input:</li><li>s = “aab”</li><li>p = “c<em>a</em>b”</li><li>Output: true</li><li>Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore</li><li>it matches “aab”.</li><li></li><li></li><li>Example 5:</li><li></li><li></li><li>Input:</li><li>s = “mississippi”</li><li>p = “mis<em>is</em>p*.”</li><li>Output: false</li><li></li><li><p>*/<br>class Solution {<br>public:<br> bool isMatch(string s, string p) {</p><pre><code> int lens=s.size(); int lenp=p.size(); bool **dp=new bool*[lens+2]; for(int i=0;i&lt;lens+2;i++) {     dp[i]=new bool[lenp+2]; } for(int i=0;i&lt;lens+2;i++) {     for(int j=0;j&lt;lenp+2;j++)     {         dp[i][j]=false;     } } dp[0][0]=true; for(int i=1;i&lt;lenp;i++) {     if(p[i]==&#39;*&#39;&amp;&amp;dp[0][i-1])         dp[0][i+1]=true; } for(int i=0;i&lt;lens;i++) {     for(int j=0;j&lt;lenp;j++)     {         if(s[i]==p[j]||p[j]==&#39;.&#39;)             dp[i+1][j+1]=dp[i][j];         else if(p[j]==&#39;*&#39;)         {             if(p[j-1]!=s[i]&amp;&amp;p[j-1]!=&#39;.&#39;)                 dp[i+1][j+1]=dp[i+1][j-1];             else             {                 dp[i+1][j+1]=(dp[i+1][j]//表示*匹配了1个字符                 ||dp[i][j+1]//表示*匹配了多个字符                 ||dp[i+1][j-1]);//表示*匹配了0个字符             }         }     } } return dp[lens][lenp];</code></pre><p> }<br>};</p></li></ul><p><code>`</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 回溯 </tag>
+            
+            <tag> 递归 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Leetcode 22 Generate Parentheses</title>
+      <link href="/2018/11/08/Leetcode22/"/>
+      <url>/2018/11/08/Leetcode22/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Leetcode-22-Generate-Parentheses"><a href="#Leetcode-22-Generate-Parentheses" class="headerlink" title="Leetcode 22 Generate Parentheses"></a>Leetcode 22 Generate Parentheses</h1><p>(  √ Accepted</p><p>√ 8/8 cases passed (0 ms)</p><p>√ Your runtime beats 31.94 % of cpp submissions )</p><a id="more"></a><pre class=" language-c++"><code class="language-c++">/* * [22] Generate Parentheses * * https://leetcode.com/problems/generate-parentheses/description/ * * algorithms * Medium (50.99%) * Total Accepted:    261.9K * Total Submissions: 513.5K * Testcase Example:  '3' * *  * Given n pairs of parentheses, write a function to generate all combinations * of well-formed parentheses. *  *  *  * For example, given n = 3, a solution set is: *  *  * [ * ⁠ "((()))", * ⁠ "(()())", * ⁠ "(())()", * ⁠ "()(())", * ⁠ "()()()" * ] *  */class Solution {public:    void backtrade(vector<string>&ans,string ans1,int left,int right)    {        if(left==0&&right==0)        {            ans.push_back(ans1);            return;        }        if(left>0)        {            backtrade(ans,ans1+"(",left-1,right);        }        if(right>left)        {            backtrade(ans,ans1+")",left,right-1);        }    }    vector<string> generateParenthesis(int n) {        vector<string> res;        backtrade(res,"",n,n);        return res;    }};</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 回溯 </tag>
+            
+            <tag> 递归 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
+</search>

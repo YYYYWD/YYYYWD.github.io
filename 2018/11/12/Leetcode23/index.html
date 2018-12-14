@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -326,7 +326,85 @@
             <div id="articleContent">
                 <h1 id="Leetcode-23-Merge-k-Sorted-Lists"><a href="#Leetcode-23-Merge-k-Sorted-Lists" class="headerlink" title="Leetcode 23 Merge k Sorted Lists"></a>Leetcode 23 Merge k Sorted Lists</h1><p>  √ Accepted<br>  √ 131/131 cases passed (20 ms)<br>  √ Your runtime beats 55.85 % of cpp submissions</p>
 <a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [23] Merge k Sorted Lists</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/merge-k-sorted-lists/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Hard (30.96%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    291.4K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 938.7K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '[[1,4,5],[1,3,4],[2,6]]'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Merge k sorted linked lists and return it as one sorted list. Analyze and</span></span><br><span class="line"><span class="comment"> * describe its complexity.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Input:</span></span><br><span class="line"><span class="comment"> * [</span></span><br><span class="line"><span class="comment"> * 1-&gt;4-&gt;5,</span></span><br><span class="line"><span class="comment"> * 1-&gt;3-&gt;4,</span></span><br><span class="line"><span class="comment"> * 2-&gt;6</span></span><br><span class="line"><span class="comment"> * ]</span></span><br><span class="line"><span class="comment"> * Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(lists.size()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">int</span> k=lists.size();</span><br><span class="line">        <span class="keyword">while</span>(k&gt;<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> n=(k+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k/<span class="number">2</span>;i++)</span><br><span class="line">                lists[i]=merge2List2(lists[i],lists[i+n]);</span><br><span class="line">            k=n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lists[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode*<span class="title">merge2List2</span><span class="params">(ListNode*l1,ListNode*l2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l1==<span class="literal">NULL</span>)<span class="keyword">return</span> l2;</span><br><span class="line">        <span class="keyword">if</span>(l2==<span class="literal">NULL</span>)<span class="keyword">return</span> l1;</span><br><span class="line">        ListNode *ans1=<span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">        ListNode *ans = ans1;  </span><br><span class="line">        <span class="keyword">while</span>(l1!=<span class="literal">NULL</span>&amp;&amp;l2!=<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(l1-&gt;val&lt;l2-&gt;val)</span><br><span class="line">            &#123;</span><br><span class="line">                ans-&gt;next=l1;</span><br><span class="line">                l1=l1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                ans-&gt;next=l2;</span><br><span class="line">                l2=l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            ans=ans-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l1==<span class="literal">NULL</span>)ans-&gt;next=l2;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(l2==<span class="literal">NULL</span>)</span><br><span class="line">            ans-&gt;next=l1;</span><br><span class="line">        <span class="keyword">return</span> ans1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre class=" language-C++"><code class="language-C++">/*
+ * [23] Merge k Sorted Lists
+ *
+ * https://leetcode.com/problems/merge-k-sorted-lists/description/
+ *
+ * algorithms
+ * Hard (30.96%)
+ * Total Accepted:    291.4K
+ * Total Submissions: 938.7K
+ * Testcase Example:  '[[1,4,5],[1,3,4],[2,6]]'
+ *
+ * Merge k sorted linked lists and return it as one sorted list. Analyze and
+ * describe its complexity.
+ * 
+ * Example:
+ * 
+ * 
+ * Input:
+ * [
+ * 1->4->5,
+ * 1->3->4,
+ * 2->6
+ * ]
+ * Output: 1->1->2->3->4->4->5->6
+ * 
+ * 
+ */
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) 
+    {
+       if(lists.size()==0)
+            return NULL;
+        int k=lists.size();
+        while(k>1)
+        {
+            int n=(k+1)/2;
+            for(int i=0;i<k/2;i++)
+                lists[i]=merge2List2(lists[i],lists[i+n]);
+            k=n;
+        }
+        return lists[0];
+    }
+    ListNode*merge2List2(ListNode*l1,ListNode*l2)
+    {
+        if(l1==NULL)return l2;
+        if(l2==NULL)return l1;
+        ListNode *ans1=new ListNode(-1);
+        ListNode *ans = ans1;  
+        while(l1!=NULL&&l2!=NULL)
+        {
+            if(l1->val<l2->val)
+            {
+                ans->next=l1;
+                l1=l1->next;
+            }
+            else
+            {
+                ans->next=l2;
+                l2=l2->next;
+            }
+            ans=ans->next;
+        }
+        if(l1==NULL)ans->next=l2;
+        else if(l2==NULL)
+            ans->next=l1;
+        return ans1->next;
+    }
+};
+
+</code></pre>
 
             </div>
             <hr/>

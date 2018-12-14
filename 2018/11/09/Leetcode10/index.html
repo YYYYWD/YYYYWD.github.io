@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -326,7 +326,130 @@
             <div id="articleContent">
                 <h1 id="Leetcode-10-Regular-Expression-Matching"><a href="#Leetcode-10-Regular-Expression-Matching" class="headerlink" title="Leetcode 10 Regular Expression Matching"></a>Leetcode 10 Regular Expression Matching</h1><p>  √ Accepted<br>  √ 447/447 cases passed (4 ms)<br>  √ Your runtime beats 71.84 % of cpp submissions</p>
 <a id="more"></a>
-<figure class="highlight plain"><figcaption><span>Leetcode-22</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * [10] Regular Expression Matching</span><br><span class="line"> *</span><br><span class="line"> * https://leetcode.com/problems/regular-expression-matching/description/</span><br><span class="line"> *</span><br><span class="line"> * algorithms</span><br><span class="line"> * Hard (24.44%)</span><br><span class="line"> * Total Accepted:    240.5K</span><br><span class="line"> * Total Submissions: 984.1K</span><br><span class="line"> * Testcase Example:  &apos;&quot;aa&quot;\n&quot;a&quot;&apos;</span><br><span class="line"> *</span><br><span class="line"> * Given an input string (s) and a pattern (p), implement regular expression</span><br><span class="line"> * matching with support for &apos;.&apos; and &apos;*&apos;.</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * &apos;.&apos; Matches any single character.</span><br><span class="line"> * &apos;*&apos; Matches zero or more of the preceding element.</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * The matching should cover the entire input string (not partial).</span><br><span class="line"> * </span><br><span class="line"> * Note:</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * s could be empty and contains only lowercase letters a-z.</span><br><span class="line"> * p could be empty and contains only lowercase letters a-z, and characters</span><br><span class="line"> * like . or *.</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Example 1:</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Input:</span><br><span class="line"> * s = &quot;aa&quot;</span><br><span class="line"> * p = &quot;a&quot;</span><br><span class="line"> * Output: false</span><br><span class="line"> * Explanation: &quot;a&quot; does not match the entire string &quot;aa&quot;.</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Example 2:</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Input:</span><br><span class="line"> * s = &quot;aa&quot;</span><br><span class="line"> * p = &quot;a*&quot;</span><br><span class="line"> * Output: true</span><br><span class="line"> * Explanation: &apos;*&apos; means zero or more of the precedeng element, &apos;a&apos;.</span><br><span class="line"> * Therefore, by repeating &apos;a&apos; once, it becomes &quot;aa&quot;.</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Example 3:</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Input:</span><br><span class="line"> * s = &quot;ab&quot;</span><br><span class="line"> * p = &quot;.*&quot;</span><br><span class="line"> * Output: true</span><br><span class="line"> * Explanation: &quot;.*&quot; means &quot;zero or more (*) of any character (.)&quot;.</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Example 4:</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Input:</span><br><span class="line"> * s = &quot;aab&quot;</span><br><span class="line"> * p = &quot;c*a*b&quot;</span><br><span class="line"> * Output: true</span><br><span class="line"> * Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore</span><br><span class="line"> * it matches &quot;aab&quot;.</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Example 5:</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> * Input:</span><br><span class="line"> * s = &quot;mississippi&quot;</span><br><span class="line"> * p = &quot;mis*is*p*.&quot;</span><br><span class="line"> * Output: false</span><br><span class="line"> * </span><br><span class="line"> * </span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isMatch(string s, string p) &#123;</span><br><span class="line">        int lens=s.size();</span><br><span class="line">        int lenp=p.size();</span><br><span class="line">        bool **dp=new bool*[lens+2];</span><br><span class="line">        for(int i=0;i&lt;lens+2;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i]=new bool[lenp+2];</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;lens+2;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j=0;j&lt;lenp+2;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                dp[i][j]=false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[0][0]=true;</span><br><span class="line"></span><br><span class="line">        for(int i=1;i&lt;lenp;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(p[i]==&apos;*&apos;&amp;&amp;dp[0][i-1])</span><br><span class="line">                dp[0][i+1]=true;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;lens;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j=0;j&lt;lenp;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(s[i]==p[j]||p[j]==&apos;.&apos;)</span><br><span class="line">                    dp[i+1][j+1]=dp[i][j];</span><br><span class="line">                else if(p[j]==&apos;*&apos;)</span><br><span class="line">                &#123;</span><br><span class="line">                    if(p[j-1]!=s[i]&amp;&amp;p[j-1]!=&apos;.&apos;)</span><br><span class="line">                        dp[i+1][j+1]=dp[i+1][j-1];</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        dp[i+1][j+1]=(dp[i+1][j]//表示*匹配了1个字符</span><br><span class="line">                        ||dp[i][j+1]//表示*匹配了多个字符</span><br><span class="line">                        ||dp[i+1][j-1]);//表示*匹配了0个字符</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[lens][lenp];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>`</code>layout: Leetcode-22<br>/*</p>
+<ul>
+<li>[10] Regular Expression Matching<br>*</li>
+<li><a href="https://leetcode.com/problems/regular-expression-matching/description/" target="_blank" rel="noopener">https://leetcode.com/problems/regular-expression-matching/description/</a><br>*</li>
+<li>algorithms</li>
+<li>Hard (24.44%)</li>
+<li>Total Accepted:    240.5K</li>
+<li>Total Submissions: 984.1K</li>
+<li>Testcase Example:  ‘“aa”\n”a”‘<br>*</li>
+<li>Given an input string (s) and a pattern (p), implement regular expression</li>
+<li>matching with support for ‘.’ and ‘*’.</li>
+<li></li>
+<li></li>
+<li>‘.’ Matches any single character.</li>
+<li>‘*’ Matches zero or more of the preceding element.</li>
+<li></li>
+<li></li>
+<li>The matching should cover the entire input string (not partial).</li>
+<li></li>
+<li>Note:</li>
+<li></li>
+<li></li>
+<li>s could be empty and contains only lowercase letters a-z.</li>
+<li>p could be empty and contains only lowercase letters a-z, and characters</li>
+<li>like . or *.</li>
+<li></li>
+<li></li>
+<li>Example 1:</li>
+<li></li>
+<li></li>
+<li>Input:</li>
+<li>s = “aa”</li>
+<li>p = “a”</li>
+<li>Output: false</li>
+<li>Explanation: “a” does not match the entire string “aa”.</li>
+<li></li>
+<li></li>
+<li>Example 2:</li>
+<li></li>
+<li></li>
+<li>Input:</li>
+<li>s = “aa”</li>
+<li>p = “a*”</li>
+<li>Output: true</li>
+<li>Explanation: ‘*’ means zero or more of the precedeng element, ‘a’.</li>
+<li>Therefore, by repeating ‘a’ once, it becomes “aa”.</li>
+<li></li>
+<li></li>
+<li>Example 3:</li>
+<li></li>
+<li></li>
+<li>Input:</li>
+<li>s = “ab”</li>
+<li>p = “.*”</li>
+<li>Output: true</li>
+<li>Explanation: “.<em>“ means “zero or more (</em>) of any character (.)”.</li>
+<li></li>
+<li></li>
+<li>Example 4:</li>
+<li></li>
+<li></li>
+<li>Input:</li>
+<li>s = “aab”</li>
+<li>p = “c<em>a</em>b”</li>
+<li>Output: true</li>
+<li>Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore</li>
+<li>it matches “aab”.</li>
+<li></li>
+<li></li>
+<li>Example 5:</li>
+<li></li>
+<li></li>
+<li>Input:</li>
+<li>s = “mississippi”</li>
+<li>p = “mis<em>is</em>p*.”</li>
+<li>Output: false</li>
+<li></li>
+<li><p>*/<br>class Solution {<br>public:<br> bool isMatch(string s, string p) {</p>
+<pre><code> int lens=s.size();
+ int lenp=p.size();
+ bool **dp=new bool*[lens+2];
+ for(int i=0;i&lt;lens+2;i++)
+ {
+     dp[i]=new bool[lenp+2];
+ }
+ for(int i=0;i&lt;lens+2;i++)
+ {
+     for(int j=0;j&lt;lenp+2;j++)
+     {
+         dp[i][j]=false;
+     }
+ }
+ dp[0][0]=true;
+
+ for(int i=1;i&lt;lenp;i++)
+ {
+     if(p[i]==&#39;*&#39;&amp;&amp;dp[0][i-1])
+         dp[0][i+1]=true;
+ }
+ for(int i=0;i&lt;lens;i++)
+ {
+     for(int j=0;j&lt;lenp;j++)
+     {
+         if(s[i]==p[j]||p[j]==&#39;.&#39;)
+             dp[i+1][j+1]=dp[i][j];
+         else if(p[j]==&#39;*&#39;)
+         {
+             if(p[j-1]!=s[i]&amp;&amp;p[j-1]!=&#39;.&#39;)
+                 dp[i+1][j+1]=dp[i+1][j-1];
+             else
+             {
+                 dp[i+1][j+1]=(dp[i+1][j]//表示*匹配了1个字符
+                 ||dp[i][j+1]//表示*匹配了多个字符
+                 ||dp[i+1][j-1]);//表示*匹配了0个字符
+             }
+         }
+     }
+ }
+ return dp[lens][lenp];
+</code></pre><p> }<br>};</p>
+</li>
+</ul>
+<p><code>`</code></p>
+
             </div>
             <hr/>
 

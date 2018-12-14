@@ -12,7 +12,9 @@
 选择排序时间复杂度O（n*n）
 空间复杂度O(1)
 不稳定
-123456789101112131415void select_sort(vector&amp;lt;int&amp;gt;&amp;amp;a)&amp;#12">
+void select_sort(vector&amp;a)
+{
+    for(int i=0;i">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -32,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -332,23 +334,124 @@
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>时间复杂度O（n*n）</p>
 <p>空间复杂度O(1)</p>
 <p>不稳定</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">select_sort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.size();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> min=i;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;a.size();j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[j]&lt;a[min])</span><br><span class="line">			&#123;</span><br><span class="line">				min=j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		swap(a,i,min);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">void select_sort(vector<int>&a)
+{
+    for(int i=0;i<a.size();i++)
+    {
+        int min=i;
+        for(int j=i+1;j<a.size();j++)
+        {
+            if(a[j]<a[min])
+            {
+                min=j;
+            }
+        } 
+        swap(a,i,min);
+    }
+}
+</code></pre>
 <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>时间复杂度O（n*n）</p>
 <p>空间复杂度O(1)</p>
 <p>稳定</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">maopao_sort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;a)</span><span class="comment">//冒泡排序 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> is_change=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=a.size()<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;!is_change;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		is_change=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])</span><br><span class="line">			&#123;</span><br><span class="line">				is_change=<span class="number">0</span>;</span><br><span class="line">				swap(a,j,j+<span class="number">1</span>);	</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-C++"><code class="language-C++">void maopao_sort(vector<int>&a)//冒泡排序 
+{
+    bool is_change=0;
+    for(int i=a.size()-1;i>=0&&!is_change;i--)
+    {
+        is_change=1;
+        for(int j=0;j<i;j++)
+        {
+            if(a[j]>a[j+1])
+            {
+                is_change=0;
+                swap(a,j,j+1);    
+            }    
+        }
+    }
+}
+</code></pre>
 <h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>时间复杂度O（n*n）</p>
 <p>空间复杂度O(1)</p>
 <p>稳定</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">charu_sort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;a)</span><span class="comment">//插入排序 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;a.size();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&gt;<span class="number">0</span>&amp;&amp;(a[j]&lt;a[j<span class="number">-1</span>]);j--)</span><br><span class="line">		&#123;</span><br><span class="line">			swap(a,j,j<span class="number">-1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">void charu_sort(vector<int>&a)//插入排序 
+{
+    for(int i=1;i<a.size();i++)
+    {
+        for(int j=i;j>0&&(a[j]<a[j-1]);j--)
+        {
+            swap(a,j,j-1);
+        }
+    }
+}
+</code></pre>
 <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>时间复杂度O（n*n）</p>
 <p>空间复杂度O(M)</p>
 <p>稳定</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> l,<span class="keyword">int</span> m,<span class="keyword">int</span> h)</span> <span class="comment">//归并排序 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=l,j=m+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=l;k&lt;=h;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		b[k]=a[k]; <span class="comment">//数组复制到辅助数组 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=l;k&lt;=h;k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(i&gt;m)</span><br><span class="line">			a[k]=b[j++];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(j&gt;h)</span><br><span class="line">			a[k]=b[i++];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(b[i]&lt;=b[j])</span><br><span class="line">		&#123;</span><br><span class="line">			a[k]=b[i++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			a[k]=b[j++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//将一个大数组分成两个小数组去求解。</span></span><br><span class="line"><span class="comment">//因为每次都将问题对半分成两个子问题，这种对半分的算法复杂度一般为 O(NlogN)。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge_sort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> l ,<span class="keyword">int</span> h)</span><span class="comment">//自顶向下归并排序 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(h&lt;=l)</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">int</span> mid=l+(h-l)/<span class="number">2</span>;</span><br><span class="line">	merge_sort(a,l,mid);</span><br><span class="line">	merge_sort(a,mid+<span class="number">1</span>,h);</span><br><span class="line">	merge(a,l,mid,h);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">int b[10];
+void merge(int a[],int l,int m,int h) //归并排序 
+{
+    int i=l,j=m+1;
+    for(int k=l;k<=h;k++)
+    {
+        b[k]=a[k]; //数组复制到辅助数组 
+    }
+    for(int k=l;k<=h;k++)
+    {
+        if(i>m)
+            a[k]=b[j++];
+        else if(j>h)
+            a[k]=b[i++];
+        else if(b[i]<=b[j])
+        {
+            a[k]=b[i++];
+        }
+        else
+        {
+            a[k]=b[j++];
+        }
+    }
+}
+//将一个大数组分成两个小数组去求解。
+//因为每次都将问题对半分成两个子问题，这种对半分的算法复杂度一般为 O(NlogN)。
+void merge_sort(int a[],int l ,int h)//自顶向下归并排序 
+{
+    if(h<=l)
+        return ;
+    int mid=l+(h-l)/2;
+    merge_sort(a,l,mid);
+    merge_sort(a,mid+1,h);
+    merge(a,l,mid,h);
+}
+</code></pre>
 <h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>时间复杂度O（n*log(n)）</p>
 <p>空间复杂度O(logN)-O(logN)</p>
 <p>不稳定</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> l,<span class="keyword">int</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=l,j=h+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> divide_num=a[l];</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>((a[++i]&lt;divide_num)&amp;&amp;i!=h);</span><br><span class="line">		<span class="keyword">while</span>((a[--j]&gt;divide_num)&amp;&amp;j!=l);</span><br><span class="line">		<span class="keyword">if</span>(i&gt;=j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">break</span>;	</span><br><span class="line">		&#125;	</span><br><span class="line">		swap(a,i,j);</span><br><span class="line">	&#125; </span><br><span class="line">	swap(a,l,j);</span><br><span class="line">	<span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> l,<span class="keyword">int</span> h)</span><span class="comment">//当前的快排只是取最左边的第一个数作为划分点。 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l&gt;=h)</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">int</span> j=partition(a,l,h);</span><br><span class="line">	quick_sort(a,l,j<span class="number">-1</span>);</span><br><span class="line">	quick_sort(a,j+<span class="number">1</span>,h);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">int partition(int a[],int l,int h)
+{
+    int i=l,j=h+1;
+    int divide_num=a[l];
+    while(1)
+    {
+        while((a[++i]<divide_num)&&i!=h);
+        while((a[--j]>divide_num)&&j!=l);
+        if(i>=j)
+        {
+            break;    
+        }    
+        swap(a,i,j);
+    } 
+    swap(a,l,j);
+    return j;
+}
+void quick_sort(int a[],int l,int h)//当前的快排只是取最左边的第一个数作为划分点。 
+{
+    if(l>=h)
+        return ;
+    int j=partition(a,l,h);
+    quick_sort(a,l,j-1);
+    quick_sort(a,j+1,h);    
+}
+</code></pre>
 <h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p>不稳定</p>
 <h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>时间复杂度O（n*log（n））</p>
 <p>空间复杂度O(1)</p>
@@ -604,12 +707,12 @@ get请求在url中传递的参数是有长度限制的，而post没有。
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/服务器/" target="_blank">
-                        <span class="chip bg-color">服务器</span>
-                    </a>
-                    
                     <a href="/tags/TCP/" target="_blank">
                         <span class="chip bg-color">TCP</span>
+                    </a>
+                    
+                    <a href="/tags/服务器/" target="_blank">
+                        <span class="chip bg-color">服务器</span>
                     </a>
                     
                 </div>

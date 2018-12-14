@@ -7,7 +7,16 @@
     <meta charset="utf-8">
     <meta name="keywords" content="TCP/IP 第一章, YYYYWD">
     <meta name="description" content="TCP/IP网络编程 第一章创建套接字的过程
-服务器端：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505">
+服务器端：#include
+#include
+#include
+#include
+#include
+#include
+
+void error_handing(char *message)
+{
+ ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -27,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -326,18 +335,143 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="TCP-IP网络编程-第一章"><a href="#TCP-IP网络编程-第一章" class="headerlink" title="TCP/IP网络编程 第一章"></a>TCP/IP网络编程 第一章</h1><h2 id="创建套接字的过程"><a href="#创建套接字的过程" class="headerlink" title="创建套接字的过程"></a>创建套接字的过程</h2><a id="more"></a>
-<h3 id="服务器端："><a href="#服务器端：" class="headerlink" title="服务器端："></a>服务器端：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">error_handing</span><span class="params">(<span class="keyword">char</span> *message)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">fputs</span>(message,<span class="built_in">stderr</span>);</span><br><span class="line">    fputc(<span class="string">'\n'</span>,<span class="built_in">stderr</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> serv_sock;</span><br><span class="line">    <span class="keyword">int</span> clnt_sock;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">clnt_addr</span>;</span></span><br><span class="line">    <span class="keyword">socklen_t</span> clnt_addr_size;</span><br><span class="line">    <span class="keyword">char</span> message[]=<span class="string">"Hello world!"</span>;</span><br><span class="line">    <span class="keyword">if</span> (argc!=<span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Usage:%s &lt;port&gt;\n"</span>,argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    serv_sock=socket(PF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(serv_sock==<span class="number">-1</span>)</span><br><span class="line">        error_handing(<span class="string">"socker() error!"</span>);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;serv_addr,<span class="number">0</span>,<span class="keyword">sizeof</span>(serv_addr));</span><br><span class="line"></span><br><span class="line">    serv_addr.sin_family=AF_INET;</span><br><span class="line">    serv_addr.sin_addr.s_addr=htonl(INADDR_ANY);<span class="comment">//IP</span></span><br><span class="line">    serv_addr.sin_port=htons(atoi(argv[<span class="number">1</span>])); <span class="comment">//port</span></span><br><span class="line">    <span class="keyword">if</span>(bind(serv_sock,(struct sockaddr*)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr))==<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        error_handing(<span class="string">"bind()!error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(listen(serv_sock,<span class="number">5</span>)==<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">           error_handing(<span class="string">"listen()!error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    clnt_addr_size=<span class="keyword">sizeof</span>(clnt_addr);</span><br><span class="line">    clnt_sock=accept(serv_sock,(struct sockaddr*)&amp;clnt_addr,&amp;clnt_addr_size);</span><br><span class="line">    <span class="keyword">if</span>(clnt_sock==<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">            error_handing(<span class="string">"accept()!error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    write(clnt_sock,message,<span class="keyword">sizeof</span>(message));</span><br><span class="line">    close(clnt_sock);</span><br><span class="line">    close(serv_sock);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="服务器端："><a href="#服务器端：" class="headerlink" title="服务器端："></a>服务器端：</h3><pre class=" language-c++"><code class="language-c++">#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<unistd.h>
+#include<arpa/inet.h>
+#include<sys/socket.h>
+
+void error_handing(char *message)
+{
+    fputs(message,stderr);
+    fputc('\n',stderr);
+    exit(1);
+}
+int main(int argc, char const *argv[])
+{
+    int serv_sock;
+    int clnt_sock;
+
+    struct sockaddr_in serv_addr;
+    struct sockaddr_in clnt_addr;
+    socklen_t clnt_addr_size;
+    char message[]="Hello world!";
+    if (argc!=2)
+    {
+        printf("Usage:%s <port>\n",argv[0]);
+        exit(1);
+    }
+    serv_sock=socket(PF_INET,SOCK_STREAM,0);
+    if(serv_sock==-1)
+        error_handing("socker() error!");
+    memset(&serv_addr,0,sizeof(serv_addr));
+
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr=htonl(INADDR_ANY);//IP
+    serv_addr.sin_port=htons(atoi(argv[1])); //port
+    if(bind(serv_sock,(struct sockaddr*)&serv_addr,sizeof(serv_addr))==-1)
+    {
+        error_handing("bind()!error!");
+    }
+    if(listen(serv_sock,5)==-1)
+    {
+           error_handing("listen()!error!");
+    }
+    clnt_addr_size=sizeof(clnt_addr);
+    clnt_sock=accept(serv_sock,(struct sockaddr*)&clnt_addr,&clnt_addr_size);
+    if(clnt_sock==-1)
+    {
+            error_handing("accept()!error!");
+    }
+    write(clnt_sock,message,sizeof(message));
+    close(clnt_sock);
+    close(serv_sock);
+    return 0;
+}
+
+</code></pre>
 <ul>
 <li>先创建socket套接字</li>
 <li>用bind分配IP和端口号</li>
 <li>用listen函数将socket转换成可以接收连接的状态</li>
 <li>用accept函数接收请求连接</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span></span></span><br><span class="line"><span class="class">  &#123;</span></span><br><span class="line">    __SOCKADDR_COMMON (sin_);</span><br><span class="line">    <span class="keyword">in_port_t</span> sin_port;			<span class="comment">/* Port number.  */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span>		<span class="comment">/* Internet address.  */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Pad to size of `struct sockaddr'.  */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> sin_zero[<span class="keyword">sizeof</span> (struct sockaddr) -</span><br><span class="line">			   __SOCKADDR_COMMON_SIZE -</span><br><span class="line">			   <span class="keyword">sizeof</span> (<span class="keyword">in_port_t</span>) -</span><br><span class="line">			   <span class="keyword">sizeof</span> (struct in_addr)];</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span></span></span><br><span class="line"><span class="class">  &#123;</span></span><br><span class="line">    __SOCKADDR_COMMON (sa_);	<span class="comment">/* Common data: address family and length.  */</span></span><br><span class="line">    <span class="keyword">char</span> sa_data[<span class="number">14</span>];		<span class="comment">/* Address data.  */</span></span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c++"><code class="language-c++">struct sockaddr_in
+  {
+    __SOCKADDR_COMMON (sin_);
+    in_port_t sin_port;            /* Port number.  */
+    struct in_addr sin_addr;        /* Internet address.  */
+
+    /* Pad to size of `struct sockaddr'.  */
+    unsigned char sin_zero[sizeof (struct sockaddr) -
+               __SOCKADDR_COMMON_SIZE -
+               sizeof (in_port_t) -
+               sizeof (struct in_addr)];
+  };
+
+
+struct sockaddr
+  {
+    __SOCKADDR_COMMON (sa_);    /* Common data: address family and length.  */
+    char sa_data[14];        /* Address data.  */
+  };
+
+</code></pre>
 <p>struct sockaddr 是通用的套接字地址，而struct sockaddr_in 是Internet环境下的套接字地址形式。两者的长度一样，都是16字节。两者是并列结构，指向sockaddr_in结构的指针也可以指向sockaddr。</p>
 <p><strong>一般情况下，需要把sockaddr_in结构强制转换成sockaddr结构，再传入系统函数中</strong> </p>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">error_handing</span><span class="params">(<span class="keyword">char</span> *message)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">fputs</span>(message,<span class="built_in">stderr</span>);</span><br><span class="line">    fputc(<span class="string">'\n'</span>,<span class="built_in">stderr</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sock;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>;</span></span><br><span class="line">    <span class="keyword">char</span> message[<span class="number">30</span>];</span><br><span class="line">    <span class="keyword">int</span> str_len;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(argc!=<span class="number">3</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Usage:%s &lt;IP&gt; &lt;port&gt;\n"</span>,argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    sock=socket(PF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(sock==<span class="number">-1</span>)</span><br><span class="line">        error_handing(<span class="string">"socket()!error!"</span>);</span><br><span class="line">    <span class="built_in">memset</span>(&amp;serv_addr,<span class="number">0</span>,<span class="keyword">sizeof</span>(serv_addr));</span><br><span class="line">    serv_addr.sin_family=AF_INET;</span><br><span class="line">    serv_addr.sin_addr.s_addr=inet_addr(argv[<span class="number">1</span>]);</span><br><span class="line">    serv_addr.sin_port=htons(atoi(argv[<span class="number">2</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(connect(sock,(struct sockaddr*)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr))==<span class="number">-1</span>)</span><br><span class="line">        error_handing(<span class="string">"connect() error!"</span>);</span><br><span class="line">    </span><br><span class="line">    str_len=read(sock,message,<span class="keyword">sizeof</span>(message)<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(str_len==<span class="number">-1</span>)</span><br><span class="line">        error_handing(<span class="string">"read()!error!"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Message from server : %s \n"</span>,message);</span><br><span class="line">    close(sock);</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *path,<span class="keyword">int</span> flag)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="keyword">ssize_t</span> write(<span class="keyword">int</span> fd,<span class="keyword">const</span> <span class="keyword">void</span> *buf,<span class="keyword">size_t</span> nbytes);</span><br><span class="line"><span class="keyword">ssize_t</span> read(<span class="keyword">int</span> fd,<span class="keyword">void</span> *buf,<span class="keyword">size_t</span> nbytes);</span><br></pre></td></tr></table></figure>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><pre class=" language-C++"><code class="language-C++">#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<unistd.h>
+#include<arpa/inet.h>
+#include<sys/socket.h>
+
+void error_handing(char *message)
+{
+    fputs(message,stderr);
+    fputc('\n',stderr);
+    exit(1);
+}
+
+int main(int argc, char const *argv[])
+{
+    int sock;
+    struct sockaddr_in serv_addr;
+    char message[30];
+    int str_len;
+
+    if(argc!=3)
+    {
+        printf("Usage:%s <IP> <port>\n",argv[0]);
+        exit(1);
+    }
+    sock=socket(PF_INET,SOCK_STREAM,0);
+    if(sock==-1)
+        error_handing("socket()!error!");
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr=inet_addr(argv[1]);
+    serv_addr.sin_port=htons(atoi(argv[2]));
+
+    if(connect(sock,(struct sockaddr*)&serv_addr,sizeof(serv_addr))==-1)
+        error_handing("connect() error!");
+
+    str_len=read(sock,message,sizeof(message)-1);
+    if(str_len==-1)
+        error_handing("read()!error!");
+    printf("Message from server : %s \n",message);
+    close(sock);
+
+
+    return 0;
+}
+</code></pre>
+<pre class=" language-C++"><code class="language-C++">int open(const char *path,int flag);
+int close(int fd);
+ssize_t write(int fd,const void *buf,size_t nbytes);
+ssize_t read(int fd,void *buf,size_t nbytes);
+</code></pre>
 
             </div>
             <hr/>
@@ -511,7 +645,10 @@
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">删除数组中相同的元素
-leetcode 2612345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535</div>
+leetcode 26/*
+ * [26] Remove Duplicates from Sorted Array
+ *
+ * https://leetcode.com/problems/remove-duplicat</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-15

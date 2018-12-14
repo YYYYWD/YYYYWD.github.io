@@ -7,7 +7,10 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Delete repeated element, YYYYWD">
     <meta name="description" content="删除数组中相同的元素
-leetcode 2612345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535">
+leetcode 26/*
+ * [26] Remove Duplicates from Sorted Array
+ *
+ * https://leetcode.com/problems/remove-duplicat">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -27,7 +30,7 @@ leetcode 26123456789101112131415161718192021222324252627282930313233343536373839
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -326,8 +329,166 @@ leetcode 26123456789101112131415161718192021222324252627282930313233343536373839
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="删除数组中相同的元素"><a href="#删除数组中相同的元素" class="headerlink" title="删除数组中相同的元素"></a>删除数组中相同的元素</h1><a id="more"></a>
-<h2 id="leetcode-26"><a href="#leetcode-26" class="headerlink" title="leetcode 26"></a>leetcode 26</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [26] Remove Duplicates from Sorted Array</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Easy (38.30%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    454.3K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 1.2M</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '[1,1,2]'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Given a sorted array nums, remove the duplicates in-place such that each</span></span><br><span class="line"><span class="comment"> * element appear only once and return the new length.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Do not allocate extra space for another array, you must do this by modifying</span></span><br><span class="line"><span class="comment"> * the input array in-place with O(1) extra memory.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 1:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Given nums = [1,1,2],</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Your function should return length = 2, with the first two elements of nums</span></span><br><span class="line"><span class="comment"> * being 1 and 2 respectively.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * It doesn't matter what you leave beyond the returned length.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 2:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Given nums = [0,0,1,1,1,2,2,3,3,4],</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Your function should return length = 5, with the first five elements of nums</span></span><br><span class="line"><span class="comment"> * being modified to 0, 1, 2, 3, and 4 respectively.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * It doesn't matter what values are set beyond the returned length.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Clarification:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Confused why the returned value is an integer but your answer is an array?</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Note that the input array is passed in by reference, which means</span></span><br><span class="line"><span class="comment"> * modification to the input array will be known to the caller as well.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Internally you can think of this:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * // nums is passed in by reference. (i.e., without making a copy)</span></span><br><span class="line"><span class="comment"> * int len = removeDuplicates(nums);</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * // any modification to nums in your function would be known by the caller.</span></span><br><span class="line"><span class="comment"> * // using the length returned by your function, it prints the first len</span></span><br><span class="line"><span class="comment"> * elements.</span></span><br><span class="line"><span class="comment"> * for (int i = 0; i &lt; len; i++) &#123;</span></span><br><span class="line"><span class="comment"> * print(nums[i]);</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size()&lt;<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> nums.size();</span><br><span class="line">        <span class="keyword">int</span> lens=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;nums.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]!=nums[i<span class="number">-1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                nums[lens++]=nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lens;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="Leetcode-27"><a href="#Leetcode-27" class="headerlink" title="Leetcode 27"></a>Leetcode 27</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [27] Remove Element</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/remove-element/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Easy (42.38%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    332.6K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 784.7K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '[3,2,2,3]\n3'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Given an array nums and a value val, remove all instances of that value</span></span><br><span class="line"><span class="comment"> * in-place and return the new length.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Do not allocate extra space for another array, you must do this by modifying</span></span><br><span class="line"><span class="comment"> * the input array in-place with O(1) extra memory.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * The order of elements can be changed. It doesn't matter what you leave</span></span><br><span class="line"><span class="comment"> * beyond the new length.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 1:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Given nums = [3,2,2,3], val = 3,</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Your function should return length = 2, with the first two elements of nums</span></span><br><span class="line"><span class="comment"> * being 2.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * It doesn't matter what you leave beyond the returned length.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Example 2:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Given nums = [0,1,2,2,3,0,4,2], val = 2,</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Your function should return length = 5, with the first five elements of nums</span></span><br><span class="line"><span class="comment"> * containing 0, 1, 3, 0, and 4.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Note that the order of those five elements can be arbitrary.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * It doesn't matter what values are set beyond the returned length.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Clarification:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Confused why the returned value is an integer but your answer is an array?</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Note that the input array is passed in by reference, which means</span></span><br><span class="line"><span class="comment"> * modification to the input array will be known to the caller as well.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Internally you can think of this:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * // nums is passed in by reference. (i.e., without making a copy)</span></span><br><span class="line"><span class="comment"> * int len = removeElement(nums, val);</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * // any modification to nums in your function would be known by the caller.</span></span><br><span class="line"><span class="comment"> * // using the length returned by your function, it prints the first len</span></span><br><span class="line"><span class="comment"> * elements.</span></span><br><span class="line"><span class="comment"> * for (int i = 0; i &lt; len; i++) &#123;</span></span><br><span class="line"><span class="comment"> * print(nums[i]);</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lens=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]!=val)</span><br><span class="line">            &#123;</span><br><span class="line">                nums[lens]=nums[i];</span><br><span class="line">                lens++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lens;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="leetcode-26"><a href="#leetcode-26" class="headerlink" title="leetcode 26"></a>leetcode 26</h2><pre class=" language-C++"><code class="language-C++">/*
+ * [26] Remove Duplicates from Sorted Array
+ *
+ * https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+ *
+ * algorithms
+ * Easy (38.30%)
+ * Total Accepted:    454.3K
+ * Total Submissions: 1.2M
+ * Testcase Example:  '[1,1,2]'
+ *
+ * Given a sorted array nums, remove the duplicates in-place such that each
+ * element appear only once and return the new length.
+ * 
+ * Do not allocate extra space for another array, you must do this by modifying
+ * the input array in-place with O(1) extra memory.
+ * 
+ * Example 1:
+ * 
+ * 
+ * Given nums = [1,1,2],
+ * 
+ * Your function should return length = 2, with the first two elements of nums
+ * being 1 and 2 respectively.
+ * 
+ * It doesn't matter what you leave beyond the returned length.
+ * 
+ * Example 2:
+ * 
+ * 
+ * Given nums = [0,0,1,1,1,2,2,3,3,4],
+ * 
+ * Your function should return length = 5, with the first five elements of nums
+ * being modified to 0, 1, 2, 3, and 4 respectively.
+ * 
+ * It doesn't matter what values are set beyond the returned length.
+ * 
+ * 
+ * Clarification:
+ * 
+ * Confused why the returned value is an integer but your answer is an array?
+ * 
+ * Note that the input array is passed in by reference, which means
+ * modification to the input array will be known to the caller as well.
+ * 
+ * Internally you can think of this:
+ * 
+ * 
+ * // nums is passed in by reference. (i.e., without making a copy)
+ * int len = removeDuplicates(nums);
+ * 
+ * // any modification to nums in your function would be known by the caller.
+ * // using the length returned by your function, it prints the first len
+ * elements.
+ * for (int i = 0; i < len; i++) {
+ * print(nums[i]);
+ * }
+ * 
+ */
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if(nums.size()<2)
+            return nums.size();
+        int lens=1;
+        for(int i=1;i<nums.size();i++)
+        {
+            if(nums[i]!=nums[i-1])
+            {
+                nums[lens++]=nums[i];
+            }
+        }
+        return lens;
+
+    }
+
+};
+
+</code></pre>
+<h2 id="Leetcode-27"><a href="#Leetcode-27" class="headerlink" title="Leetcode 27"></a>Leetcode 27</h2><pre class=" language-C++"><code class="language-C++">/*
+ * [27] Remove Element
+ *
+ * https://leetcode.com/problems/remove-element/description/
+ *
+ * algorithms
+ * Easy (42.38%)
+ * Total Accepted:    332.6K
+ * Total Submissions: 784.7K
+ * Testcase Example:  '[3,2,2,3]\n3'
+ *
+ * Given an array nums and a value val, remove all instances of that value
+ * in-place and return the new length.
+ * 
+ * Do not allocate extra space for another array, you must do this by modifying
+ * the input array in-place with O(1) extra memory.
+ * 
+ * The order of elements can be changed. It doesn't matter what you leave
+ * beyond the new length.
+ * 
+ * Example 1:
+ * 
+ * 
+ * Given nums = [3,2,2,3], val = 3,
+ * 
+ * Your function should return length = 2, with the first two elements of nums
+ * being 2.
+ * 
+ * It doesn't matter what you leave beyond the returned length.
+ * 
+ * 
+ * Example 2:
+ * 
+ * 
+ * Given nums = [0,1,2,2,3,0,4,2], val = 2,
+ * 
+ * Your function should return length = 5, with the first five elements of nums
+ * containing 0, 1, 3, 0, and 4.
+ * 
+ * Note that the order of those five elements can be arbitrary.
+ * 
+ * It doesn't matter what values are set beyond the returned length.
+ * 
+ * Clarification:
+ * 
+ * Confused why the returned value is an integer but your answer is an array?
+ * 
+ * Note that the input array is passed in by reference, which means
+ * modification to the input array will be known to the caller as well.
+ * 
+ * Internally you can think of this:
+ * 
+ * 
+ * // nums is passed in by reference. (i.e., without making a copy)
+ * int len = removeElement(nums, val);
+ * 
+ * // any modification to nums in your function would be known by the caller.
+ * // using the length returned by your function, it prints the first len
+ * elements.
+ * for (int i = 0; i < len; i++) {
+ * print(nums[i]);
+ * }
+ * 
+ */
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int lens=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]!=val)
+            {
+                nums[lens]=nums[i];
+                lens++;
+            }
+        }
+        return lens;
+    }
+};
+
+</code></pre>
 
             </div>
             <hr/>
@@ -504,7 +665,8 @@ leetcode 26123456789101112131415161718192021222324252627282930313233343536373839
 
 https://leetcode.com/media/original_images/31_Next_Permutation.gif
 
-123456789101112131</div>
+/*
+ * [31] Next Pe</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-16
@@ -548,7 +710,16 @@ https://leetcode.com/media/original_images/31_Next_Permutation.gif
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">TCP/IP网络编程 第一章创建套接字的过程
-服务器端：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505</div>
+服务器端：#include
+#include
+#include
+#include
+#include
+#include
+
+void error_handing(char *message)
+{
+ </div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-15
