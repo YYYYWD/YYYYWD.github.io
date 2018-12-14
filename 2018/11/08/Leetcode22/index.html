@@ -354,65 +354,7 @@
 <p>√ 8/8 cases passed (0 ms)</p>
 <p>√ Your runtime beats 31.94 % of cpp submissions )</p>
 <a id="more"></a>
-<pre class=" language-c++"><code class="language-c++">
-/*
- * [22] Generate Parentheses
- *
- * https://leetcode.com/problems/generate-parentheses/description/
- *
- * algorithms
- * Medium (50.99%)
- * Total Accepted:    261.9K
- * Total Submissions: 513.5K
- * Testcase Example:  '3'
- *
- * 
- * Given n pairs of parentheses, write a function to generate all combinations
- * of well-formed parentheses.
- * 
- * 
- * 
- * For example, given n = 3, a solution set is:
- * 
- * 
- * [
- * ⁠ "((()))",
- * ⁠ "(()())",
- * ⁠ "(())()",
- * ⁠ "()(())",
- * ⁠ "()()()"
- * ]
- * 
- */
-class Solution {
-public:
-    void backtrade(vector<string>&ans,string ans1,int left,int right)
-    {
-        if(left==0&&right==0)
-        {
-            ans.push_back(ans1);
-            return;
-        }
-        if(left>0)
-        {
-            backtrade(ans,ans1+"(",left-1,right);
-        }
-        if(right>left)
-        {
-            backtrade(ans,ans1+")",left,right-1);
-        }
-
-    }
-    vector<string> generateParenthesis(int n) {
-        vector<string> res;
-        backtrade(res,"",n,n);
-        return res;
-    }
-};
-
-
-</code></pre>
-
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * [22] Generate Parentheses</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * https://leetcode.com/problems/generate-parentheses/description/</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * algorithms</span></span><br><span class="line"><span class="comment"> * Medium (50.99%)</span></span><br><span class="line"><span class="comment"> * Total Accepted:    261.9K</span></span><br><span class="line"><span class="comment"> * Total Submissions: 513.5K</span></span><br><span class="line"><span class="comment"> * Testcase Example:  '3'</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Given n pairs of parentheses, write a function to generate all combinations</span></span><br><span class="line"><span class="comment"> * of well-formed parentheses.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * For example, given n = 3, a solution set is:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * [</span></span><br><span class="line"><span class="comment"> * ⁠ "((()))",</span></span><br><span class="line"><span class="comment"> * ⁠ "(()())",</span></span><br><span class="line"><span class="comment"> * ⁠ "(())()",</span></span><br><span class="line"><span class="comment"> * ⁠ "()(())",</span></span><br><span class="line"><span class="comment"> * ⁠ "()()()"</span></span><br><span class="line"><span class="comment"> * ]</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrade</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp;ans,<span class="built_in">string</span> ans1,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="number">0</span>&amp;&amp;right==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans.push_back(ans1);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&gt;<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            backtrade(ans,ans1+<span class="string">"("</span>,left<span class="number">-1</span>,right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(right&gt;left)</span><br><span class="line">        &#123;</span><br><span class="line">            backtrade(ans,ans1+<span class="string">")"</span>,left,right<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; generateParenthesis(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        backtrade(res,<span class="string">""</span>,n,n);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -798,5 +740,5 @@ public:
 
   
   <script type="text/javascript" src="/js/src/love.js"></script>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
 </html>

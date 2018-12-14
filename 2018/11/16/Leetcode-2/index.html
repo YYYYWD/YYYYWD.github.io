@@ -351,47 +351,7 @@
 
       
         <h1 id="Leetcode-2"><a href="#Leetcode-2" class="headerlink" title="Leetcode 2"></a>Leetcode 2</h1><a id="more"></a>
-<pre class=" language-C++"><code class="language-C++">/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode*p1=l1;
-        ListNode*p2=l2;
-        ListNode *l3=new ListNode(-1);
-        ListNode *l4=l3;
-        int temp=0;
-        while(p1!=NULL||p2!=NULL)
-        {
-            if(p1!=NULL)
-            {
-                 temp+=p1->val;  
-                 p1=p1->next;
-            }
-            if(p2!=NULL)
-            {
-              temp+=p2->val ;
-              p2=p2->next;
-            } 
-            l3->next=new ListNode(temp%10);   
-            temp=temp/10;
-            l3=l3->next;
-        }
-        if(temp!=0)
-        {
-            l3->next=new ListNode(temp);
-        }
-
-        return l4->next;
-    }
-};
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode*p1=l1;</span><br><span class="line">        ListNode*p2=l2;</span><br><span class="line">        ListNode *l3=<span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">        ListNode *l4=l3;</span><br><span class="line">        <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(p1!=<span class="literal">NULL</span>||p2!=<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(p1!=<span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                 temp+=p1-&gt;val;  </span><br><span class="line">                 p1=p1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p2!=<span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">              temp+=p2-&gt;val ;</span><br><span class="line">              p2=p2-&gt;next;</span><br><span class="line">            &#125; </span><br><span class="line">            l3-&gt;next=<span class="keyword">new</span> ListNode(temp%<span class="number">10</span>);   </span><br><span class="line">            temp=temp/<span class="number">10</span>;</span><br><span class="line">            l3=l3-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(temp!=<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            l3-&gt;next=<span class="keyword">new</span> ListNode(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> l4-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -780,5 +740,5 @@ public:
 
   
   <script type="text/javascript" src="/js/src/love.js"></script>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
 </html>
