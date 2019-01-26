@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="PAT甲级,算法笔记,STL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="STL（一）vector （1）用于存储数据  （2）用邻接表存储图   常用函数push_back(x)在vector后面添加一个元素 pop_back()在vector后面删除一个元素 size()计算vector的长度 clear（）清除vector insert（it，x）it是迭代器，在it位置插入一个元素x erase有两种用法 erase(it) 删除迭代器it处的元素 erase(">
+<meta name="keywords" content="PAT甲级,算法笔记,STL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PAT-5">
+<meta property="og:url" content="http://yyyywd.cn/2019/01/25/PAT-5/index.html">
+<meta property="og:site_name" content="YYYYWD">
+<meta property="og:description" content="STL（一）vector （1）用于存储数据  （2）用邻接表存储图   常用函数push_back(x)在vector后面添加一个元素 pop_back()在vector后面删除一个元素 size()计算vector的长度 clear（）清除vector insert（it，x）it是迭代器，在it位置插入一个元素x erase有两种用法 erase(it) 删除迭代器it处的元素 erase(">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-26T00:22:51.374Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PAT-5">
+<meta name="twitter:description" content="STL（一）vector （1）用于存储数据  （2）用邻接表存储图   常用函数push_back(x)在vector后面添加一个元素 pop_back()在vector后面删除一个元素 size()计算vector的长度 clear（）清除vector insert（it，x）it是迭代器，在it位置插入一个元素x erase有两种用法 erase(it) 删除迭代器it处的元素 erase(">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yyyywd.cn/2019/01/25/PAT-5/"/>
+
+
+
+
+
+  <title>PAT-5 | YYYYWD</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YYYYWD</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2019/01/25/PAT-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yyyywd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YYYYWD">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PAT-5</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-25T00:09:35+08:00">
+                2019-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; post.updated
+              <time itemprop="dateUpdated" datetime="2019-01-26T08:22:51+08:00" content="2019-01-26">
+                2019-01-26
+              </time>
+            </span>
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                      1.1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+              4 分钟
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="STL（一）"><a href="#STL（一）" class="headerlink" title="STL（一）"></a>STL（一）</h1><h1 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h1><ul>
+<li><p>（1）用于存储数据</p>
+</li>
+<li><p>（2）用邻接表存储图</p>
+</li>
+</ul>
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><h3 id="push-back-x"><a href="#push-back-x" class="headerlink" title="push_back(x)"></a>push_back(x)</h3><p>在vector后面添加一个元素</p>
+<h3 id="pop-back"><a href="#pop-back" class="headerlink" title="pop_back()"></a>pop_back()</h3><p>在vector后面删除一个元素</p>
+<h3 id="size"><a href="#size" class="headerlink" title="size()"></a>size()</h3><p>计算vector的长度</p>
+<h3 id="clear（）"><a href="#clear（）" class="headerlink" title="clear（）"></a>clear（）</h3><p>清除vector</p>
+<h3 id="insert（it，x）"><a href="#insert（it，x）" class="headerlink" title="insert（it，x）"></a>insert（it，x）</h3><p>it是迭代器，在it位置插入一个元素x</p>
+<h3 id="erase有两种用法"><a href="#erase有两种用法" class="headerlink" title="erase有两种用法"></a>erase有两种用法</h3><ul>
+<li>erase(it) 删除迭代器it处的元素</li>
+<li>erase(first,last) 删除[first,last)之间的元素，注意左闭右开</li>
+</ul>
+<h2 id="set-集合"><a href="#set-集合" class="headerlink" title="set 集合"></a>set 集合</h2><ul>
+<li><p>set是一个内部自动有序且不含重复元素的容器。</p>
+</li>
+<li><p>set只能够通过迭代器访问内部元素。但不能通过*（it+i）的方式访问。</p>
+<h2 id="常用函数-1"><a href="#常用函数-1" class="headerlink" title="常用函数"></a>常用函数</h2><ul>
+<li><p>insert(x)</p>
+</li>
+<li><p>find(value)：返回的是迭代器</p>
+</li>
+<li><p>erase():</p>
+<p>两种用法:(1)删除单个元素：set.erase(it) —-删除迭代器位置的元素    set.erase(value)—–删除值为value的元素 (2)删除区间元素：set.erase(first,last),first和last都是迭代器。注意还是左闭右开原则[first,last)</p>
+</li>
+<li><p>size()获取set的长度</p>
+</li>
+<li><p>clear清空set</p>
+</li>
+</ul>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><h3 id="常用函数-2"><a href="#常用函数-2" class="headerlink" title="常用函数"></a>常用函数</h3><ul>
+<li>insert(pos,string) ，在pos处插入string</li>
+<li>insert(it,it2,it3)，it是被插入字符串1的迭代器位置，it2和it3是即将插入字符串2的迭代器位置。把字符串2的[it2,it3)插入字符串1it处</li>
+<li>erase(it)，删除单个元素</li>
+<li>erase(pos,length),pos为需要删除的起始位置，length为删除的字符个数</li>
+<li>substr(pos,len)，用于截取字符串,从pos位置开始，截取长度为len的字符串</li>
+<li>find() str.find(str2)，当str2是str的字串的时候，返回其在str中第一次出现的位置。时间复杂度为O（nm)</li>
+<li><p>replace(pos,len,str2) </p>
+<p>把str1中的字符串从pos开始，到pos+len变成str2.即使len&lt;str2.length(),也可以成功添加，相当于是把pos到pos+len的字符串清空，str2从pos开始填充。</p>
+</li>
+<li><p>replace(it1,it2,str2) 类似。相当于把str1在it1和it2之间清空，变成str2.</p>
+</li>
+</ul>
+<h3 id="A1060"><a href="#A1060" class="headerlink" title="A1060"></a>A1060</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">deal</span><span class="params">(<span class="built_in">string</span> s,<span class="keyword">int</span> &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>;<span class="comment">// s的下标 </span></span><br><span class="line">	<span class="keyword">while</span>(s.length()&gt;<span class="number">0</span>&amp;&amp;s[<span class="number">0</span>]==<span class="string">'0'</span>)<span class="comment">//去掉前导零 </span></span><br><span class="line">		s.erase(s.begin());       </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(s[<span class="number">0</span>]==<span class="string">'.'</span>)     <span class="comment">//说明s是小于1的小数 </span></span><br><span class="line">	&#123;</span><br><span class="line">		s.erase(s.begin());</span><br><span class="line">		<span class="keyword">while</span>(s.length()&gt;<span class="number">0</span>&amp;&amp;s[<span class="number">0</span>]==<span class="string">'0'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			s.erase(s.begin());</span><br><span class="line">			e--;				<span class="comment">//e为指数 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(k&lt;s.length()&amp;&amp;s[k]!=<span class="string">'.'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			k++;</span><br><span class="line">			e++;   <span class="comment">//只要不碰到小数点就让指数e++	</span></span><br><span class="line">		&#125;	</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(k&lt;s.length())</span><br><span class="line">		&#123;</span><br><span class="line">			s.erase(s.begin()+k);		<span class="comment">//删除小数点 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">if</span>(s.length()==<span class="number">0</span>)   <span class="comment">//去除前导0之后长度变为0，说明这个数是0 </span></span><br><span class="line">	&#123;</span><br><span class="line">		e=<span class="number">0</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">	k=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> res;</span><br><span class="line">	<span class="keyword">while</span>(num&lt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(k&lt;s.length())res+=s[k++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			res+=<span class="string">'0'</span>;    <span class="comment">//补0</span></span><br><span class="line">		num++;<span class="comment">// 精度+1 </span></span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> res; </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s1,s2,s3,s4;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;s1&gt;&gt;s2;</span><br><span class="line">	<span class="keyword">int</span> e1=<span class="number">0</span>,e2=<span class="number">0</span>;</span><br><span class="line">	s3=deal(s1,e1);</span><br><span class="line">	s4=deal(s2,e2);</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">if</span>(s3==s4&amp;&amp;e1==e2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"YES 0."</span>&lt;&lt;s3&lt;&lt;<span class="string">"*10^"</span>&lt;&lt;e1&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"NO "</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"0."</span>&lt;&lt;s3&lt;&lt;<span class="string">"*10^"</span>&lt;&lt;e1&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"0."</span>&lt;&lt;s4&lt;&lt;<span class="string">"*10^"</span>&lt;&lt;e2&lt;&lt;<span class="built_in">endl</span>;	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>map可以将任何基本类型（包括STL容器）映射到任何基本类型（包括STL容器），map中的键是唯一的！map中是使用红黑树实现的，key会像set那样从小到大排序。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>map&lt;key,value&gt;</p>
+<h2 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h2><p>(1)通过类似于下标的方式访问，例如定义了map&lt;char,int&gt;,可以使用mp[‘c’]的方式访问。</p>
+<p>(2)通过迭代器的方式访问。</p>
+<p>定义map&lt;typename1,typename2&gt;::iterator it;</p>
+<p><strong>使用it-&gt;first来访问key，it-&gt;second访问value. </strong></p>
+<h2 id="常用函数-3"><a href="#常用函数-3" class="headerlink" title="常用函数"></a>常用函数</h2><p>（1）find（key）返回键为key的迭代器，时间复杂度为O(logN)</p>
+<p>（2） 删除单个元素erase(it)或者erase(key)</p>
+<p>​      删除多个元素 erase(first,last) ,[first,last) first和last都是<strong>迭代器</strong></p>
+<p>（3）size（）返回映射的对数</p>
+<p>（4） clear（）清除map</p>
+<h2 id="常见用途"><a href="#常见用途" class="headerlink" title="常见用途"></a>常见用途</h2><ul>
+<li>需要建立字符或者字符串到整数之间的映射题目</li>
+<li>判断大整数或者其他类型数据是否存在，可以把map当成bool数组用</li>
+<li>字符串和字符串之间的映射</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PAT甲级/" rel="tag"># PAT甲级</a>
+          
+            <a href="/tags/算法笔记/" rel="tag"># 算法笔记</a>
+          
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/24/PAT-4/" rel="next" title="PAT-4">
+                <i class="fa fa-chevron-left"></i> PAT-4
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="yyyywd" />
+            
+              <p class="site-author-name" itemprop="name">yyyywd</p>
+              <p class="site-description motion-element" itemprop="description">Try your best</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STL（一）"><span class="nav-number">1.</span> <span class="nav-text">STL（一）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vector"><span class="nav-number">2.</span> <span class="nav-text">vector</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数"><span class="nav-number">2.1.</span> <span class="nav-text">常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#push-back-x"><span class="nav-number">2.1.1.</span> <span class="nav-text">push_back(x)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pop-back"><span class="nav-number">2.1.2.</span> <span class="nav-text">pop_back()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#size"><span class="nav-number">2.1.3.</span> <span class="nav-text">size()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear（）"><span class="nav-number">2.1.4.</span> <span class="nav-text">clear（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insert（it，x）"><span class="nav-number">2.1.5.</span> <span class="nav-text">insert（it，x）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#erase有两种用法"><span class="nav-number">2.1.6.</span> <span class="nav-text">erase有两种用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-集合"><span class="nav-number">2.2.</span> <span class="nav-text">set 集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数-1"><span class="nav-number">2.3.</span> <span class="nav-text">常用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string"><span class="nav-number">2.4.</span> <span class="nav-text">string</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用函数-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">常用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A1060"><span class="nav-number">2.4.2.</span> <span class="nav-text">A1060</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#map"><span class="nav-number">3.</span> <span class="nav-text">map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问方式"><span class="nav-number">3.2.</span> <span class="nav-text">访问方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数-3"><span class="nav-number">3.3.</span> <span class="nav-text">常用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见用途"><span class="nav-number">3.4.</span> <span class="nav-text">常见用途</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yyyywd</span>
+
+  
+</div>
+
+
+  <!-- div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
