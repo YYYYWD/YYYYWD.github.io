@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="PAT甲级,算法笔记,STL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="queue元素访问队列中的元素访问只能通过front()访问队首元素，back()访问队尾元素。队列是一种先进先出的容器。 常用函数(1)push(x)把x加入队列 (2)front(),back()访问队首元素和队尾元素 (3)pop()让队首元素出队 (4)empty()判断queue是否为空，为空返回true，不为空返回false (5)size()返回队列里面元素个数 常见用途（1）BFS">
+<meta name="keywords" content="PAT甲级,算法笔记,STL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PAT-6">
+<meta property="og:url" content="http://yyyywd.cn/2019/01/26/PAT-6/index.html">
+<meta property="og:site_name" content="YYYYWD">
+<meta property="og:description" content="queue元素访问队列中的元素访问只能通过front()访问队首元素，back()访问队尾元素。队列是一种先进先出的容器。 常用函数(1)push(x)把x加入队列 (2)front(),back()访问队首元素和队尾元素 (3)pop()让队首元素出队 (4)empty()判断queue是否为空，为空返回true，不为空返回false (5)size()返回队列里面元素个数 常见用途（1）BFS">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-26T13:19:39.231Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PAT-6">
+<meta name="twitter:description" content="queue元素访问队列中的元素访问只能通过front()访问队首元素，back()访问队尾元素。队列是一种先进先出的容器。 常用函数(1)push(x)把x加入队列 (2)front(),back()访问队首元素和队尾元素 (3)pop()让队首元素出队 (4)empty()判断queue是否为空，为空返回true，不为空返回false (5)size()返回队列里面元素个数 常见用途（1）BFS">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yyyywd.cn/2019/01/26/PAT-6/"/>
+
+
+
+
+
+  <title>PAT-6 | YYYYWD</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YYYYWD</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2019/01/26/PAT-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yyyywd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YYYYWD">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PAT-6</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-26T08:24:17+08:00">
+                2019-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; post.updated
+              <time itemprop="dateUpdated" datetime="2019-01-26T21:19:39+08:00" content="2019-01-26">
+                2019-01-26
+              </time>
+            </span>
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                      1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+              4 分钟
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h1><h2 id="元素访问"><a href="#元素访问" class="headerlink" title="元素访问"></a>元素访问</h2><p>队列中的元素访问只能通过front()访问队首元素，back()访问队尾元素。队列是一种先进先出的容器。</p>
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>(1)push(x)把x加入队列</p>
+<p>(2)front(),back()访问队首元素和队尾元素</p>
+<p>(3)pop()让队首元素出队</p>
+<p>(4)empty()判断queue是否为空，为空返回true，不为空返回false</p>
+<p>(5)size()返回队列里面元素个数</p>
+<h2 id="常见用途"><a href="#常见用途" class="headerlink" title="常见用途"></a>常见用途</h2><p>（1）BFS的时候会用到</p>
+<p>（2）注意在front（）和pop（）使用之前，必须用empty（）判断队列是否为空。</p>
+<h1 id="priority-queue（优先队列）"><a href="#priority-queue（优先队列）" class="headerlink" title="priority_queue（优先队列）"></a>priority_queue（优先队列）</h1><p>优先队列底层是用堆实现的。在优先队列中，队首元素一定是当前队列中优先级最高的元素（注意！并不是说整个队列是有序的！）</p>
+<h2 id="元素访问-1"><a href="#元素访问-1" class="headerlink" title="元素访问"></a>元素访问</h2><p>优先队列和队列的不同在于优先队列没有front()和back(),只能通过top()函数来访问队首元素（也叫做堆顶元素），即优先级最高的元素。</p>
+<h2 id="常用函数-1"><a href="#常用函数-1" class="headerlink" title="常用函数"></a>常用函数</h2><p>(1)push(x)将x入队，时间复杂度为O(logN)</p>
+<p>(2)top()获取堆顶元素</p>
+<p>(3)pop()堆顶元素出队，时间复杂度为O(logN)</p>
+<p>(4)empty()判断队列是否为空。</p>
+<p>(5)size()返回队内元素总数。时间复杂度为O(1)。</p>
+<h2 id="结构体优先级的设置"><a href="#结构体优先级的设置" class="headerlink" title="结构体优先级的设置"></a>结构体优先级的设置</h2><h3 id="最大堆和最小堆的设置"><a href="#最大堆和最小堆的设置" class="headerlink" title="最大堆和最小堆的设置"></a>最大堆和最小堆的设置</h3><p>less<int>表示数字大的优先级大，greater<int>表示数字小的优先级大</int></int></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>&gt;maxn_q;<span class="comment">//最大堆,等价于priority_queue&lt;int,vector&lt;int&gt;,less&lt;int&gt; &gt;q</span></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;,greater&lt;<span class="keyword">int</span>&gt; &gt;minn_q1;<span class="comment">//最小堆</span></span><br></pre></td></tr></table></figure>
+<h3 id="优先级的设置需要重载运算符"><a href="#优先级的设置需要重载运算符" class="headerlink" title="优先级的设置需要重载运算符"></a>优先级的设置需要重载运算符</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">fruit</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="built_in">string</span> name;</span><br><span class="line">	<span class="keyword">int</span> price;</span><br><span class="line">	<span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> fruit &amp;f1,<span class="keyword">const</span> fruit &amp;f2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> f1.price&lt;f2.price;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="另一种写法"><a href="#另一种写法" class="headerlink" title="另一种写法"></a>另一种写法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cmp</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">const</span> fruit &amp;f1,<span class="keyword">const</span> fruit &amp;f2)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> f1.price&lt;f2.price;	</span><br><span class="line">	&#125;	</span><br><span class="line">&#125; ;</span><br><span class="line">priority_queue&lt;fruit,<span class="built_in">vector</span>&lt;fruit&gt;,cmp &gt;q;</span><br></pre></td></tr></table></figure>
+<h1 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h1><p>一种后进先出的容器，只能通过top（）访问。</p>
+<h2 id="常用函数-2"><a href="#常用函数-2" class="headerlink" title="常用函数"></a>常用函数</h2><p>(1)push(x)将x入栈，时间复杂度为O(1)</p>
+<p>(2)top()获取栈顶元素，时间复杂度为O(1)</p>
+<p>(3)pop()栈顶元素出队，时间复杂度为O(1)</p>
+<p>(4)empty()判断队列是否为空，时间复杂度为O(1)</p>
+<p>(5)size()返回队内元素总数。时间复杂度为O(1)。</p>
+<h2 id="常见用途-1"><a href="#常见用途-1" class="headerlink" title="常见用途"></a>常见用途</h2><p>模拟递归</p>
+<h1 id="pair"><a href="#pair" class="headerlink" title="pair"></a>pair</h1><p>可以将两个元素绑定在一起作为合成元素。可以看成是内部有两个元素的结构体。</p>
+<p>使用pair的时候，应该先添加头文件#include<utility> ,写#include<map>可以包括它。</map></utility></p>
+<h2 id="定义方式"><a href="#定义方式" class="headerlink" title="定义方式"></a>定义方式</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pair&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt;p(<span class="string">"hhhh"</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;p.first&lt;&lt;<span class="string">" "</span>&lt;&lt;p.second&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	p=make_pair(<span class="string">"aaaa"</span>,<span class="number">6</span>);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;p.first&lt;&lt;<span class="string">" "</span>&lt;&lt;p.second&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="比较方式"><a href="#比较方式" class="headerlink" title="比较方式"></a>比较方式</h2><p>可以直接用==，！=，&lt;,&gt;等符号比较大小。比较规则是先以first的大小作为标准，只有first相等了才去比较second。</p>
+<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>（1）代替二元struct</p>
+<p>（2）作为map的键值对插入</p>
+<h1 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h1><h2 id="reverse-it1-it2"><a href="#reverse-it1-it2" class="headerlink" title="reverse(it1,it2)"></a>reverse(it1,it2)</h2><p>将数组指针或者容器迭代器在[it1,it2)范围内的元素进行反转</p>
+<h2 id="next-permutation-a-a-len"><a href="#next-permutation-a-a-len" class="headerlink" title="next_permutation(a,a+len)"></a>next_permutation(a,a+len)</h2><p>给出一个序列在全排列中的下一个序列</p>
+<h2 id="fill-a-a-len-value"><a href="#fill-a-a-len-value" class="headerlink" title="fill(a,a+len,value)"></a>fill(a,a+len,value)</h2><p>填充数据。</p>
+<h2 id="sort-首元素地址，尾元素地址的下一个地址，比较函数（非必填）"><a href="#sort-首元素地址，尾元素地址的下一个地址，比较函数（非必填）" class="headerlink" title="sort(首元素地址，尾元素地址的下一个地址，比较函数（非必填）)"></a>sort(首元素地址，尾元素地址的下一个地址，比较函数（非必填）)</h2><h2 id="lower-bound-和upper-bound"><a href="#lower-bound-和upper-bound" class="headerlink" title="lower_bound()和upper_bound()"></a>lower_bound()和upper_bound()</h2><p>lower_bound(first,last,val)用来查找在数组或者容器[first,last)范围内<strong>第一个值小于等于</strong>val的元素的位置，返回的是这个位置的<strong>指针</strong>。如果是容器，则返回这个位置的<strong>迭代器</strong>。</p>
+<p>upper_bound(first,last,val)用来查找在数组或者容器[first,last)范围内<strong>第一个值大于</strong>val的元素的位置，返回的是这个位置的<strong>指针</strong>，如果是容器，则返回这个位置的<strong>迭代器</strong>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PAT甲级/" rel="tag"># PAT甲级</a>
+          
+            <a href="/tags/算法笔记/" rel="tag"># 算法笔记</a>
+          
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/25/PAT-5/" rel="next" title="PAT-5">
+                <i class="fa fa-chevron-left"></i> PAT-5
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="yyyywd" />
+            
+              <p class="site-author-name" itemprop="name">yyyywd</p>
+              <p class="site-description motion-element" itemprop="description">Try your best</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#queue"><span class="nav-number">1.</span> <span class="nav-text">queue</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#元素访问"><span class="nav-number">1.1.</span> <span class="nav-text">元素访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数"><span class="nav-number">1.2.</span> <span class="nav-text">常用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见用途"><span class="nav-number">1.3.</span> <span class="nav-text">常见用途</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#priority-queue（优先队列）"><span class="nav-number">2.</span> <span class="nav-text">priority_queue（优先队列）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#元素访问-1"><span class="nav-number">2.1.</span> <span class="nav-text">元素访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数-1"><span class="nav-number">2.2.</span> <span class="nav-text">常用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体优先级的设置"><span class="nav-number">2.3.</span> <span class="nav-text">结构体优先级的设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最大堆和最小堆的设置"><span class="nav-number">2.3.1.</span> <span class="nav-text">最大堆和最小堆的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级的设置需要重载运算符"><span class="nav-number">2.3.2.</span> <span class="nav-text">优先级的设置需要重载运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#另一种写法"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">另一种写法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stack"><span class="nav-number">3.</span> <span class="nav-text">stack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数-2"><span class="nav-number">3.1.</span> <span class="nav-text">常用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见用途-1"><span class="nav-number">3.2.</span> <span class="nav-text">常见用途</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pair"><span class="nav-number">4.</span> <span class="nav-text">pair</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义方式"><span class="nav-number">4.1.</span> <span class="nav-text">定义方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较方式"><span class="nav-number">4.2.</span> <span class="nav-text">比较方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">4.3.</span> <span class="nav-text">用途</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#algorithm"><span class="nav-number">5.</span> <span class="nav-text">algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#reverse-it1-it2"><span class="nav-number">5.1.</span> <span class="nav-text">reverse(it1,it2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next-permutation-a-a-len"><span class="nav-number">5.2.</span> <span class="nav-text">next_permutation(a,a+len)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fill-a-a-len-value"><span class="nav-number">5.3.</span> <span class="nav-text">fill(a,a+len,value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort-首元素地址，尾元素地址的下一个地址，比较函数（非必填）"><span class="nav-number">5.4.</span> <span class="nav-text">sort(首元素地址，尾元素地址的下一个地址，比较函数（非必填）)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lower-bound-和upper-bound"><span class="nav-number">5.5.</span> <span class="nav-text">lower_bound()和upper_bound()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yyyywd</span>
+
+  
+</div>
+
+
+  <!-- div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
