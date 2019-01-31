@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="YYYYWD">
 <meta property="og:description" content="TCP网络编程的第一天总结几个常用的函数 serverLinux 下123int socket(int domain,int type,int protocol);// 成功返回文件描述符，失败返回-1// domain 12int bind(int sockfd,struct sockaddr *myaddr,socklen_t addrlen);// 成返回0，失败返回-1 12int lis">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-29T16:44:47.338Z">
+<meta property="og:updated_time" content="2019-01-30T03:18:45.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP-网络编程-1">
 <meta name="twitter:description" content="TCP网络编程的第一天总结几个常用的函数 serverLinux 下123int socket(int domain,int type,int protocol);// 成功返回文件描述符，失败返回-1// domain 12int bind(int sockfd,struct sockaddr *myaddr,socklen_t addrlen);// 成返回0，失败返回-1 12int lis">
@@ -324,7 +324,7 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2019-01-30T00:44:47+08:00" content="2019-01-30">
+              <time itemprop="dateUpdated" datetime="2019-01-30T11:18:45+08:00" content="2019-01-30">
                 2019-01-30
               </time>
             </span>
@@ -352,7 +352,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                      353 字
+                      437 字
                 </span>
               
 
@@ -398,7 +398,12 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="comment">//成功返回0，失败返回-1；</span></span><br><span class="line"><span class="comment">//fd是要打开的文件描述符</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> write(<span class="keyword">int</span> fd,<span class="keyword">const</span> <span class="keyword">void</span>* buf,<span class="keyword">size_t</span> nbytes);</span><br><span class="line"><span class="comment">//成功返回写入的字节数，失败返回-1</span></span><br><span class="line"><span class="comment">//fd 显示数据传输对象的文件描述符</span></span><br><span class="line"><span class="comment">//buf 写入的数据首地址</span></span><br><span class="line"><span class="comment">// 要写入的数据字节数</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> read(<span class="keyword">int</span> fd,<span class="keyword">void</span> *buf,<span class="keyword">size_t</span> nbytes);</span><br><span class="line"><span class="comment">// fd  显示数据接收对象的文件描述符</span></span><br><span class="line"><span class="comment">// buf  要保存接受数据的首地址</span></span><br><span class="line"><span class="comment">// nbytes 要接收数据的最大字节数</span></span><br></pre></td></tr></table></figure>
-<h3 id="WINDOWS下"><a href="#WINDOWS下" class="headerlink" title="WINDOWS下"></a>WINDOWS下</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">WSAStartup</span><span class="params">(WORD wVersionRequested,LPWSADATA lpWSAData)</span></span>;</span><br><span class="line"><span class="comment">//WORD类型实际是是unsigned short类型（int只取正数）</span></span><br><span class="line"><span class="comment">//wVersionRequested，套接字版本信息，如果是1.2，1代表主版本号，2表示副版本号，应该写成0x0201。经常使用MAKEWORD（1，2）返回值构造。</span></span><br><span class="line"><span class="comment">//LPWSADATA是WSADATA的指针类型，需要传递的是WSADATA结构体的变量地址。</span></span><br></pre></td></tr></table></figure>
+<h3 id="WINDOWS下"><a href="#WINDOWS下" class="headerlink" title="WINDOWS下"></a>WINDOWS下</h3><p>以下两个函数只是初始化Winsock库。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">WSAStartup</span><span class="params">(WORD wVersionRequested,LPWSADATA lpWSAData)</span></span>;</span><br><span class="line"><span class="comment">//WORD类型实际是是unsigned short类型（int只取正数）</span></span><br><span class="line"><span class="comment">//wVersionRequested，套接字版本信息，如果是1.2，1代表主版本号，2表示副版本号，应该写成0x0201。经常使用MAKEWORD（1，2）返回值构造。</span></span><br><span class="line"><span class="comment">//LPWSADATA是WSADATA的指针类型，需要传递的是WSADATA结构体的变量地址。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">WSACleanup</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="comment">//成功返回0，失败返回SOCKET_ERROR。通常只在程序结束的时候调用</span></span><br></pre></td></tr></table></figure>
+<p>接下来介绍和Linux对应的的套接字函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SOCKET <span class="title">socket</span><span class="params">(<span class="keyword">int</span> af,<span class="keyword">int</span> type,<span class="keyword">int</span> protocol)</span></span>;</span><br><span class="line"><span class="comment">//成功返回句柄，失败返回-1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bind</span><span class="params">(SOCKET s,<span class="keyword">const</span> struct sockaddr* name,<span class="keyword">int</span> namelen)</span></span>;</span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -438,6 +443,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/30/PAT-10/" rel="prev" title="PAT-10">
+                PAT-10 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -518,7 +527,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
