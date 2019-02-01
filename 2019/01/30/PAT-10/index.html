@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="YYYYWD">
 <meta property="og:description" content="二叉树树的基本定义：  如果一棵树没有节点，称为空树。 树的层次从根节点开始算起，即根节点为第一层。 把结点的子树棵树称为结点的度，而树中结点的最大度称为树的度。 对于一个结点树为n的树，其边数一定为n-1（保证了没有环）。并且，如果满足连通，边数等于顶点数-1的结构一定是一棵树。 叶子节点的度数为0，如果一棵树中只有一个根节点也算是叶子节点。 结点的深度是指从根节点（深度为1）开始自顶而下逐层累">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-30T05:38:41.154Z">
+<meta property="og:updated_time" content="2019-01-31T05:19:40.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PAT-10">
 <meta name="twitter:description" content="二叉树树的基本定义：  如果一棵树没有节点，称为空树。 树的层次从根节点开始算起，即根节点为第一层。 把结点的子树棵树称为结点的度，而树中结点的最大度称为树的度。 对于一个结点树为n的树，其边数一定为n-1（保证了没有环）。并且，如果满足连通，边数等于顶点数-1的结构一定是一棵树。 叶子节点的度数为0，如果一棵树中只有一个根节点也算是叶子节点。 结点的深度是指从根节点（深度为1）开始自顶而下逐层累">
@@ -324,8 +324,8 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2019-01-30T13:38:41+08:00" content="2019-01-30">
-                2019-01-30
+              <time itemprop="dateUpdated" datetime="2019-01-31T13:19:40+08:00" content="2019-01-31">
+                2019-01-31
               </time>
             </span>
           
@@ -352,7 +352,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                      482 字
+                      546 字
                 </span>
               
 
@@ -401,6 +401,9 @@
 </ul>
 <h2 id="几种二叉树的定义"><a href="#几种二叉树的定义" class="headerlink" title="几种二叉树的定义"></a>几种二叉树的定义</h2><h4 id="满二叉树：每一层的结点个数都达到了当层结点能够达到的最大结点数。"><a href="#满二叉树：每一层的结点个数都达到了当层结点能够达到的最大结点数。" class="headerlink" title="满二叉树：每一层的结点个数都达到了当层结点能够达到的最大结点数。"></a>满二叉树：每一层的结点个数都达到了当层结点能够达到的最大结点数。</h4><h4 id="完全二叉树：除了最下面一层，其余各层的结点个数都达到了当层能够达到的最大结点数，且最下面一层只从左至右连续存在若干个结点。"><a href="#完全二叉树：除了最下面一层，其余各层的结点个数都达到了当层能够达到的最大结点数，且最下面一层只从左至右连续存在若干个结点。" class="headerlink" title="完全二叉树：除了最下面一层，其余各层的结点个数都达到了当层能够达到的最大结点数，且最下面一层只从左至右连续存在若干个结点。"></a>完全二叉树：除了最下面一层，其余各层的结点个数都达到了当层能够达到的最大结点数，且最下面一层只从左至右连续存在若干个结点。</h4><p>完全二叉树的存储结构：</p>
 <p>对于完全二叉树中任意一个节点编号为x，其左节点的编号为2x，右节点的编号为2x+1.  也就是说完全二叉树可以使用一个2的k次方大的数组去存储所有节点的信息，其中K为完全二叉树的最大高度，且1号位必须存储根节点（不使用0号位存储根节点）。这个数组存放顺序刚好为这个完全二叉树的层次遍历顺序。</p>
+<p>重要结论：</p>
+<p>如何判断一个结点有没有叶子节点？</p>
+<p>只需要判断这个结点的左节点2x是否大于总个数n。如果大于总个数n说明没有子结点，那么他就是叶子结点。</p>
 
       
     </div>
@@ -440,6 +443,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/31/PAT-11/" rel="prev" title="PAT-11">
+                PAT-11 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -520,7 +527,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -542,7 +549,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
