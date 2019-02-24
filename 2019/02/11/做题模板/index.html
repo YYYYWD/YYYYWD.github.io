@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="YYYYWD">
 <meta property="og:description" content="输入cin.get()用于字符数组。 123456789101112131415161718192021222324252627282930313233//用法1： cin.get(字符变量名)可以用来接收字符#include &amp;lt;iostream&amp;gt; using namespace std; main () &amp;#123; char ch; ch=cin.get();">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-22T06:54:31.939Z">
+<meta property="og:updated_time" content="2019-02-24T13:31:15.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="做题模板">
 <meta name="twitter:description" content="输入cin.get()用于字符数组。 123456789101112131415161718192021222324252627282930313233//用法1： cin.get(字符变量名)可以用来接收字符#include &amp;lt;iostream&amp;gt; using namespace std; main () &amp;#123; char ch; ch=cin.get();">
@@ -324,8 +324,8 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2019-02-22T14:54:31+08:00" content="2019-02-22">
-                2019-02-22
+              <time itemprop="dateUpdated" datetime="2019-02-24T21:31:15+08:00" content="2019-02-24">
+                2019-02-24
               </time>
             </span>
           
@@ -352,7 +352,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                      750 字
+                      791 字
                 </span>
               
 
@@ -398,6 +398,7 @@
 <h2 id="数字字符"><a href="#数字字符" class="headerlink" title="数字字符"></a>数字<-->字符</--></h2><h3 id="字符转数字（sscanf-str-”格式”-数字变量-）"><a href="#字符转数字（sscanf-str-”格式”-数字变量-）" class="headerlink" title="字符转数字（sscanf(str,”格式”,数字变量)）"></a>字符转数字（sscanf(str,”格式”,数字变量)）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[<span class="number">100</span>]=<span class="string">"123"</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">sscanf</span>(str,<span class="string">"%d"</span>,&amp;n);   <span class="comment">//把str中的内容以%d的形式写入n</span></span><br></pre></td></tr></table></figure>
 <h3 id="数字转字符-sprintf-str-”格式”-数字变量"><a href="#数字转字符-sprintf-str-”格式”-数字变量" class="headerlink" title="数字转字符(sprintf(str,”格式”,数字变量))"></a>数字转字符(sprintf(str,”格式”,数字变量))</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> n=<span class="number">123</span>;      <span class="comment">// </span></span><br><span class="line"><span class="built_in">sprintf</span>(str,<span class="string">"%d"</span>,n);   <span class="comment">//把n中的内容以%d的形式写入str</span></span><br></pre></td></tr></table></figure>
 <h2 id="string大小写转换"><a href="#string大小写转换" class="headerlink" title="string大小写转换"></a>string大小写转换</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> transform(strA.begin(), strA.end(), strA.begin(),::<span class="built_in">toupper</span>); <span class="comment">//全大写</span></span><br><span class="line">transform(strA.begin(), strA.end(), strA.begin(), ::<span class="built_in">tolower</span>);<span class="comment">//全小写</span></span><br></pre></td></tr></table></figure>
+<h1 id="string-的操作"><a href="#string-的操作" class="headerlink" title="string 的操作"></a>string 的操作</h1><h2 id="字符串截取-string-substr-start-length"><a href="#字符串截取-string-substr-start-length" class="headerlink" title="字符串截取-string.substr(start,length);"></a>字符串截取-string.substr(start,length);</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符串截取</span></span><br><span class="line"><span class="built_in">string</span> s=<span class="string">"abcdefg"</span>;</span><br><span class="line"><span class="keyword">int</span> start=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> end=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">string</span> cuts=s.substr(start,end);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;cuts&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -574,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入"><span class="nav-number">1.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cin-get"><span class="nav-number">1.1.</span> <span class="nav-text">cin.get()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cin-getline"><span class="nav-number">1.2.</span> <span class="nav-text">cin.getline()  </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getline"><span class="nav-number">1.3.</span> <span class="nav-text">getline()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字字符"><span class="nav-number">2.</span> <span class="nav-text">数字字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符转数字（sscanf-str-”格式”-数字变量-）"><span class="nav-number">2.1.</span> <span class="nav-text">字符转数字（sscanf(str,”格式”,数字变量)）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字转字符-sprintf-str-”格式”-数字变量"><span class="nav-number">2.2.</span> <span class="nav-text">数字转字符(sprintf(str,”格式”,数字变量))</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string大小写转换"><span class="nav-number">3.</span> <span class="nav-text">string大小写转换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入"><span class="nav-number">1.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cin-get"><span class="nav-number">1.1.</span> <span class="nav-text">cin.get()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cin-getline"><span class="nav-number">1.2.</span> <span class="nav-text">cin.getline()  </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getline"><span class="nav-number">1.3.</span> <span class="nav-text">getline()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字字符"><span class="nav-number">2.</span> <span class="nav-text">数字字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符转数字（sscanf-str-”格式”-数字变量-）"><span class="nav-number">2.1.</span> <span class="nav-text">字符转数字（sscanf(str,”格式”,数字变量)）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字转字符-sprintf-str-”格式”-数字变量"><span class="nav-number">2.2.</span> <span class="nav-text">数字转字符(sprintf(str,”格式”,数字变量))</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string大小写转换"><span class="nav-number">3.</span> <span class="nav-text">string大小写转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#string-的操作"><span class="nav-number"></span> <span class="nav-text">string 的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串截取-string-substr-start-length"><span class="nav-number">1.</span> <span class="nav-text">字符串截取-string.substr(start,length);</span></a></li></ol></div>
             
 
           </div>
