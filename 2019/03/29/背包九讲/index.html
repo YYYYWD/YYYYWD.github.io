@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="误差建模," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -89,25 +89,14 @@
 
 
 
-<meta name="description" content="论文总结">
-<meta name="keywords" content="误差建模">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Deblur 论文总结">
-<meta property="og:url" content="http://yyyywd.cn/2018/11/14/Deblur-论文总结/index.html">
+<meta property="og:title" content="背包九讲">
+<meta property="og:url" content="http://yyyywd.cn/2019/03/29/背包九讲/index.html">
 <meta property="og:site_name" content="YYYYWD">
-<meta property="og:description" content="论文总结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdn.net/20161010131848914">
-<meta property="og:image" content="https://img-blog.csdn.net/20161010152740621">
-<meta property="og:image" content="https://img-blog.csdn.net/20161010152826162">
-<meta property="og:image" content="https://img-blog.csdn.net/20161010153027585">
-<meta property="og:image" content="http://static.tongtianta.site/paper_image/2520f142-6ae1-11e8-8a08-6045cb803e2f/image_1_0_0.jpg">
-<meta property="og:image" content="https://img-blog.csdn.net/2018062313015729?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI4NjM1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-01-21T03:15:46.941Z">
+<meta property="og:updated_time" content="2019-03-29T11:52:23.046Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Deblur 论文总结">
-<meta name="twitter:description" content="论文总结">
-<meta name="twitter:image" content="https://img-blog.csdn.net/20161010131848914">
+<meta name="twitter:title" content="背包九讲">
 
 
 
@@ -137,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yyyywd.cn/2018/11/14/Deblur-论文总结/"/>
+  <link rel="canonical" href="http://yyyywd.cn/2019/03/29/背包九讲/"/>
 
 
 
 
 
-  <title>Deblur 论文总结 | YYYYWD</title>
+  <title>背包九讲 | YYYYWD</title>
   
 
 
@@ -290,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2018/11/14/Deblur-论文总结/">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2019/03/29/背包九讲/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yyyywd">
@@ -307,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Deblur 论文总结</h1>
+          <h1 class="post-title" itemprop="name headline">背包九讲</h1>
         
 
         <div class="post-meta">
@@ -319,8 +308,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-14T10:58:03+08:00">
-                2018-11-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T19:52:23+08:00">
+                2019-03-29
               </time>
             
 
@@ -331,34 +320,12 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2019-01-21T11:15:46+08:00" content="2019-01-21">
-                2019-01-21
+              <time itemprop="dateUpdated" datetime="2019-03-29T19:52:23+08:00" content="2019-03-29">
+                2019-03-29
               </time>
             </span>
           
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CV论文/" itemprop="url" rel="index">
-                    <span itemprop="name">CV论文</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -381,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                      848 字
+                      0 字
                 </span>
               
 
@@ -397,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-              2 分钟
+              1 分钟
                     </span>
               
             </div>
@@ -418,35 +385,7 @@
       
 
       
-        <h1 id="论文总结"><a href="#论文总结" class="headerlink" title="论文总结"></a>论文总结</h1><a id="more"></a>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>图像模糊一般被看作清晰图像卷积模糊核得到模糊图像的过程，其退化模型如下式所示：</p>
-<p><img src="https://img-blog.csdn.net/20161010131848914" alt="img"></p>
-<p>其中，B为模糊图像( blurry image )，I为待估计的清晰图像( latent image )，K为模糊核( blur kernel )，N为附加的噪声，ⓧ为卷积操作。</p>
-<h3 id="图像卷积基本概念"><a href="#图像卷积基本概念" class="headerlink" title="图像卷积基本概念"></a>图像卷积基本概念</h3><h4 id="线性滤波"><a href="#线性滤波" class="headerlink" title="线性滤波"></a>线性滤波</h4><p>　　线性滤波是图像处理的基本方法。假设我们有图像矩阵A和滤波器矩阵（卷积核）B，如下图所示： </p>
-<p><img src="https://img-blog.csdn.net/20161010152740621" alt="img"><img src="https://img-blog.csdn.net/20161010152826162" alt="img">   </p>
-<p>​    对于图像的每一个像素点，计算它的邻域像素和滤波器矩阵的对应元素的乘积，然后加起来，作为该像素位置的值。这样就完成了滤波过程。 </p>
-<p><img src="https://img-blog.csdn.net/20161010153027585" alt="img"></p>
-<p><strong>卷积与相关</strong><br>　　对图像和滤波矩阵进行逐个元素相乘再求和的操作就相当于将一个二维的函数移动到另一个二维函数的所有位置，这个操作就叫卷积或者相关。卷积和相关的差别是，卷积需要先对滤波矩阵进行180的翻转，但如果矩阵是对称的，那么两者就没有什么差别了。</p>
-<p><strong>模糊核（卷积核）</strong><br>　　模糊核实际上就是一个矩阵，清晰图像与模糊核卷积后导致图像变得模糊，因此叫模糊核。模糊核是卷积核的一种。图像卷积操作的本质是矩阵卷积。某些特殊的卷积核会使图像产生特殊的效果。</p>
-<h2 id="编码器-解码器网络-U-net"><a href="#编码器-解码器网络-U-net" class="headerlink" title="编码器-解码器网络(U-net)"></a>编码器-解码器网络(U-net)</h2><p><a href="http://www.bubuko.com/infodetail-2608619.html" target="_blank" rel="noopener">http://www.bubuko.com/infodetail-2608619.html</a></p>
-<p>卷积层负责特征提取，捕获图像内容的抽象信息，同时消除噪声/损失。相对应，反卷积层用来恢复图像细节。</p>
-<h2 id="Scale-recurrent-Network-for-Deep-Image-Deblurring"><a href="#Scale-recurrent-Network-for-Deep-Image-Deblurring" class="headerlink" title="Scale-recurrent Network for Deep Image Deblurring"></a>Scale-recurrent Network for Deep Image Deblurring</h2><h2 id="尺度循环网络（SRN）"><a href="#尺度循环网络（SRN）" class="headerlink" title="尺度循环网络（SRN）"></a>尺度循环网络（SRN）</h2><h3 id="创新点："><a href="#创新点：" class="headerlink" title="创新点："></a>创新点：</h3><p><img src="http://static.tongtianta.site/paper_image/2520f142-6ae1-11e8-8a08-6045cb803e2f/image_1_0_0.jpg" alt="img"></p>
-<p>用于图像处理的不同CNN。（a）U-Net [27]或编码器 - 解码器网络[24]。 （b）多尺度[25]或级联改良网络[4]。（c）扩张卷积网络[5]。（d）我们提出的规模经常性网络（SRN）。</p>
-<ul>
-<li><p><strong>网络结构上</strong>：在多尺度模型里，每一尺度的网络结构和任务都相似，但是各尺度的参数仍然是相互独立的。本文提出的在不同尺度之间共享网络权重可以减少网络参数、使模型的学习能力更加稳固。</p>
-</li>
-<li><p><strong>编解码残差网络结构：</strong>编解码器的结构在CV任务中非常有用，与残差网络相结合可以结合两者优势，还能扩大感受野，对于捕捉运动模糊很重要。本文设计的网络训练收敛快、参数少、去模糊效果好，超过了当前的最好水平。</p>
-</li>
-</ul>
-<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作:"></a>相关工作:</h3><ul>
-<li>利用图像的各种先验知识</li>
-<li>带跳跃连接的自编码器</li>
-<li>U-net(编解码器网络)</li>
-<li>多尺度网络。</li>
-</ul>
-<h3 id="网络结构："><a href="#网络结构：" class="headerlink" title="网络结构："></a>网络结构：</h3><p><img src="https://img-blog.csdn.net/2018062313015729?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI4NjM1NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<p>在每一个尺度上，以两张图像作为输入，一张模糊图像，一张上采样后的去模糊图像。同时还在中间输入了隐藏状态的特征。循环网络用ConvLSTM.它能在利用时间相关性的同时利用空间相关性。不同尺度之间对图像和feature的上采样都使用双线性插值（bilinear interpolation），因为简单有效。</p>
-
+        
       
     </div>
     
@@ -461,12 +400,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/误差建模/" rel="tag"># 误差建模</a>
-          
-        </div>
-      
 
       
       
@@ -476,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/12/Leetcode23/" rel="next" title="Leetcode23">
-                <i class="fa fa-chevron-left"></i> Leetcode23
+              <a href="/2019/03/26/leetcode-动态规划/" rel="next" title="leetcode 动态规划">
+                <i class="fa fa-chevron-left"></i> leetcode 动态规划
               </a>
             
           </div>
@@ -485,10 +418,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/15/TCP-IP-第一章/" rel="prev" title="TCP/IP 第一章">
-                TCP/IP 第一章 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -540,17 +469,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -614,22 +534,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#论文总结"><span class="nav-number">1.</span> <span class="nav-text">论文总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图像卷积基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">图像卷积基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线性滤波"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">线性滤波</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码器-解码器网络-U-net"><span class="nav-number">1.2.</span> <span class="nav-text">编码器-解码器网络(U-net)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scale-recurrent-Network-for-Deep-Image-Deblurring"><span class="nav-number">1.3.</span> <span class="nav-text">Scale-recurrent Network for Deep Image Deblurring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尺度循环网络（SRN）"><span class="nav-number">1.4.</span> <span class="nav-text">尺度循环网络（SRN）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创新点："><span class="nav-number">1.4.1.</span> <span class="nav-text">创新点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关工作"><span class="nav-number">1.4.2.</span> <span class="nav-text">相关工作:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构："><span class="nav-number">1.4.3.</span> <span class="nav-text">网络结构：</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
