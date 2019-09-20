@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="面向面试复习法," />
+  <meta name="keywords" content="PAT,二叉树," />
 
 
 
@@ -89,18 +89,18 @@
 
 
 
-<meta name="description" content="常用的数据结构哈希表是根据关键码值(Key value)而直接进行访问的数据结构。它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。  若关键字为k，则其值存放在f(k)的存储位置上。由此，不需比较便可直接取得所查记录。称这个对应关系f为散列函数，按这个思想建立的表为散列表。 对不同的关键字可能得到同一散列地址，即k1≠k2，而f(">
-<meta name="keywords" content="面向面试复习法">
+<meta name="description" content="前序12345678910111213141516171819202122232425262728void pre(node*root)    //递归&amp;#123;	if(root==NULL)		return;	cout&amp;lt;&amp;lt;root-&amp;gt;data;	pre(root-&amp;gt;left);	pre(root-&amp;gt;right);	&amp;#125;void mypre(node*roo">
+<meta name="keywords" content="PAT,二叉树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的数据结构">
-<meta property="og:url" content="http://yyyywd.cn/2018/11/20/常用的数据结构/index.html">
+<meta property="og:title" content="二叉树的前中后序遍历">
+<meta property="og:url" content="http://yyyywd.cn/2019/09/21/二叉树遍历/index.html">
 <meta property="og:site_name" content="YYYYWD">
-<meta property="og:description" content="常用的数据结构哈希表是根据关键码值(Key value)而直接进行访问的数据结构。它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。  若关键字为k，则其值存放在f(k)的存储位置上。由此，不需比较便可直接取得所查记录。称这个对应关系f为散列函数，按这个思想建立的表为散列表。 对不同的关键字可能得到同一散列地址，即k1≠k2，而f(">
+<meta property="og:description" content="前序12345678910111213141516171819202122232425262728void pre(node*root)    //递归&amp;#123;	if(root==NULL)		return;	cout&amp;lt;&amp;lt;root-&amp;gt;data;	pre(root-&amp;gt;left);	pre(root-&amp;gt;right);	&amp;#125;void mypre(node*roo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-20T01:15:08.000Z">
+<meta property="og:updated_time" content="2019-09-20T17:02:37.822Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用的数据结构">
-<meta name="twitter:description" content="常用的数据结构哈希表是根据关键码值(Key value)而直接进行访问的数据结构。它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。  若关键字为k，则其值存放在f(k)的存储位置上。由此，不需比较便可直接取得所查记录。称这个对应关系f为散列函数，按这个思想建立的表为散列表。 对不同的关键字可能得到同一散列地址，即k1≠k2，而f(">
+<meta name="twitter:title" content="二叉树的前中后序遍历">
+<meta name="twitter:description" content="前序12345678910111213141516171819202122232425262728void pre(node*root)    //递归&amp;#123;	if(root==NULL)		return;	cout&amp;lt;&amp;lt;root-&amp;gt;data;	pre(root-&amp;gt;left);	pre(root-&amp;gt;right);	&amp;#125;void mypre(node*roo">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yyyywd.cn/2018/11/20/常用的数据结构/"/>
+  <link rel="canonical" href="http://yyyywd.cn/2019/09/21/二叉树遍历/"/>
 
 
 
 
 
-  <title>常用的数据结构 | YYYYWD</title>
+  <title>二叉树的前中后序遍历 | YYYYWD</title>
   
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2018/11/20/常用的数据结构/">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2019/09/21/二叉树遍历/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yyyywd">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">常用的数据结构</h1>
+          <h1 class="post-title" itemprop="name headline">二叉树的前中后序遍历</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-20T00:58:09+08:00">
-                2018-11-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-21T01:02:43+08:00">
+                2019-09-21
               </time>
             
 
@@ -321,13 +321,6 @@
 
             
           </span>
-          
-            <span class="post-updated">
-              &nbsp; | &nbsp; post.updated
-              <time itemprop="dateUpdated" datetime="2018-11-20T09:15:08+08:00" content="2018-11-20">
-                2018-11-20
-              </time>
-            </span>
           
 
           
@@ -352,7 +345,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                      1k 字
+                      310 字
                 </span>
               
 
@@ -368,7 +361,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-              3 分钟
+              1 分钟
                     </span>
               
             </div>
@@ -389,32 +382,9 @@
       
 
       
-        <h1 id="常用的数据结构"><a href="#常用的数据结构" class="headerlink" title="常用的数据结构"></a>常用的数据结构</h1><h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>是根据关键码值(Key value)而直接进行访问的<a href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1450" target="_blank" rel="noopener">数据结构</a>。它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做<a href="https://baike.baidu.com/item/%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0/2366288" target="_blank" rel="noopener">散列函数</a>，存放记录的<a href="https://baike.baidu.com/item/%E6%95%B0%E7%BB%84/3794097" target="_blank" rel="noopener">数组</a>叫做<a href="https://baike.baidu.com/item/%E6%95%A3%E5%88%97%E8%A1%A8/10027933" target="_blank" rel="noopener">散列表</a>。</p>
-<ul>
-<li>若关键字为<strong>k</strong>，则其值存放在<strong>f(k)</strong>的存储位置上。由此，不需比较便可直接取得所查记录。称这个对应关系<strong>f</strong>为散列函数，按这个思想建立的表为散列表。</li>
-<li>对不同的关键字可能得到同一散列地址，即<strong>k1≠k2</strong>，而<strong>f(k1)=f(k2)</strong>，这种现象称为冲突（英语：Collision）。具有相同函数值的关键字对该散列函数来说称做同义词。综上所述，根据散列函数<strong>f(k)</strong>和处理冲突的方法将一组关键字映射到一个有限的连续的地址集（区间）上，并以关键字在地址集中的“像”作为记录在表中的存储位置，这种表便称为散列表，这一映射过程称为散列造表或散列，所得的存储位置称散列地址。</li>
-<li>若对于关键字集合中的任一个关键字，经散列函数映象到地址集合中任何一个地址的概率是相等的，则称此类散列函数为均匀散列函数（Uniform Hash function），这就是使关键字经过散列函数得到一个“随机的地址”，从而减少冲突。</li>
-</ul>
-<p><strong>常用的构造散列函数的方法</strong></p>
-<p>　　散列函数能使对一个数据序列的访问过程更加迅速有效，通过散列函数，数据元素将被更快地定位：</p>
-<p>　　<strong>1. 直接寻址法：</strong>取关键字或关键字的某个线性函数值为散列地址。即H(key)=key或H(key) = a•key + b，其中a和b为常数（这种散列函数叫做自身函数）</p>
-<p>　　<strong>2. 数字分析法：</strong>分析一组数据，比如一组员工的出生年月日，这时我们发现出生年月日的前几位数字大体相同，这样的话，出现冲突的几率就会很大，但是我们发现年月日的后几位表示月份和具体日期的数字差别很大，如果用后面的数字来构成散列地址，则冲突的几率会明显降低。因此数字分析法就是找出数字的规律，尽可能利用这些数据来构造冲突几率较低的散列地址。</p>
-<p>　　<strong>3. 平方取中法：</strong>取关键字平方后的中间几位作为散列地址。</p>
-<p>　　<strong>4. 折叠法：</strong>将关键字分割成位数相同的几部分，最后一部分位数可以不同，然后取这几部分的叠加和（去除进位）作为散列地址。</p>
-<p>　　<strong>5. 随机数法：</strong>选择一随机函数，取关键字的随机值作为散列地址，通常用于关键字长度不同的场合。</p>
-<p>　　<strong>6. 除留余数法：</strong>取关键字被某个不大于散列表表长m的数p除后所得的余数为散列地址。即 H(key) = key MOD p, p&lt;=m。不仅可以对关键字直接取模，也可在折叠、平方取中等运算之后取模。对p的选择很重要，一般取素数或m，若p选的不好，容易产生同义词。<br><strong>查找的性能分析</strong></p>
-<p>实际工作中需视不同的情况采用不同的<a href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">哈希函数</a>，通常考虑的因素有：</p>
-<p>· 计算<a href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">哈希函数</a>所需时间</p>
-<p>· 关键字的长度</p>
-<p>· 哈希表的大小</p>
-<p>· 关键字的分布情况</p>
-<p>· 记录的查找频率</p>
-<h2 id="处理冲突的方法"><a href="#处理冲突的方法" class="headerlink" title="处理冲突的方法"></a>处理冲突的方法</h2><p>（1）开散列的方法：把冲突记录存在表外。</p>
-<p>把散列表的每个槽定义为一个链表的表头，散列到一个槽的所有记录都要放在这个槽的链表里面。</p>
-<p>（2）闭散列的方法：</p>
-<p>桶式散列</p>
-<p>线性探测</p>
-<p>伪随机探测</p>
+        <h1 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pre</span><span class="params">(node*root)</span>    <span class="comment">//递归</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(root==<span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;root-&gt;data;</span><br><span class="line">	pre(root-&gt;left);</span><br><span class="line">	pre(root-&gt;right);	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mypre</span><span class="params">(node*root)</span>   <span class="comment">//非递归</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;node*&gt;sta;</span><br><span class="line">	node*p=root;</span><br><span class="line">	<span class="keyword">while</span>(p!=<span class="literal">NULL</span>||!sta.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="literal">NULL</span>)   <span class="comment">//当前不为空一直往左走</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;p-&gt;data;    <span class="comment">//注意和中序区别开</span></span><br><span class="line">			sta.push(p);</span><br><span class="line">			p=p-&gt;left;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!sta.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			p=sta.top();  <span class="comment">//把中节点取出来</span></span><br><span class="line">			sta.pop();</span><br><span class="line">			p=p-&gt;right;  <span class="comment">//将p变成中节点的右节点</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="中序"><a href="#中序" class="headerlink" title="中序"></a>中序</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">order</span><span class="params">(node*root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(root==<span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	order(root-&gt;left);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;root-&gt;data;</span><br><span class="line">	order(root-&gt;right);	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myorder</span><span class="params">(node*root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;node*&gt;sta;</span><br><span class="line">	node*p=root;</span><br><span class="line">	<span class="keyword">while</span>(p!=<span class="literal">NULL</span>||!sta.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			sta.push(p);   </span><br><span class="line">			p=p-&gt;left;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!sta.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			p=sta.top();</span><br><span class="line">			sta.pop();</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;p-&gt;data;      <span class="comment">//注意和前序遍历区别开 </span></span><br><span class="line">			p=p-&gt;right;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="后序"><a href="#后序" class="headerlink" title="后序"></a>后序</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">post</span><span class="params">(node*root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(root==<span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	post(root-&gt;left);</span><br><span class="line">	post(root-&gt;right);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;root-&gt;data;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mypost</span><span class="params">(node*root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;node*&gt;sta;</span><br><span class="line">	<span class="built_in">stack</span>&lt;node*&gt;sta1;</span><br><span class="line">	node*p=root;</span><br><span class="line">	<span class="keyword">while</span>(p!=<span class="literal">NULL</span>||!sta.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			sta.push(p);</span><br><span class="line">			<span class="comment">//cout&lt;&lt;p-&gt;data;</span></span><br><span class="line">			sta1.push(p);</span><br><span class="line">			p=p-&gt;right;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!sta.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			p=sta.top();</span><br><span class="line">			sta.pop();</span><br><span class="line">			p=p-&gt;left;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(!sta1.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;sta1.top()-&gt;data;</span><br><span class="line">		sta1.pop();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -432,7 +402,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/面向面试复习法/" rel="tag"># 面向面试复习法</a>
+            <a href="/tags/PAT/" rel="tag"># PAT</a>
+          
+            <a href="/tags/二叉树/" rel="tag"># 二叉树</a>
           
         </div>
       
@@ -445,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/20/redis-概要/" rel="next" title="redis 概要">
-                <i class="fa fa-chevron-left"></i> redis 概要
+              <a href="/2019/09/18/Leetcode-链表/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -454,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/20/数据库/" rel="prev" title="数据库">
-                数据库 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常用的数据结构"><span class="nav-number">1.</span> <span class="nav-text">常用的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表"><span class="nav-number">1.1.</span> <span class="nav-text">哈希表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理冲突的方法"><span class="nav-number">1.2.</span> <span class="nav-text">处理冲突的方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前序"><span class="nav-number">1.</span> <span class="nav-text">前序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中序"><span class="nav-number">2.</span> <span class="nav-text">中序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后序"><span class="nav-number">3.</span> <span class="nav-text">后序</span></a></li></ol></div>
             
 
           </div>
