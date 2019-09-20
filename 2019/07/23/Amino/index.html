@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="微服务：也称为KernelObject •DM：提供额外功能的插件 •DK：部署微服务的基础平台 •OMS：管理微服务和地址的对应关系 •GraalVM：多语言虚拟机 OMS模块分析配置方法Gradle 配置 启动流程在example文件夹下的build.gradle文件中，有一个Task类，表示了等待命令行调用就绪的任务。这些任务并不会并行执行，而是等待它所依赖的任务执行完之后才会执行。 1.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YYYYWD">
+<meta property="og:url" content="http://yyyywd.cn/2019/07/23/Amino/index.html">
+<meta property="og:site_name" content="YYYYWD">
+<meta property="og:description" content="微服务：也称为KernelObject •DM：提供额外功能的插件 •DK：部署微服务的基础平台 •OMS：管理微服务和地址的对应关系 •GraalVM：多语言虚拟机 OMS模块分析配置方法Gradle 配置 启动流程在example文件夹下的build.gradle文件中，有一个Task类，表示了等待命令行调用就绪的任务。这些任务并不会并行执行，而是等待它所依赖的任务执行完之后才会执行。 1.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yyyywd.cn/2019/07/23/Amino/J:/hexo/source/_posts/Amino/1.png">
+<meta property="og:image" content="http://yyyywd.cn/2019/07/23/Amino/J:/hexo/source/_posts/Amino/4.png">
+<meta property="og:image" content="http://yyyywd.cn/2019/07/23/Amino/J:/hexo/source/_posts/Amino/2.png">
+<meta property="og:image" content="http://yyyywd.cn/2019/07/23/Amino/J:/hexo/source/_posts/Amino/3.png">
+<meta property="og:image" content="http://yyyywd.cn/2019/07/23/Amino/J:/hexo/source/_posts/Amino/5.png">
+<meta property="og:updated_time" content="2019-07-27T01:16:21.748Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YYYYWD">
+<meta name="twitter:description" content="微服务：也称为KernelObject •DM：提供额外功能的插件 •DK：部署微服务的基础平台 •OMS：管理微服务和地址的对应关系 •GraalVM：多语言虚拟机 OMS模块分析配置方法Gradle 配置 启动流程在example文件夹下的build.gradle文件中，有一个Task类，表示了等待命令行调用就绪的任务。这些任务并不会并行执行，而是等待它所依赖的任务执行完之后才会执行。 1.">
+<meta name="twitter:image" content="http://yyyywd.cn/2019/07/23/Amino/J:/hexo/source/_posts/Amino/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yyyywd.cn/2019/07/23/Amino/"/>
+
+
+
+
+
+  <title> | YYYYWD</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YYYYWD</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2019/07/23/Amino/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yyyywd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YYYYWD">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-23T09:32:55+08:00">
+                2019-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; post.updated
+              <time itemprop="dateUpdated" datetime="2019-07-27T09:16:21+08:00" content="2019-07-27">
+                2019-07-27
+              </time>
+            </span>
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                      2.7k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+              12 分钟
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/07/23/Amino/J:/hexo\source\_posts\Amino\1.png" alt="1"></p>
+<p>微服务：也称为<strong>KernelObject</strong></p>
+<p>•DM：提供额外功能的插件</p>
+<p>•DK：部署微服务的基础平台</p>
+<p>•OMS：管理微服务和地址的对应关系</p>
+<p>•GraalVM：多语言虚拟机</p>
+<h1 id="OMS模块分析"><a href="#OMS模块分析" class="headerlink" title="OMS模块分析"></a>OMS模块分析</h1><h2 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h2><p>Gradle 配置</p>
+<h2 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h2><p>在example文件夹下的build.gradle文件中，有一个Task类，表示了等待命令行调用就绪的任务。这些任务并不会并行执行，而是等待它所依赖的任务执行完之后才会执行。</p>
+<p>1.初始化参数，默认的kernel server个数是2，有效值是1-4之间的数字.</p>
+<p>2.使用task类启动OMS server</p>
+<p>3.再用task类依次启动Kernel Server</p>
+<p>4.如果要runapp的话，要保证OMS server和Kernel Server全部启动，所以之前的步骤必须重新再来一次。</p>
+<p>OMSServerImpl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">OMSServerImpl</span><span class="params">()</span> <span class="keyword">throws</span> JSONException </span>&#123;   <span class="comment">//OMS构造函数</span></span><br><span class="line">    kernelObjectManager = <span class="keyword">new</span> GlobalKernelObjectManager();  <span class="comment">//初始化全局DK管理器</span></span><br><span class="line">    serverManager = <span class="keyword">new</span> KernelServerManager();  <span class="comment">//初始化服务端DK管理器</span></span><br><span class="line">    objectManager = <span class="keyword">new</span> MicroServiceManager();  <span class="comment">//初始化微服务管理器</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注册新的kernelObject对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> KernelOID <span class="title">registerKernelObject</span><span class="params">(InetSocketAddress host)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    KernelOID oid = kernelObjectManager.register(host);</span><br><span class="line">    logger.info(<span class="string">"[OMS] Registering "</span> + oid.toString() + <span class="string">" on host "</span> + host.toString());</span><br><span class="line">    <span class="keyword">return</span> oid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为kernelobject注册一个新主机。(用于移动内核对象)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerKernelObject</span><span class="params">(KernelOID oid, InetSocketAddress host)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> KernelObjectNotFoundException </span>&#123;</span><br><span class="line">    logger.info(<span class="string">"[OMS] Registering new host for "</span> + oid.toString() + <span class="string">" on "</span> + host.toString());</span><br><span class="line">    kernelObjectManager.register(oid, host);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据主机名hostname找到kernel object对象，返回对象的IP地址。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> InetSocketAddress <span class="title">lookupKernelObject</span><span class="params">(KernelOID oid)</span></span></span><br><span class="line"><span class="function">    throws KernelObjectNotFoundException </span>&#123;</span><br><span class="line">    InetSocketAddress ko = kernelObjectManager.lookup(oid);</span><br><span class="line">    logger.info(<span class="string">"[OMS] Found host for "</span> + oid.toString() + <span class="string">" host: "</span> + ko);</span><br><span class="line">    <span class="keyword">return</span> ko;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注册kernel服务器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerKernelServer</span><span class="params">(ServerInfo info)</span> <span class="keyword">throws</span> RemoteException, NotBoundException </span>&#123;</span><br><span class="line">    serverManager.registerKernelServer(info);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>心跳检测</p>
+<p>serverManager负责收到心跳。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveHeartBeat</span><span class="params">(ServerInfo srvinfo)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> RemoteException, KernelServerNotFoundException </span>&#123;</span><br><span class="line">        serverManager.receiveHeartBeat(srvinfo);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>ServerInfo 实现了Serializable接口（可序列化接口）</strong></p>
+<p>获取系统的区域,返回一个一个string的列表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">getRegions</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">return</span> serverManager.getRegions();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>获取与指定节点选择器匹配的所有服务器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets all servers matching the specified node selector</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> spec</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> RemoteException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;InetSocketAddress&gt; <span class="title">getServers</span><span class="params">(NodeSelectorSpec spec)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> serverManager.getServers(spec);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>MicroServiceSpec实现了Serializable接口（可序列化接口）</strong></p>
+<p>create函数（MicroServiceSpec，object…列表）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> MicroServiceID <span class="title">create</span><span class="params">(String microServiceSpec, Object... args)</span></span></span><br><span class="line"><span class="function">       <span class="keyword">throws</span> MicroServiceCreationException </span>&#123;</span><br><span class="line">	<span class="comment">//spec调用fromYaml（Yaml类似于配置文件）</span></span><br><span class="line">       MicroServiceSpec spec = MicroServiceSpec.fromYaml(microServiceSpec);</span><br><span class="line">       <span class="comment">// validate Micro service spec</span></span><br><span class="line">       <span class="comment">//验证微服务的spec（句柄???）</span></span><br><span class="line">       spec.validate();</span><br><span class="line"></span><br><span class="line">       <span class="comment">/* Get a best server from the given spec */</span></span><br><span class="line">       <span class="comment">/*从所给的spec中选出最好的服务器的host-IP*/</span></span><br><span class="line">       InetSocketAddress host = serverManager.getBestSuitableServer(spec);</span><br><span class="line">       <span class="keyword">if</span> (host == <span class="keyword">null</span>) &#123;<span class="comment">//如果选不出则抛出异常</span></span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> MicroServiceCreationException(</span><br><span class="line">               <span class="string">"[OMS] Failed to create microservice. Kernel server with the given requirements is not available"</span>);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">/* Get the kernel server stub */</span></span><br><span class="line">       <span class="comment">//根据host-IP获取kernel server的存根</span></span><br><span class="line">       KernelServer server = serverManager.getServer(host);</span><br><span class="line">       <span class="keyword">if</span> (server == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> MicroServiceCreationException(</span><br><span class="line">               <span class="string">"[OMS] Failed to create microservice. Kernel server not found."</span>);</span><br><span class="line">       &#125;</span><br><span class="line">	<span class="comment">//存储存根和对象ID一起在objectManager中</span></span><br><span class="line">       <span class="comment">// TODO(multi-lang): Store spec together with object ID in objectManager</span></span><br><span class="line">       <span class="comment">// MicroServiceSpec spec = MicroServiceSpec.fromYaml(microserviceSpec);</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">/* Invoke create microservice on the kernel server */</span></span><br><span class="line">       <span class="comment">//调用创建微服务在kernel server中</span></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           AppObjectStub appObjStub = server.createMicroService(spec, args);</span><br><span class="line">           <span class="keyword">assert</span> appObjStub != <span class="keyword">null</span>;</span><br><span class="line">           objectManager.setInstanceObjectStub(appObjStub.$__getMicroServiceId(), appObjStub);  <span class="comment">//objectManager会添加微服务的存根（appObjStub）</span></span><br><span class="line">           <span class="keyword">return</span> appObjStub.$__getMicroServiceId();</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> MicroServiceCreationException(</span><br><span class="line">               <span class="string">"[OMS] Failed to create microservice. Exception occurred at kernel server."</span>, e);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>请求获取存根,（根据微服务的ID查找）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> AppObjectStub <span class="title">acquireStub</span><span class="params">(MicroServiceID id)</span> <span class="keyword">throws</span> MicroServiceNotFoundException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        AppObjectStub appObjStub = objectManager.getInstanceObjectStub(id);</span><br><span class="line">        appObjStub.$__initialize(<span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">return</span> appObjStub;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> MicroServiceNotFoundException(</span><br><span class="line">            <span class="string">"[OMS] Failed to acquire stub for microservice "</span> + id, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>设置微服务的名字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(MicroServiceID id, String name)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> MicroServiceNotFoundException, MicroServiceNameModificationException </span>&#123;</span><br><span class="line">        objectManager.setInstanceName(id, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">detachFrom</span><span class="params">(String name)</span> <span class="keyword">throws</span> MicroServiceNotFoundException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> delete(objectManager.getMicroServiceByName(name));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">delete</span><span class="params">(MicroServiceID microServiceId)</span> <span class="keyword">throws</span> MicroServiceNotFoundException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (objectManager.decrRefCountAndGet(microServiceId) != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> successfullyRemoved = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">/* Get the kernel object Id of root group policy and delete the group policy object. This leads to</span></span><br><span class="line"><span class="comment">            successive deletion of complete multiDM tree. Deletion includes all the server policy objects of all group</span></span><br><span class="line"><span class="comment">            policy objects in the DM chain and finally those group policy objects too. */</span></span><br><span class="line">        KernelOID groupOid = objectManager.getRootGroupId(microServiceId);</span><br><span class="line">        deleteGroupPolicy(microServiceId, groupOid);</span><br><span class="line">        objectManager.removeInstance(microServiceId);</span><br><span class="line">        logger.log(</span><br><span class="line">            Level.FINE, String.format(<span class="string">"Removed microservice with oid %s"</span>, microServiceId));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        logger.log(</span><br><span class="line">            Level.SEVERE,</span><br><span class="line">            String.format(<span class="string">"Failed to remove microservice with oid %s"</span>, microServiceId),</span><br><span class="line">            e);</span><br><span class="line">        successfullyRemoved = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> successfullyRemoved;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="组策略的处理"><a href="#组策略的处理" class="headerlink" title="组策略的处理"></a>组策略的处理</h2><h3 id="Policy类"><a href="#Policy类" class="headerlink" title="Policy类"></a>Policy类</h3><p>类描述了微服务策略。每个策略都应该扩展这个类。</p>
+<p>每个微服务策略包含一个服务器策略、一个客户端策略和一个组策略</p>
+<p>策略包含一组内部函数(由Amino使用)。运行运行时系统，当事件发生时调用的一组upcall函数和实现Amino的一组函数。为策略运行API。</p>
+<h2 id="与DK的心跳连接"><a href="#与DK的心跳连接" class="headerlink" title="与DK的心跳连接"></a>与DK的心跳连接</h2><p>也就是和Kernel Server的心跳链接。</p>
+<p>Kernel Server中有一个这样的函数.会发送Kernel Server的心跳给OMS。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Send HeartBeats to OMS. */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sendHeartBeat</span><span class="params">(ServerInfo srvinfo)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        oms.receiveHeartBeat(srvinfo);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        logger.severe(<span class="string">"HeartBeat failed with exception: "</span> + e);</span><br><span class="line">    &#125;</span><br><span class="line">    ksHeartbeatSendTimer.reset();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在OMSServerImpl中有一个这样的函数receiveHeartBeat。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveHeartBeat</span><span class="params">(ServerInfo srvinfo)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> RemoteException, KernelServerNotFoundException </span>&#123;</span><br><span class="line">        serverManager.receiveHeartBeat(srvinfo);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在KernelServerManager中有一个接收KernelServer心跳的函数，用来判断KernelServer是否在线。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveHeartBeat</span><span class="params">(ServerInfo srvinfo)</span> <span class="keyword">throws</span> KernelServerNotFoundException </span>&#123;</span><br><span class="line">        InetSocketAddress host = srvinfo.getHost();</span><br><span class="line">        String region = srvinfo.getRegion();</span><br><span class="line">        logger.fine(</span><br><span class="line">                String.format(</span><br><span class="line">                        <span class="string">"Received HeartBeat from kernel server: %s in region %s"</span>, host, region));</span><br><span class="line"></span><br><span class="line">        KernelServerInfo kernelServerInfo = servers.get(host);</span><br><span class="line">        <span class="keyword">if</span> (kernelServerInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">            kernelServerInfo.heartBeatTimer.reset();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String message = String.format(<span class="string">"Kernel server: %s do not exist in region %s"</span>, host, region);</span><br><span class="line">        logger.severe(message);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> KernelServerNotFoundException(message);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="DK上下线处理"><a href="#DK上下线处理" class="headerlink" title="DK上下线处理"></a>DK上下线处理</h2><p>上线处理：</p>
+<p>OMSServer中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerKernelServer</span><span class="params">(ServerInfo info)</span> <span class="keyword">throws</span> RemoteException, NotBoundException </span>&#123;</span><br><span class="line">    serverManager.registerKernelServer(info);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>KernelServerManager中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerKernelServer</span><span class="params">(ServerInfo info)</span> <span class="keyword">throws</span> RemoteException, NotBoundException </span>&#123;</span><br><span class="line">    InetSocketAddress host = info.getHost();</span><br><span class="line">    String region = info.getRegion();</span><br><span class="line">    Registry registry = LocateRegistry.getRegistry(host.getHostName(), host.getPort());</span><br><span class="line">    KernelServer server = (KernelServer) registry.lookup(<span class="string">"io.amino.run.kernelserver"</span>);</span><br><span class="line"></span><br><span class="line">    ArrayList&lt;InetSocketAddress&gt; serversInRegion = regions.get(region);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == serversInRegion) &#123;</span><br><span class="line">        serversInRegion = <span class="keyword">new</span> ArrayList&lt;InetSocketAddress&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    serversInRegion.add(host);</span><br><span class="line">    regions.put(info.getRegion(), serversInRegion);</span><br><span class="line">    <span class="keyword">final</span> ServerInfo srvInfo = info;</span><br><span class="line">    ResettableTimer heartBeatTimer =</span><br><span class="line">        <span class="keyword">new</span> ResettableTimer(</span><br><span class="line">        <span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">/* If we don't receive a heartbeat from this kernel server, remove it from the map */</span></span><br><span class="line">                stopHeartBeat(srvInfo);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        OMSServer.KS_HEARTBEAT_TIMEOUT);</span><br><span class="line">    heartBeatTimer.start();</span><br><span class="line">    KernelServerInfo oldServer =</span><br><span class="line">        servers.put(host, <span class="keyword">new</span> KernelServerInfo(info, server, heartBeatTimer));</span><br><span class="line">    <span class="keyword">if</span> (oldServer != <span class="keyword">null</span>) &#123;</span><br><span class="line">        oldServer.heartBeatTimer.cancel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    logger.info(String.format(<span class="string">"Registered new kernel server: %s in region %s"</span>, host, region));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="组策略的处理-1"><a href="#组策略的处理-1" class="headerlink" title="组策略的处理"></a>组策略的处理</h2><p>每一个微服务都包含了服务端策略，客户端策略和组策略。策略包含了一系列内部函数。一些事件发生时会被调用的upcall functions和一系列为策略实现的Amino.run的API，upcall函数会被调用使用了一个DefaultPolicy类来实现。</p>
+<h2 id="服务注册流程（服务端）"><a href="#服务注册流程（服务端）" class="headerlink" title="服务注册流程（服务端）"></a>服务注册流程（服务端）</h2><p><img src="/2019/07/23/Amino/J:/hexo\source\_posts\Amino\4.png" alt="4"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Registry(注册表)是放置所有服务器对象的命名空间。</span><br><span class="line">每次服务端创建一个对象时，它都会使用bind()或rebind()方法注册该对象。</span><br><span class="line">这些是使用称为绑定名称的唯一名称注册的。</span><br><span class="line"></span><br><span class="line">要调用远程对象，客户端需要该对象的引用,如(HelloRegistryFacade)。</span><br><span class="line">即通过服务端绑定的名称(HelloRegistry)从注册表中获取对象(lookup()方法)。</span><br></pre></td></tr></table></figure>
+<p>Amino.Run使用RMI注册来发现远程对象。 以下代码段显示了如何注册远程对象io.amino.run.oms。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">OMSServerImpl oms = <span class="keyword">new</span> OMSServerImpl(args[<span class="number">2</span>]);   <span class="comment">//定义一个oms服务器</span></span><br><span class="line"><span class="comment">// 创建一个远程对象存根</span></span><br><span class="line">sapphire.oms.OMSServer omsStub = (sapphire.oms.OMSServer)UnicastRemoteObject.exportObject(oms, <span class="number">0</span>);  	<span class="comment">//定义存根</span></span><br><span class="line"><span class="comment">// 本地主机上的远程对象注册表Registry的实例</span></span><br><span class="line">Registry registry = LocateRegistry.createRegistry(port);  </span><br><span class="line"><span class="comment">// 把远程对象omsStub-OMS服务器存根注册到RMI注册服务器上，并命名为io.amino.run.oms</span></span><br><span class="line">registry.rebind(<span class="string">"io.amino.run.oms"</span>, omsStub);</span><br></pre></td></tr></table></figure>
+<h2 id="服务发现流程"><a href="#服务发现流程" class="headerlink" title="服务发现流程"></a>服务发现流程</h2><p>Client side 按名称查找remote object <code>OMSServer</code>，即io.amino.run.oms，RMI注册返回OMSServer的存根。  Client 然后使用OMS服务器查找Amino Run。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 寻找 io.amino.run.oms</span></span><br><span class="line">registry = LocateRegistry.getRegistry(args[<span class="number">0</span>],Integer.parseInt(args[<span class="number">1</span>]));</span><br><span class="line">OMSServer server = (OMSServer) registry.lookup(<span class="string">"io.amino.run.oms"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从OMS Server中寻找Microservice</span></span><br><span class="line">TwitterManager tm = (TwitterManager) server.getAppEntryPoint();</span><br><span class="line">System.out.println(<span class="string">"Received Twitter Manager Stub: "</span> + tm);</span><br></pre></td></tr></table></figure>
+<h1 id="DK模块分析"><a href="#DK模块分析" class="headerlink" title="DK模块分析"></a>DK模块分析</h1><h1 id="关于几个组件"><a href="#关于几个组件" class="headerlink" title="关于几个组件"></a>关于几个组件</h1><h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p><img src="/2019/07/23/Amino/J:/hexo\source\_posts\Amino\2.png" alt="2"><img src="/2019/07/23/Amino/J:/hexo\source\_posts\Amino\3.png" alt="3"></p>
+<p>微服务是Amino的基础管理单元。 在上图中，每个圆圈代表一个微服务。 圆内（即微服务）的点表示普通编程语言（例如Java）对象。 一个微服务可能包含一组这样的对象。 点之间的实线箭头线是对象之间的本地方法调用。 圆圈之间的虚线箭头线是微服务之间的远程方法调用。 普通Java对象上的方法只能由驻留在同一主机上的对象在本地调用。 但是，微服务可以具有远程方法，这些方法可以由驻留在不同主机上的对象调用。</p>
+<h2 id="DK"><a href="#DK" class="headerlink" title="DK"></a>DK</h2><p>Deployment Kernel（DK）具有将微服务从一台主机移动到另一台主机的能力。在后台，Deployment Kernel（DK）将<strong>序列化整个微服务</strong>，包括属于微服务的所有编程语言对象，一端将数据发送到目标主机，然后在那里<strong>进行反序列化。</strong></p>
+<p>微服务由应用程序使用静态方法Microservice.new_（）创建。 要在微服务上调用方法，应用程序必须首先从OMS服务器获取对微服务的引用。</p>
+<p><strong>多个Kernel Server组成了DK？？？</strong></p>
+<h2 id="OMS"><a href="#OMS" class="headerlink" title="OMS"></a>OMS</h2><p>跟踪所有微服务的位置。 与可以使用Java new关键字创建的普通（例如Java）对象不同，必须使用特殊的Amino.Run辅助方法’Microservice.new_（）’创建微服务。 在创建微服务时，<strong>MicroService.new_（）</strong>方法将为微服务生成全局唯一ID，并在OMS中注册该对象。 OMS提供搜索Amino Run的API。 给定微服务ID，OMS可以告知微服务运行的主机的IP。 每当移动或删除微服务时，OMS将相应地更新。</p>
+<h2 id="Kernel-Server"><a href="#Kernel-Server" class="headerlink" title="Kernel Server"></a>Kernel Server</h2><p>Kernel Server为Amino Run提供运行时环境。 每个主机都运行一个Kernel Server实例。 Kernel Server公开了一组可以远程调用的远程API。 Amino.Run假设任何Kernel Server都可以在任何其他Kernel Server上调用远程API，无论Kernel Server在哪里。</p>
+<p>Kernel Server是DK的实例化对象？？？</p>
+<h2 id="DM"><a href="#DM" class="headerlink" title="DM"></a>DM</h2><p>有三个组件：代理proxy，实例管理器 a instance manager和协调器coordinator。 当用户创建微服务时，用户可以选择将DM与微服务相关联。 并非所有微服务都有DM。 但是如果为微服务指定了DM，那么在创建微服务期间，辅助方法MicroService.new_（）会将代码注入到微服务的存根中，在这种情况下，微服务上的任何方法调用都将首先由 在到达实际的微服务之前，代理，实例管理器和DM的协调器。 每个DM提供一种特定功能。 Sapphire 论文中列出了26个DM。</p>
+<h2 id="Kernel-Object"><a href="#Kernel-Object" class="headerlink" title="Kernel Object"></a>Kernel Object</h2><p>Kernel Object是实际（例如Java）对象object的包装器 - 它包含对实际对象的引用，并公开一个invoke方法，该方法允许使用反射调用在实际对象上定义的任何公共方法。</p>
+<p>使用KernelServerImpl.newKernelObject方法创建Kernel Object。 每个Kernel Object都有一个唯一的oid，并在OMS服务器中注册。 KernelServer接口还公开了一些API来复制和移动内核对象。</p>
+<h2 id="Kernel-Server和OMS-server的关系"><a href="#Kernel-Server和OMS-server的关系" class="headerlink" title="Kernel Server和OMS server的关系"></a>Kernel Server和OMS server的关系</h2><p>KernelServer和OMSServer是Amino.Run中的两个重要对象。 两者都暴露远程接口。 OMSServer包含一个KernelObjectManager，它跟踪Kernel ObjectID与运行该对象的Kernel Server的IP地址之间的映射。 给定Kernel Object的ID，Client可以调用OMSServer来获取运行对象的主机的IP。</p>
+<p><img src="/2019/07/23/Amino/J:/hexo\source\_posts\Amino\5.png" alt="5"></p>
+<p>KernelServer包含一个ObjectManager，它跟踪Kernel Object的ID与Kernel Object引用之间的映射。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/Docker/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/10/解决方案/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="yyyywd" />
+            
+              <p class="site-author-name" itemprop="name">yyyywd</p>
+              <p class="site-description motion-element" itemprop="description">Try your best</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OMS模块分析"><span class="nav-number">1.</span> <span class="nav-text">OMS模块分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置方法"><span class="nav-number">1.1.</span> <span class="nav-text">配置方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动流程"><span class="nav-number">1.2.</span> <span class="nav-text">启动流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组策略的处理"><span class="nav-number">1.3.</span> <span class="nav-text">组策略的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Policy类"><span class="nav-number">1.3.1.</span> <span class="nav-text">Policy类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与DK的心跳连接"><span class="nav-number">1.4.</span> <span class="nav-text">与DK的心跳连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DK上下线处理"><span class="nav-number">1.5.</span> <span class="nav-text">DK上下线处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组策略的处理-1"><span class="nav-number">1.6.</span> <span class="nav-text">组策略的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务注册流程（服务端）"><span class="nav-number">1.7.</span> <span class="nav-text">服务注册流程（服务端）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务发现流程"><span class="nav-number">1.8.</span> <span class="nav-text">服务发现流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DK模块分析"><span class="nav-number">2.</span> <span class="nav-text">DK模块分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于几个组件"><span class="nav-number">3.</span> <span class="nav-text">关于几个组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务"><span class="nav-number">3.1.</span> <span class="nav-text">微服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DK"><span class="nav-number">3.2.</span> <span class="nav-text">DK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OMS"><span class="nav-number">3.3.</span> <span class="nav-text">OMS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-Server"><span class="nav-number">3.4.</span> <span class="nav-text">Kernel Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DM"><span class="nav-number">3.5.</span> <span class="nav-text">DM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-Object"><span class="nav-number">3.6.</span> <span class="nav-text">Kernel Object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-Server和OMS-server的关系"><span class="nav-number">3.7.</span> <span class="nav-text">Kernel Server和OMS server的关系</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yyyywd</span>
+
+  
+</div>
+
+
+  <!-- div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>

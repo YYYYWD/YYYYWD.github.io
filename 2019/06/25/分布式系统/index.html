@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第一章 概述分布式系统定义一个分布式系统是由多个通过网络互联的独立自治的计算节点组成，这些计算节点为了完成共同目标基于消息传递机制进行相互协作。 要点：多个计算节点：节点可以是进程、线程、抽象对象、组件、服务、单个计算机或一组计算机（图灵机）网络互联：逻辑拓扑上一般认为是全连接网络独立自治：独立CPU、独立时钟、并发、独立错误完成共同目标相互协作消息传递：消息传递模型，并非内存共享模型 好处分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YYYYWD">
+<meta property="og:url" content="http://yyyywd.cn/2019/06/25/分布式系统/index.html">
+<meta property="og:site_name" content="YYYYWD">
+<meta property="og:description" content="第一章 概述分布式系统定义一个分布式系统是由多个通过网络互联的独立自治的计算节点组成，这些计算节点为了完成共同目标基于消息传递机制进行相互协作。 要点：多个计算节点：节点可以是进程、线程、抽象对象、组件、服务、单个计算机或一组计算机（图灵机）网络互联：逻辑拓扑上一般认为是全连接网络独立自治：独立CPU、独立时钟、并发、独立错误完成共同目标相互协作消息传递：消息传递模型，并非内存共享模型 好处分布式">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-25T07:13:56.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YYYYWD">
+<meta name="twitter:description" content="第一章 概述分布式系统定义一个分布式系统是由多个通过网络互联的独立自治的计算节点组成，这些计算节点为了完成共同目标基于消息传递机制进行相互协作。 要点：多个计算节点：节点可以是进程、线程、抽象对象、组件、服务、单个计算机或一组计算机（图灵机）网络互联：逻辑拓扑上一般认为是全连接网络独立自治：独立CPU、独立时钟、并发、独立错误完成共同目标相互协作消息传递：消息传递模型，并非内存共享模型 好处分布式">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yyyywd.cn/2019/06/25/分布式系统/"/>
+
+
+
+
+
+  <title> | YYYYWD</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YYYYWD</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yyyywd.cn/2019/06/25/分布式系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yyyywd">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YYYYWD">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-25T00:26:22+08:00">
+                2019-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; post.updated
+              <time itemprop="dateUpdated" datetime="2019-06-25T15:13:56+08:00" content="2019-06-25">
+                2019-06-25
+              </time>
+            </span>
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                      6.6k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+              23 分钟
+                    </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第一章-概述"><a href="#第一章-概述" class="headerlink" title="第一章 概述"></a>第一章 概述</h2><h3 id="分布式系统定义"><a href="#分布式系统定义" class="headerlink" title="分布式系统定义"></a>分布式系统定义</h3><p>一个分布式系统是由多个通过网络互联的<strong>独立自治的计算节点</strong>组成，这些计算节点为了完成共同目标基于消息传递机制进行相互协作。</p>
+<h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p><strong>多个计算节点：节点可以是进程、线程、抽象对象、组件、服务、单个计算机或一组计算机（图灵机）</strong><br>网络互联：逻辑拓扑上一般认为是全连接网络<br>独立自治：独立CPU、独立时钟、并发、独立错误<br>完成共同目标<br>相互协作<br>消息传递：消息传递模型，并非内存共享模型</p>
+<h3 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h3><p>分布式系统架构（5种）<br>客户端-服务器(Client-Server)模式，主-从(Master-Slave)模式，总线模式，对等(Peer-to-Peer)模式，混合模式</p>
+<p>客户端-服务器(Client-Server)模式:</p>
+<p>客户端发出服务请求，服务器端根据客户端请求参数完成实际运算，并将运算结果返回给客户端。<br>客户端运算任务清，服务器端运算任务重。<br>客户端生命周期短，服务器端生命周期长。<br>服务器端一般要应对并发问题。<br>客户端一般负责和用户进行交互。</p>
+<p>瘦客户端/胖客户端(是否有大量的业务逻辑需要放在客户端)</p>
+<p>主-从(Master-Slave)模式:</p>
+<p>主节点（Master）负责将总计算任务分解为多个子任务分发给各个从节点（Slave，也叫Worker节点）完成主节点监视各个从节点的任务执行情况，将执行失败的任务调度给其它的从节点完成主节点在分配任务是会参考各个从节点的当前负载情况。</p>
+<p>总线结构：</p>
+<p>不同节点之间通过虚拟总线相连 消息发送者不必知道接收者是谁，接收者也不知道发送者是谁</p>
+<p>发送者和接收者之间用异步方式通信  一种松耦合架构 不同节点完成不同功能，分工协作</p>
+<p>对等(Peer-to-Peer)模式:</p>
+<p>系统中每个计算节点在任务分工上是完全对等的。</p>
+<p>完全相同的软件在不同的计算机上运行，只是初始化参数不同</p>
+<p>结构化P2P：不同节点之间的交互模式遵循固定规律</p>
+<p>非结构化P2P：不同节点之间的交互模式没有固定规律</p>
+<p>1.3 服务器为集群时，划分为几层？为什么划分？各层功能是什么？好处有哪些？</p>
+<p>随着企业信息的不断扩大，企业级应用不再满足于简单的两层系统，而是向着三层和多层体系结构发展。分层主要是为重用和便于管理 ，能够很好的适应需求的变化。</p>
+<p>划分为三层：表示层 应用层 数据层</p>
+<p>功能：</p>
+<p>表现层：通俗讲就是展现给用户的界面，即用户在使用一个系统的时候他的所见所得。<br>应用层：又叫逻辑层，针对具体问题的操作，把复杂的业务关系细分为多项功能单一的服务，每项服务都执行一项特殊任务，这些服务可以用相对独立的服务组件来实现其功能。通过分布这些组件，可以平衡数据处理负载，协调逻辑关系，调整业务规模和业务规则。<br>数据层：该层所做事务直接操作数据库，针对数据的增添、删除、修改、更新、查找等。</p>
+<p>好处：</p>
+<p>专注：开发人员可以只关注整个结构中的其中某一层；<br>可以很容易的用新的实现来替换原有层次的实现；<br>可以降低层与层之间的依赖；<br>有利于标准化；<br>利于各层逻辑的复用。<br>扩展性强。不同层负责不同的层面，接口定义好之后各个层不会相互影响。<br>安全性高。用户端只能通过逻辑层来访问数据层，减少了入口点，把很多危险的系统功能都屏蔽了。<br>项目结构更清楚，分工更明确，有利于后期的维护和升级</p>
+<p>服务器为集群时，使用了什么关键技术？实现该技术有哪些策略？</p>
+<p>负载均衡技术：负载均衡服务器，就是用来把经过它的流量，按照某种方法，分配到集群中的各台服务器上。这样一来不仅可以承担更大的流量、降低服务的延迟，还可以避免单点故障造成服务不可用。</p>
+<p>策略（7种）：</p>
+<p><strong>随机</strong>：随机选择后端服务器<br><strong>轮询</strong>：根据分布式系统配置文件中的顺序，依次把客户端的Web请求分发到不同的后端服务器。<br><strong>固定权重值</strong>：把请求更多地分发到高配置的后端服务器上，把相对较少的请求分发到低配服务器。<br><strong>IP哈希</strong>（基于一致性随机散列函数）：使用基于IP地址哈希的负载均衡方案，同一客户端连续的Web请求都会被分发到同一服务器进行处理。<br><strong>最少TCP连接数</strong>：Web请求会被转发到连接数最少的服务器上。<br><strong>最小响应时间</strong>：连接到到那些通过响应最快之服务器<br><strong>基于各服务器实际负载的动态负载均衡算法</strong></p>
+<p>IP哈希（基于一致性随机散列函数）<br>一致性哈希算法的目标是对于K个请求,节点的上下线只会引起K/nodeTotal的key重新映射,而在节点稳定的时候,同一个key的每次请求映射都是一样的</p>
+<p>一致性哈希算法实现原理：</p>
+<p>把数据通过一定的hash算法处理后映射到环上；将机器通过hash算法映射到环上，以顺时针的方向计算，将所有对象存储到离自己最近的机器中。</p>
+<p>（参考 <a href="https://blog.csdn.net/tingting256/article/details/52497749）" target="_blank" rel="noopener">https://blog.csdn.net/tingting256/article/details/52497749）</a></p>
+<p>一致性哈希算法在保持了单调性的同时，还是数据的迁移达到了最小，这样的算法对分布式集群来说是非常合适的，避免了大量数据迁移，减小了服务器的的压力。</p>
+<p>中间件（考点偏理解）<br>定义：</p>
+<p>中间件是一种独立的系统软件或服务程序，分布式应用软件借助这种软件在不同的技术之间共享资源。位于操作系统，计算机网络硬件等平台和应用层之间，管理计算机资源和网络通讯。是连接两个独立应用程序或独立系统的软件。相连接的系统，即使它们具有不同的接口，但通过中间件相互之间仍能交换信息。执行中间件的一个关键途径是信息传递。通过中间件，应用程序可以工作于多平台或OS环境。</p>
+<p>常用中间件有哪些：</p>
+<p>远程过程调用中间件<br>分布式对象中间件<br>分布式组件中间件<br>消息队列中间件<br>Web服务中间件<br>P2P中间件</p>
+<p>中间件的作用:</p>
+<p>为开发者提供高层的编程抽象，屏蔽分布式系统底层的异构性和复杂性<br>提高交互操作性和可移植性<br>提供分布式系统的基础设施服务</p>
+<p>第二讲 分布式节点之间的通信技术</p>
+<p>2.1 Socket</p>
+<p>定义：</p>
+<p>传输层和网络层提供给应用层的标准化编程接口（或称为编程接口）</p>
+<p>类型：</p>
+<p>流式套接字(面向连接)  数据报套接字(面向无连接)  原始套接字</p>
+<p>2.2 并发服务技术  适用场景</p>
+<p>单机</p>
+<p>基于多进程的并发服务技术（适合小数据量传送、弱相关的处理 ）<br>优点：每个进程互相独立，不影响主程序的稳定性，子进程崩溃没关系；每个进程互相独立，不影响主程序的稳定性，子进程崩溃没关系；可以尽量减少线程加锁/解锁的影响，极大提高性能</p>
+<p>缺点：逻辑控制复杂，需要和主程序交互；多进程调度开销比较大；</p>
+<p>基于多线程的并发服务技术（需要频繁创建销毁 需要进行大量计算 强相关的处理）<br>优点：无需跨进程边界；程序逻辑和控制方式简单；所有线程可以直接共享内存和变量等；线程方式消耗的总资源比进程方式好。<br>缺点：线程之间的同步和加锁控制比较麻烦；一个线程的崩溃可能影响到整个程序的稳定性；进程切换和创建清楚耗时</p>
+<p>基于线程池的并发服务技术：解决了线程创建销毁的问题 适用高并发、任务执行时间短的业务<br>事件驱动技术（多路复用技术）：解决了线程切换的问题 适合大量短事务</p>
+<p>多机</p>
+<p>负载均衡技术<br>适用：负载均衡适用于高访问量的业务，提高应用程序的可用性和可靠性。</p>
+<p>2.3 远程过程调用(Remote Method Invocation, RMI)</p>
+<p>定义：</p>
+<p>使应用程序可以像调用本地节点上的过程(子程序) 那样去调用一个远程节点上的子程序。</p>
+<p>实现：</p>
+<p>RPC/RMI中间件在调用者进程中植入stub模块，stub模块作为远程过程的本地代理，并且暴露与远程过程相同的接口。<br>RPC/RMI中间件在被调用者进程中植入skeleton模块， skeleton作为调用者在远程主机中的代理。<br>stub模块与skeleton模块利用Socket进行通信。<br>skeleton模块相当于Client-Server通信模式中的服务器端，要先于客户端运行，并且在某个Socket端口进行监听。<br>具体见PPT 22页-31页 及其底下备注解释</p>
+<p>四个核心组件：</p>
+<p>分别是Client，Client Stub，Server以及Server Stub，这个Stub可以理解为存根。</p>
+<p>客户端(Client)，服务的调用方。</p>
+<p>客户端存根(Client Stub proxy)，存放服务端的地址消息，再将客户端的请求参数打包成网络消息，然后通过OS网络远程发送给服务方。(TCP/UDP)</p>
+<p>服务端(Server)，真正的服务提供者。</p>
+<p>服务端存根(Server Stub skeleton)，接收客户端发送过来的消息，将消息解包，并分发rpc请求调用本地的方法。</p>
+<p>RPC 调用过程：</p>
+<p>（参考 <a href="https://www.cnblogs.com/swordfall/p/8683905.html）" target="_blank" rel="noopener">https://www.cnblogs.com/swordfall/p/8683905.html）</a></p>
+<p>(1) 客户端（client）以本地调用方式（即以接口的方式）调用服务；</p>
+<p>(2) 客户端存根（client stub）接收到调用后，负责将方法、参数等组装成能够进行网络传输的消息体（将消息体对象序列化为二进制）；</p>
+<p>(3) 客户端通过sockets将消息发送到服务端；</p>
+<p>(4) 服务端存根( server stub）收到消息后进行解码（将消息对象反序列化）；</p>
+<p>(5) 服务端存根( server stub）根据解码结果调用本地的服务；</p>
+<p>(6) 本地服务执行并将结果返回给服务端存根( server stub）；</p>
+<p>(7) 服务端存根( server stub）将返回结果打包成消息（将结果消息对象序列化）；</p>
+<p>(8) 服务端（server）通过sockets将消息发送到客户端；</p>
+<p>(9) 客户端存根（client stub）接收到结果消息，并进行解码（将结果消息发序列化）；</p>
+<p>(10) 客户端（client）得到最终结果。</p>
+<p>2.4 面向消息中间件（MOM: Message Oriented Middleware）</p>
+<p>定义：</p>
+<p>提供了一种分布式消息队列服务，使得节点之间可以实现基于消息的形式灵活的异步通信。</p>
+<p>异步的含义：发送方可以在任意时刻发出消息，不必等待接收方上线，更不必等待消息发送成功再做下一步工作；接收方不必以阻塞方式等待消息的到来。</p>
+<p>基于MOM实现通信的优点:</p>
+<p>异步通信，可以减少系统响应时间，提高吞吐量<br>分布式节点之间的解耦<br>保证消息的可靠递交，实现最终一致性<br>实现广播、组播和多对多通信<br>流量削峰和流控<br>支持Push模型和Pull模型</p>
+<p>2.5 Web Service技术（一种特殊的RPC技术）</p>
+<p>定义：</p>
+<p>为方便网络上不同节点之间互操作而定义的一套协议标准， 也可视为实现远程过程调用的一套协议标准。</p>
+<p>Web Service主要包含哪些标准协议？</p>
+<p>消息编码标准(XML)<br>传输协议标准(HTTP、SMTP、TCP、UDP)<br>远程对象访问协议（即远程方法调用协议）：SOAP(Simple Object Access Protocol):<br>Web服务描述语言：WSDL(Web Services Description Language)  （主要描述服务接口定义）<br>服务目录、服务注册、服务发现：UDDI(Universal Discovery Description and Integration)<br>安全相关标准：签名、加密、认证等<br>服务组合、服务编排</p>
+<p>理解WSDL SOA UDDI HTTP XML等作用：</p>
+<p>通过XML 来实现消息描述，然后再通过 HTTP 实现消息传输。<br>SOAP 是远程对象访问协议。SOAP是一种简单的、轻量级的基于XML 的机制，用于在网络应用程序之间进行结构化数据交换。SOAP包括三部分:一个定义描述消息内容的框架的信封，一组表示应用程序定义的数据类型实例的编码规则，以及表示远程过程调用和响应的约定<br>WSDL表示服务描述语言。WSDL文件是一个XML 文档，用于说明一组SOAP消息以及如何交换这些消息。<br>UDDI(统一描述发现和集成) 提供一种发布和查找服务描述的方法。UDDI 数据实体提供对定义业务和服务信息的支持。WSDL 中定义的服务描述信息是UDDI注册中心信息的补充。<br>（参考 <a href="https://blog.csdn.net/zouyousu/article/details/83567545）" target="_blank" rel="noopener">https://blog.csdn.net/zouyousu/article/details/83567545）</a></p>
+<p>看看代码：</p>
+<p>第三讲 分布式文件系统</p>
+<p>3.1 分布式文件系统</p>
+<p>定义：</p>
+<p>分布式文件系统：将分布式系统中多个节点的存储资源整合在一起，向用户/应用程序呈现统一的存储空间和文件系统目录树。用户无需关心数据存储在哪个节点上。大文件被自动分块并分别存储到不同的节点上。</p>
+<p>作用：</p>
+<p>在用户看来就是一个大型的目录树。</p>
+<p>安全机制：对读写文件有权限控制措施</p>
+<p>可扩展性：支持通过增加节点扩充存储容量</p>
+<p>高吞吐率：多副本可以提高数据吞吐率</p>
+<p>解决了大容量存储和负载均衡的问题。</p>
+<p>工作原理：</p>
+<p>客户端向NameNode发出写文件请求。<br>检查是否已存在文件、检查权限。若通过检查，直接先将操作写入EditLog，并返回输出流对象。<br>client端按128MB的块切分文件。<br>client将NameNode返回的分配的可写的DataNode列表和Data数据一同发送给最近的第一个DataNode节点，此后client端和NameNode分配的多个DataNode构成pipeline管道，client端向输出流对象中写数据。client每向第一个DataNode写入一个packet，这个packet便会直接在pipeline里传给第二个、第三个…DataNode。<br>每个DataNode写完一个块后，会返回确认信息。<br>写完数据，关闭输输出流。<br>发送完成信号给NameNode。</p>
+<p>Namenode 节点流程及作用：</p>
+<p>namenode是整个文件系统的管理节点。它维护着1.整个文件系统的文件目录树，2.文件/目录的元信息和每个文件对应的数据块列表。3.接收用户的操作请求。</p>
+<p> namenode包含两个文件：FsImage(元数据镜像文件。存储某一时段NameNode内存元数据信息)和Editlog(操作日志文件）<br>NameNode维护着2张表：</p>
+<p>1文件与数据块（block）列表的对应关系<br>2数据块与被存储的结点的关系。</p>
+<p>DataNode：负责存储client发来的数据块block；执行数据块的读写操作；使用多备份策略。</p>
+<p>第四讲 MapReduce模型和分布式计算框架</p>
+<p>4.1 Mapreduce 设计算法即可，写伪代码，描述清楚</p>
+<p>Map阶段：第一阶段并行，将输入文件划分成多个分区，每个分区都交给一个独立的Map子任务进行处理。强制要求每个Map子任务将输出规整为一系列&lt;key, value&gt;对的形式。<br>聚集混洗阶段：并不同Map子任务输出的&lt;key, value&gt;数组按照key进行聚集，聚集成数组 A = {&lt;k1, [v1, v2, …]&gt;,   &lt;k2, [v3, v4, …]&gt;, &lt;k3, [v5, v6, …]&gt;, …}的形式。（按key排序）<br>Reduce阶段：第二阶段并行，将聚集之后的数组A划分成多个分区，每个分区都交给一个独立的Reduce子任务进行处理。 Reduce子任务也将输出规整为一系列&lt;key, value&gt;对的形式。<br>如果Reduce阶段输出不是最终结果，还可以启动新一轮MapReduce过程。</p>
+<p>4.2 样例设计：</p>
+<p>单词计数统计</p>
+<p>在网页数据库中统计不同网页被引用的频率。<br>map函数处理网页请求的日志文件，并输出&lt;URL, 1&gt;的键值对。reduce函数把相同URL访问次数值相加到一起，输出&lt;URL, 总访问数&gt;的键值对。</p>
+<p>根据网页数据库生成关于每个网页的逆向链接统计。（&lt;target, list(source)&gt;）<br>map函数把source网页中每一个链接到target URL的结果输出为&lt;target, source&gt;。reduce函数把所有和给定target相关的source URLs连接起来，并且输出&lt;target, list(source)&gt;。举个例子，搜索引擎中输入关键字，网络爬虫就会根据关键字(target)查找相关的网页并找到所有的链接，这些就是list(source)。</p>
+<p>生成关于网页数据库的全文检索索引（倒排索引）。<br>(1)这里存在两个问题：第一，&lt;key,value&gt;对只能有两个值，在不使用Hadoop自定义数据类型的情况下，需要根据情况将其中两个值合并成一个值，作为key或value值；第二，通过一个Reduce过程无法同时完成词频统计和生成文档列表，所以必须增加一个Combine过程完成词频统计。</p>
+<p>(2)这里讲单词和URL组成key值（如”MapReduce：file1.txt”），将词频作为value，这样做的好处是可以利用MapReduce框架自带的Map端排序，将同一文档的相同单词的词频组成列表，传递给Combine过程，实现类似于WordCount的功能。</p>
+<p>(3)Combine过程：经过map方法处理后，Combine过程将key值相同的value值累加，得到一个单词在文档在文档中的词频，如果直接输出作为Reduce过程的输入，在Shuffle过程时将面临一个问题：所有具有相同单词的记录（由单词、URL和词频组成）应该交由同一个Reducer处理，但当前的key值无法保证这一点，所以必须修改key值和value值。这次将单词作为key值，URL和词频组成value值（如”file1.txt：1”）。这样做的好处是可以利用MapReduce框架默认的HashPartitioner类完成Shuffle过程，将相同单词的所有记录发送给同一个Reducer进行处理。</p>
+<p>海量数据的全文查找或关键字匹配</p>
+<p>数据过滤<br>数据去重</p>
+<p>数值数组计算总和、平均值、最大最小值、TopN<br>计算数字图像直方图<br>海量数据的随机采样</p>
+<p>给出child-parent数据表，要求输出grandchild-grandparent数据集表</p>
+<p>第五讲 时钟和分布式共识</p>
+<p>5.1 抽象模型（理解）</p>
+<p>交互模式</p>
+<p>定义了在算法运行期间哪些节点之间有消息传递动作；<br>定义了通信模式：同步模式、异步模式<br>信道故障模式</p>
+<p>消息是否会丢失<br>消息是否会乱序<br>消息传输延迟的上限<br>节点故障模式</p>
+<p>失效停止模式<br>失效停止重启模式<br>拜占庭(Byzantine)模式</p>
+<p>5.2 同步交互与异步交互比较</p>
+<p>同步交互模式</p>
+<p>节点间的交互按周期进行，每个周期包含一次消息发送、和消息接收过程<br>隐含地对节点物理时钟的同步、消息传输最大延迟、消息最大处理时间做了假设。<br>异步交互模式</p>
+<p>节点可以在任意时刻发送消息，也可以在任意时刻接收消息。<br>对消息传输延迟和消息处理时间没有任何假设</p>
+<p>5.3 失效停止模式和拜占庭模式区别</p>
+<p>失效停止模式(Fail-Stop Failure or Crash Failure)</p>
+<p>节点一旦发生故障就停止工作，故障期间不发送任何消息<br>有的分布式协议也允许节点崩溃后可以重新启动，再次上线。此时节点崩溃之前内存中的状态全部消失，但持久化到非易失存储器中的状态还可以恢复。<br>拜占庭模式(Byzantine Failure)</p>
+<p>节点一旦发生故障就有可能做出任意动作，例如发送非协议规定的错误消息，甚至故意扰乱分布式系统的消息。<br>网络安全系统设计多采用拜占庭模式，此时认为节点完全被黑客控制了。<br>一些安全系数要求极高的分布式系统设计中，也采用拜占庭模式。</p>
+<p>5.4 物理时钟</p>
+<p>实现方法：</p>
+<p>方法一：每个节点都定期地与世界标准时间(UTC: Coordinated Universal Time )同步</p>
+<p>缺点：（1）成本高；（2）大部分计算机都放在室内，接收不到UTC</p>
+<p>方法二：每个节点定期地通过网络与时间服务器同步</p>
+<p>缺点：时间服务器配备了GPS接收器。需要考虑传输延时</p>
+<p>Cristian时间同步算法（重要）</p>
+<p>给出T1-T4计算或者推导公式：</p>
+<p>5.5 逻辑时钟</p>
+<p>思想：</p>
+<p>分布式系统中很多问题的关键在于不同的节点对多个事件的发生顺序达成一致就可以，并且达成的顺序不能破坏因果关系。<br>Lamport提出的逻辑时钟概念就是为了解决分布式系统中事件的时序问题，并且能够保证如果事件a导致事件b（记为：a➔b，表示a是b的潜在原因），则一定有C(a)&lt;C(b)。（C(a)为事件a发生的逻辑时间戳， C(b)为事件b发生的逻辑时间戳）</p>
+<p>系统内任意的两个消息a、b都可以基于时间戳&lt;C(a), ID(a)&gt;、 &lt;C(b), ID(b)&gt;比较先后，<br>规则为：a先于b 当且仅当：C(a) &lt; C(b) or C(a)=C(b) and ID(a)&gt;ID(b)</p>
+<p>有了消息比较先后的规则，分布式系统内所有消息都可以进行统一排序。<br>该排序的性质：保持了潜在因果关系：a导致b，则一定有C(a)&lt;C(b)<br>但反过来不成立！因为可能a,b是不相关的。</p>
+<p>节点维护逻辑时钟的算法</p>
+<p>每个节点维护一个不断增加的整数作为本地逻辑时钟<br>节点内事件的发生（消息产生、消息发送、消息接收都是事件）会触发逻辑时钟的增长<br>节点 i 发出的每个消息都绑定一个二元组：<br>&lt;本地逻辑时钟Ci，节点ID号i&gt;</p>
+<p>每发生一个新事件就让本地逻辑时钟Ci加1<br>假定节点j接收到一个消息m，其时间戳为&lt;Ci, i&gt;, 则节点j将自己的逻辑时间调整为：<br>Cj 1 + max{ Cj,  Ci }</p>
+<p>5.6 分布式共识协议</p>
+<p>介绍：</p>
+<p>分布式系统由n个节点构成，其中最多有f个故障节点。每个节点Pi 都有自己的提案xi。这些节点之间通过运行“分布式共识协议”以达成一致的决策。</p>
+<p>必须满足如下条件：</p>
+<p>终止性：在有限时间内总能达成一致的决策。</p>
+<p>共识性: 不同节点最终决策的结果是相同的。</p>
+<p>合法性：决策的结果必须等于某个进程提出的提案。</p>
+<p>用分布式共识协议解决多数据库镜像一致性问题？</p>
+<p>答：客户端向所有数据库服务器都发送Update消息，然后在服务器之间运行“分布式共识协议”就多个客户端Update消息的消息内容和先后顺序问题达成一致。</p>
+<p>同步模型下的分布式共识协议</p>
+<p>初始化：假定每个节点的提案都是自然数。每个节点Pi 定义提案集合Si={xi}</p>
+<p>协议：每个节点按周期运行如下逻辑，共运行f+1个周期：</p>
+<p>（1）将自己的集合Si中的尚未广播过的值广播给其他所有节点；</p>
+<p>（2）从其他节点接收到的提案值都放入集合Si（去掉重复的值）。</p>
+<p>结束处理：</p>
+<p>f+1个周期后，每个节点都取集合Si中最大（或最小）的值作为最终提案。</p>
+<p>定理：按照以上协议运行结束后，每个节点获得的集合Si是相同的。</p>
+<p>异步模型下的分布式共识协议</p>
+<h2 id="FLP定理：在异步通信模型下，只要有一个节点失效（失效停止模式，或拜占庭模式），就无法达成共识。"><a href="#FLP定理：在异步通信模型下，只要有一个节点失效（失效停止模式，或拜占庭模式），就无法达成共识。" class="headerlink" title="FLP定理：在异步通信模型下，只要有一个节点失效（失效停止模式，或拜占庭模式），就无法达成共识。"></a>FLP定理：在异步通信模型下，只要有一个节点失效（失效停止模式，或拜占庭模式），就无法达成共识。</h2><p>作者：larry6799<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/larry1648637120/article/details/93523269" target="_blank" rel="noopener">https://blog.csdn.net/larry1648637120/article/details/93523269</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/18/二分写法2/" rel="next" title="二分写法2">
+                <i class="fa fa-chevron-left"></i> 二分写法2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/09/C++面向对象/" rel="prev" title="C++面向对象">
+                C++面向对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.png"
+                alt="yyyywd" />
+            
+              <p class="site-author-name" itemprop="name">yyyywd</p>
+              <p class="site-description motion-element" itemprop="description">Try your best</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-概述"><span class="nav-number">1.</span> <span class="nav-text">第一章 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式系统定义"><span class="nav-number">1.1.</span> <span class="nav-text">分布式系统定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要点："><span class="nav-number">1.2.</span> <span class="nav-text">要点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好处"><span class="nav-number">1.3.</span> <span class="nav-text">好处</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FLP定理：在异步通信模型下，只要有一个节点失效（失效停止模式，或拜占庭模式），就无法达成共识。"><span class="nav-number">2.</span> <span class="nav-text">FLP定理：在异步通信模型下，只要有一个节点失效（失效停止模式，或拜占庭模式），就无法达成共识。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yyyywd</span>
+
+  
+</div>
+
+
+  <!-- div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
